@@ -6,15 +6,14 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 18:35:27 by parden            #+#    #+#             */
-/*   Updated: 2025/04/16 19:17:58 by parden           ###   ########.fr       */
+/*   Updated: 2025/04/16 19:27:32 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef OBJECT_H
 # define OBJECT_H
 
-#include "model.h"
-
+typedef float	t_v3[3];
 enum e_obj {
 	PLANE,
 	SPHERE,
@@ -47,6 +46,9 @@ typedef struct s_obj {
 	};
 }	t_obj;
 
-
+typedef struct s_scene {
+	t_obj			val;
+	struct s_scene	*next;
+}	t_scene;
 
 #endif
