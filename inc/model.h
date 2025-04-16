@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 18:35:27 by parden            #+#    #+#             */
-/*   Updated: 2025/04/16 20:56:40 by parden           ###   ########.fr       */
+/*   Updated: 2025/04/16 22:06:24 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ typedef struct s_lit {
 	float	lum;
 	t_rgb	col;
 }	t_lit;
-
-
 
 typedef struct s_model {
 	t_cam	cam;
