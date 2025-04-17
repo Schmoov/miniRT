@@ -6,18 +6,15 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:00:29 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/04/17 00:49:24 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/04/17 20:49:59 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../libft/libft.h"
+#include "parser_utils.h"
 #include "scene_structs.h"
 #include <stdbool.h>
 #include <stdlib.h>
-
-enum
-{
-	BASE = 10
-};
 
 bool	ft_isspace(char character)
 {
@@ -25,58 +22,18 @@ bool	ft_isspace(char character)
 		|| character == '\r' || character == '\v' || character == '\f');
 }
 
-bool	ft_isdigit(char character)
+int	custom_atoi(const char *str, char **endptr)
 {
-	return (character >= '0' && character <= '9');
-}
-
-char	*skip_whitespace(char *str)
-{
-	while (ft_isspace(*str))
-		str++;
-	return (str);
-}
-
-unsigned long	custom_str_to_int(const char *str, char **endptr)
-{
-	unsigned long	result;
-	int				digit;
+	int	result;
+	int	sign;
 
 	result = 0;
-	str = skip_whitespace((char *)str);
-	while (*str)
-	{
-		if (ft_isdigit(*str))
-			digit = *str - '0';
-		else
-			break ;
-		result = result * BASE + digit;
-		str++;
-	}
-	if (endptr)
-		*endptr = (char *)str;
-	return (result);
-}
-
-float	custom_strof(const char *str, char **endptr)
-{
-	float	result;
-	float	fraction;
-	int		divisor;
-	int		sign;
-
-	result = 0.0F;
-	fraction = 0.0F;
-	divisor = 1;
 	sign = 1;
 	str = skip_whitespace((char *)str);
-	if (*str == '-')
+	if (*str == '-' || *str == '+')
 	{
-		sign = -1;
-		str++;
-	}
-	else if (*str == '+')
-	{
+		if (*str == '-')
+			sign = -1;
 		str++;
 	}
 	while (ft_isdigit(*str))
@@ -84,9 +41,21 @@ float	custom_strof(const char *str, char **endptr)
 		result = result * BASE + (*str - '0');
 		str++;
 	}
-	if (*str == '.')
+	if (endptr)
+		*endptr = (char *)str;
+	return (result * sign);
+}
+
+float	custom_strof(const char *str, char **endptr)
+{
+	float (result) = 0.0F;
+	float (fraction) = 0.0F;
+	int (divisor) = 1;
+	int (sign) = 1;
+	str = skip_whitespace((char *)str);
+	result = (float)custom_atoi(str, (char **)&str);
+	if (*str == '.' && str++)
 	{
-		str++;
 		while (ft_isdigit(*str))
 		{
 			fraction = fraction * BASE + (*str - '0');
@@ -107,12 +76,6 @@ char	*parse_float(char *str, float *value)
 	return (skip_whitespace(str));
 }
 
-char	*parse_int(char *str, unsigned int *value)
-{
-	*value = custom_str_to_int(str, &str);
-	return (skip_whitespace(str));
-}
-
 char	*parse_coord(char *str, t_coord *coord)
 {
 	str = parse_float(str, &coord->x);
@@ -122,17 +85,5 @@ char	*parse_coord(char *str, t_coord *coord)
 	if (*str++ != ',')
 		return (NULL);
 	str = parse_float(str, &coord->z);
-	return (skip_whitespace(str));
-}
-
-char	*parse_rgb(char *str, t_RGB *color)
-{
-	str = parse_int(str, &color->r);
-	if (*str++ != ',')
-		return (NULL);
-	str = parse_int(str, &color->g);
-	if (*str++ != ',')
-		return (NULL);
-	str = parse_int(str, &color->b);
 	return (skip_whitespace(str));
 }

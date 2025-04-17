@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:00:33 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/04/16 23:14:43 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/04/17 20:49:41 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,16 @@
 
 # include "parsing_errors.h"
 # include "scene_structs.h"
+# include <stdbool.h>
+
+enum
+{
+	BASE = 10
+};
 
 char			*skip_whitespace(char *str);
 char			*parse_float(char *str, float *value);
-char			*parse_int(char *str, unsigned int *value);
+char			*parse_uint(char *str, unsigned int *value);
 char			*parse_coord(char *str, t_coord *coord);
 char			*parse_rgb(char *str, t_RGB *color);
 t_parsing_error	parse_cylinder(char *line, t_scene *scene);
@@ -29,5 +35,6 @@ t_parsing_error	parse_light(char *line, t_light *light);
 t_parsing_error	parse_plane(char *line, t_scene *scene);
 void			exit_with_error(t_parsing_error error, const char *filename,
 					int num_line);
+bool			ft_isspace(char character);
 
 #endif // PARSER_UTILS_H

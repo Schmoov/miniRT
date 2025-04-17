@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:00:36 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/04/17 00:49:22 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/04/17 20:52:28 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,12 +86,13 @@ void	parse_scene(const char *filename, t_scene *scene)
 		printf("Error\nCould not open file: %s\n", filename);
 		exit(EXIT_FAILURE);
 	}
-	line = NULL;
+	line = get_next_line(file);
 	num_line = 0;
-	while ((line = get_next_line(file)) != NULL && error == NO_ERROR)
+	while (line != NULL && error == NO_ERROR)
 	{
 		error = parse_line(line, scene);
 		num_line++;
+		line = get_next_line(file);
 	}
 	free(line);
 	close(file);

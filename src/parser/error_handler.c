@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 22:30:26 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/04/17 20:05:45 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/04/17 20:54:49 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@
 
 void	exit_with_error(t_parsing_error err, const char *filename, int num_line)
 {
-	const char *const error_message[] = {
+	const char *const	error_message[] = {
 		ERR_MSG_AMBIENT_RATIO, ERR_MSG_AMBIENT_COLOR, ERR_MSG_AMBIENT_DUPLICATE,
 		ERR_MSG_CAMERA_POSITION, ERR_MSG_CAMERA_ORIENTATION,
 		ERR_MSG_CAMERA_FOV, ERR_MSG_CAMERA_DUPLICATE,
@@ -56,6 +56,7 @@ void	exit_with_error(t_parsing_error err, const char *filename, int num_line)
 		ERR_MSG_PLANE_POSITION, ERR_MSG_PLANE_AXIS, ERR_MSG_PLANE_COLOR,
 		ERR_MSG_CONE, ERR_MSG_UNKNOWN_ELEMENT, ERR_MSG_MEMORY_ALLOCATION,
 	};
+
 	printf("\033[31mError\033[0m : \033[33m%s\033[0m ", error_message[err]);
 	printf("-> \033[1m%s:%d\033[0m\n", filename, num_line);
 	exit(EXIT_FAILURE);
