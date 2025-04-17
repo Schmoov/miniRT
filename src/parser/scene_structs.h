@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:00:39 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/04/16 21:06:43 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/04/17 00:08:58 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,5 @@ typedef struct s_scene
 	t_cylinder			*cylinders;
 	size_t				cylinder_count;
 }						t_scene;
-
 
 #endif // SCENE_STRUCTS_H

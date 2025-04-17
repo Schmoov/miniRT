@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:52:35 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/04/16 23:16:34 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/04/17 20:00:11 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ typedef enum e_parsing_error
 	ERR_UNKNOWN_ELEMENT,
 	ERR_MEMORY_ALLOCATION,
 	NO_ERROR,
-    ERR_NO_AMBIENT_LIGHTING,
-    ERR_NO_CAMERA,
-    ERR_NO_LIGHT,
-    ERR_NO_OBJECTS
+	ERR_NO_AMBIENT_LIGHTING,
+	ERR_NO_CAMERA,
+	ERR_NO_LIGHT,
+	ERR_NO_OBJECTS
 }	t_parsing_error;
 
 #endif // PARSING_ERRORS_H

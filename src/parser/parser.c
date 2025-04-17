@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:00:36 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/04/16 23:20:32 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/04/17 00:49:22 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,20 +48,37 @@ void	exit_unknown_element(char *line, int file)
 	exit(EXIT_FAILURE);
 }
 
+t_parsing_error	parse_line(char *line, t_scene *scene)
+{
+	t_element_type	type;
+	t_parsing_error	error;
+
+	error = NO_ERROR;
+	type = get_element_type(line);
+	if (type == AMBIENT_LIGHTING)
+		error = parse_ambient_lighting(line, &scene->ambient);
+	if (type == CAMERA)
+		error = parse_camera(line, &scene->camera);
+	if (type == LIGHT)
+		error = parse_light(line, &scene->light);
+	if (type == SPHERE)
+		error = parse_sphere(line, scene);
+	if (type == PLANE)
+		error = parse_plane(line, scene);
+	if (type == CYLINDER)
+		error = parse_cylinder(line, scene);
+	if (type == UNKNOWN)
+		error = ERR_UNKNOWN_ELEMENT;
+	return (error);
+}
+
 void	parse_scene(const char *filename, t_scene *scene)
 {
 	int				file;
 	char			*line;
-	int				ambient_set;
-	int				camera_set;
-	int				light_set;
-	t_element_type	type;
 	t_parsing_error	error;
 	int				num_line;
 
-	ambient_set = 0;
-	camera_set = 0;
-	light_set = 0;
 	error = NO_ERROR;
 	file = open(filename, O_RDONLY | O_CLOEXEC);
 	if (file == -1)
@@ -73,58 +90,11 @@ void	parse_scene(const char *filename, t_scene *scene)
 	num_line = 0;
 	while ((line = get_next_line(file)) != NULL && error == NO_ERROR)
 	{
-		type = get_element_type(line);
-		switch (type)
-		{
-		case AMBIENT_LIGHTING:
-			if (ambient_set)
-			{
-				printf("Error\nDuplicate ambient lighting definition\n");
-				exit(EXIT_FAILURE);
-			}
-			parse_ambient_lighting(line, &scene->ambient);
-			ambient_set = 1;
-			break ;
-		case CAMERA:
-			if (camera_set)
-			{
-				printf("Error\nDuplicate camera definition\n");
-				exit(EXIT_FAILURE);
-			}
-			error = parse_camera(line, &scene->camera);
-			camera_set = 1;
-			break ;
-		case LIGHT:
-			if (light_set)
-			{
-				printf("Error\nDuplicate light definition\n");
-				exit(EXIT_FAILURE);
-			}
-			error = parse_light(line, &scene->light);
-			light_set = 1;
-			break ;
-		case SPHERE:
-			error = parse_sphere(line, scene);
-			break ;
-		case PLANE:
-			error = parse_plane(line, scene);
-			break ;
-		case CYLINDER:
-			error = parse_cylinder(line, scene);
-			break ;
-		default:
-			error = ERR_UNKNOWN_ELEMENT;
-		}
+		error = parse_line(line, scene);
 		num_line++;
 	}
 	free(line);
 	close(file);
-	if (ambient_set == 0)
-		error = ERR_NO_AMBIENT_LIGHTING;
-	if (camera_set == 0)
-		error = ERR_NO_CAMERA;
-	if (light_set == 0)
-		error = ERR_NO_LIGHT;
 	if (error != NO_ERROR)
 		exit_with_error(error, filename, num_line);
 }

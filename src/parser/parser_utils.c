@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:00:29 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/04/16 19:01:41 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/04/17 00:49:24 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ bool	ft_isdigit(char character)
 
 char	*skip_whitespace(char *str)
 {
-	#pragma unroll
 	while (ft_isspace(*str))
 		str++;
 	return (str);

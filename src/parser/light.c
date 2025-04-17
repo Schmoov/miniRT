@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:45:39 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/04/16 23:21:22 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/04/17 00:03:29 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 
 t_parsing_error	parse_light(char *line, t_light *light)
 {
+	static int	cpt = 0;
+
+	if (cpt != 0)
+		return (ERR_INVALID_LIGHT_DUPLICATE);
 	line = skip_whitespace(line + 1);
 	line = parse_coord(line, &light->pos);
 	if (!line)
@@ -27,5 +31,6 @@ t_parsing_error	parse_light(char *line, t_light *light)
 	if (!line || light->color.r > RGB_MAX || light->color.g > RGB_MAX
 		|| light->color.b > RGB_MAX)
 		return (ERR_INVALID_LIGHT_COLOR);
+	cpt++;
 	return (NO_ERROR);
 }
