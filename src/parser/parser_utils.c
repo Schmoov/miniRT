@@ -6,15 +6,16 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:00:29 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/04/17 23:08:37 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/04/18 00:46:33 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../libft/libft.h"
 #include "parser_utils.h"
 #include "scene_structs.h"
+#include <limits.h>
 #include <stdbool.h>
-#include <stdlib.h>
+#include <stddef.h>
 
 bool	ft_isspace(char character)
 {
@@ -87,11 +88,13 @@ char	*parse_float(char *str, float *value)
 char	*parse_coord(char *str, t_coord *coord)
 {
 	str = parse_float(str, &coord->x);
-	if (!str || *str++ != ',')
+	if (!str || *str != ',')
 		return (NULL);
+	str++;
 	str = parse_float(str, &coord->y);
-	if (!str || *str++ != ',')
+	if (!str || *str != ',')
 		return (NULL);
+	str++;
 	str = parse_float(str, &coord->z);
 	return (skip_whitespace(str));
 }
