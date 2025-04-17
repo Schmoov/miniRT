@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 20:45:04 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/04/17 21:02:48 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/04/17 23:03:22 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 
 char	*skip_whitespace(char *str)
 {
+	if (!str)
+		return (NULL);
 	while (ft_isspace(*str))
 		str++;
 	return (str);

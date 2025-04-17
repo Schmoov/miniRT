@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:00:29 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/04/17 22:52:56 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/04/17 23:08:37 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,11 @@ int	custom_atoi(const char *str, char **endptr)
 	}
 	while (ft_isdigit(*str))
 	{
+		if (result > (INT_MAX - (*str - '0')) / BASE)
+		{
+			*endptr = NULL;
+			return (0);
+		}
 		result = result * BASE + (*str - '0');
 		str++;
 	}
@@ -54,8 +59,11 @@ float	custom_strof(const char *str, char **endptr)
 	int (sign) = 1;
 	str = skip_whitespace((char *)str);
 	result = (float)custom_atoi(str, (char **)&str);
-	if (*str == '.' && str++)
+	if (!str)
+		return (*endptr = NULL, 0.0F);
+	if (*str == '.')
 	{
+		str++;
 		while (ft_isdigit(*str))
 		{
 			fraction = fraction * BASE + (*str - '0');
@@ -79,10 +87,10 @@ char	*parse_float(char *str, float *value)
 char	*parse_coord(char *str, t_coord *coord)
 {
 	str = parse_float(str, &coord->x);
-	if (*str++ != ',')
+	if (!str || *str++ != ',')
 		return (NULL);
 	str = parse_float(str, &coord->y);
-	if (*str++ != ',')
+	if (!str || *str++ != ',')
 		return (NULL);
 	str = parse_float(str, &coord->z);
 	return (skip_whitespace(str));
