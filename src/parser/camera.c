@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:45:58 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/04/17 21:15:34 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/04/17 21:33:48 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 #include "scene_structs.h"
 #include <stdbool.h>
 #include <stdlib.h>
+
+bool	not_valid_final_line(const char *line)
+{
+	return (!line || (!ft_isspace(*line) && *line != '\0'));
+}
 
 bool	check_orientation(t_orientation orientation)
 {
@@ -41,7 +46,7 @@ t_parsing_error	parse_camera(char *line, t_camera *camera)
 	if (!line || !check_orientation(camera->orientation))
 		return (ERR_INVALID_CAMERA_ORIENTATION);
 	line = parse_float(line, &camera->fov);
-	if (!line || !check_fov(camera->fov))
+	if (!check_fov(camera->fov) || not_valid_final_line(line))
 		return (ERR_INVALID_CAMERA_FOV);
 	cpt++;
 	return (NO_ERROR);
