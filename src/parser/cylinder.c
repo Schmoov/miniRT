@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:12:48 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/04/17 21:29:16 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/04/17 21:47:50 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_parsing_error	parse_add_cylinder(t_cylinder *cylinder, char *line)
 	if (!line)
 		return (ERR_INVALID_CYLINDER_POSITION);
 	line = parse_coord(line, &cylinder->axis);
-	if (!line)
+	if (!line || !check_orientation(cylinder->axis))
 		return (ERR_INVALID_CYLINDER_AXIS);
 	line = parse_float(line, &cylinder->diameter);
 	if (!line)
