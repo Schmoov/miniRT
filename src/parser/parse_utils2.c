@@ -6,11 +6,11 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 20:45:04 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/04/17 20:49:43 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/04/17 21:02:48 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../libft/libft.h"
 #include "parser_utils.h"
 #include "scene_structs.h"
 #include <stdbool.h>

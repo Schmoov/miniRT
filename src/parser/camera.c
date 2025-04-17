@@ -6,13 +6,26 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:45:58 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/04/17 00:03:39 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/04/17 21:15:34 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser_utils.h"
 #include "parsing_errors.h"
 #include "scene_structs.h"
+#include <stdbool.h>
+#include <stdlib.h>
+
+bool	check_orientation(t_orientation orientation)
+{
+	return (orientation.x >= -1 && orientation.x <= 1 && orientation.y >= -1
+		&& orientation.y <= 1 && orientation.z >= -1 && orientation.z <= 1);
+}
+
+bool	check_fov(float fov)
+{
+	return (fov >= 0 && fov <= FOV_MAX);
+}
 
 t_parsing_error	parse_camera(char *line, t_camera *camera)
 {
@@ -25,10 +38,10 @@ t_parsing_error	parse_camera(char *line, t_camera *camera)
 	if (!line)
 		return (ERR_INVALID_CAMERA_POSITION);
 	line = parse_coord(line, &camera->orientation);
-	if (!line)
+	if (!line || !check_orientation(camera->orientation))
 		return (ERR_INVALID_CAMERA_ORIENTATION);
 	line = parse_float(line, &camera->fov);
-	if (!line || camera->fov < 0 || camera->fov > FOV_MAX)
+	if (!line || !check_fov(camera->fov))
 		return (ERR_INVALID_CAMERA_FOV);
 	cpt++;
 	return (NO_ERROR);
