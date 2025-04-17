@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:12:48 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/04/17 21:47:50 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/04/17 22:53:22 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_parsing_error	parse_add_cylinder(t_cylinder *cylinder, char *line)
 	if (!line)
 		return (ERR_INVALID_CYLINDER_HEIGHT);
 	line = parse_rgb(line, &cylinder->color);
-	if (not_valid_final_line(line) || !check_RGB(cylinder->color))
+	if (not_valid_final_line(line) || !check_rgb(cylinder->color))
 		return (ERR_INVALID_CYLINDER_COLOR);
 	return (NO_ERROR);
 }

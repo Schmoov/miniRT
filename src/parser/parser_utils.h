@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:00:33 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/04/17 21:46:43 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/04/17 22:53:22 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void			exit_with_error(t_parsing_error error, const char *filename,
 					int num_line);
 bool			ft_isspace(char character);
 bool			not_valid_final_line(const char *line);
-bool			check_RGB(t_RGB color);
+bool			check_rgb(t_RGB color);
 bool			check_orientation(t_orientation orientation);
 
 #endif // PARSER_UTILS_H

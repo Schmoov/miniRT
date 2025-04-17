@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:45:39 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/04/17 21:30:02 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/04/17 22:53:22 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_parsing_error	parse_light(char *line, t_light *light)
 	if (!line || light->brightness < 0.0 || light->brightness > 1.0)
 		return (ERR_INVALID_LIGHT_BRIGHTNESS);
 	line = parse_rgb(line, &light->color);
-	if (not_valid_final_line(line) || !check_RGB(light->color))
+	if (not_valid_final_line(line) || !check_rgb(light->color))
 		return (ERR_INVALID_LIGHT_COLOR);
 	cpt++;
 	return (NO_ERROR);
