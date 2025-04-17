@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:00:36 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/04/17 20:52:28 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/04/17 21:37:10 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ t_element_type	get_element_type(const char *line)
 		return (CYLINDER);
 	if (strncmp(line, "co", 2) == 0)
 		return (CONE);
+	if (strncmp(line, "\n", 1) == 0)
+		return (EMPTY);
 	return (UNKNOWN);
 }
 
@@ -67,6 +69,8 @@ t_parsing_error	parse_line(char *line, t_scene *scene)
 		error = parse_plane(line, scene);
 	if (type == CYLINDER)
 		error = parse_cylinder(line, scene);
+	if (type == EMPTY)
+		return (NO_ERROR);
 	if (type == UNKNOWN)
 		error = ERR_UNKNOWN_ELEMENT;
 	return (error);

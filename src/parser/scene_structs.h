@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:00:39 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/04/17 00:08:58 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/04/17 21:36:34 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ typedef enum e_element_type
 	PLANE,
 	CYLINDER,
 	CONE,
-	UNKNOWN
+	UNKNOWN,
+	EMPTY
 }						t_element_type;
 
 typedef struct s_ambient_lighting
