@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 22:20:58 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/04/16 23:07:55 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/04/17 23:41:52 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@ int	main(int argc, char **argv)
 	}
 	parse_scene(filename, &scene);
 	printf("Scene parsed successfully!\n");
+	free_scene(&scene);
 	return (EXIT_SUCCESS);
 }

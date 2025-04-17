@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:00:36 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/04/17 21:37:10 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/04/18 00:36:41 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,6 @@ t_element_type	get_element_type(const char *line)
 	return (UNKNOWN);
 }
 
-void	exit_unknown_element(char *line, int file)
-{
-	printf("Error\nUnknown element type in line: %s\n", line);
-	free(line);
-	close(file);
-	exit(EXIT_FAILURE);
-}
-
 t_parsing_error	parse_line(char *line, t_scene *scene)
 {
 	t_element_type	type;
@@ -76,15 +68,20 @@ t_parsing_error	parse_line(char *line, t_scene *scene)
 	return (error);
 }
 
+void	free_scene(t_scene *scene)
+{
+	free(scene->planes);
+	free(scene->spheres);
+	free(scene->cylinders);
+}
+
 void	parse_scene(const char *filename, t_scene *scene)
 {
-	int				file;
-	char			*line;
-	t_parsing_error	error;
-	int				num_line;
+	char	*line;
+	int		num_line;
 
-	error = NO_ERROR;
-	file = open(filename, O_RDONLY | O_CLOEXEC);
+	t_parsing_error(error) = NO_ERROR;
+	int (file) = open(filename, O_RDONLY | O_CLOEXEC);
 	if (file == -1)
 	{
 		printf("Error\nCould not open file: %s\n", filename);
@@ -96,10 +93,13 @@ void	parse_scene(const char *filename, t_scene *scene)
 	{
 		error = parse_line(line, scene);
 		num_line++;
+		free(line);
 		line = get_next_line(file);
 	}
-	free(line);
 	close(file);
 	if (error != NO_ERROR)
-		exit_with_error(error, filename, num_line);
+	{
+		return (free(line), free_scene(scene), exit_with_error(error, filename,
+				num_line));
+	}
 }
