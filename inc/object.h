@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 18:35:27 by parden            #+#    #+#             */
-/*   Updated: 2025/04/16 20:49:56 by parden           ###   ########.fr       */
+/*   Updated: 2025/04/18 15:56:05 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,40 @@
 # define OBJECT_H
 
 typedef float	t_v3[3];
+typedef unsigned int	t_rgb;
 enum e_obj {
-	PLANE,
-	SPHERE,
-	CYLINDER,
+	PLA,
+	SPH,
+	CYL,
 	NB_OBJ
 };
 
-typedef struct s_plane {
-	t_v3	p;
-	t_v3	n;
-}	t_plane;
+typedef struct s_pla {
+	t_v3	pos;
+	t_v3	nor;
+	t_rgb	col;
+}	t_pla;
 
-typedef struct s_sphere {
-	t_v3	c;
-	float	r;
-}	t_sphere;
+typedef struct s_sph {
+	t_v3	pos;
+	float	rad;
+	t_rgb	col;
+}	t_sph;
 
-typedef struct s_cylinder {
+typedef struct s_cyl {
+	t_v3	pos;
 	t_v3	ax;
-	float	r;
-	float	h;
-}	t_cylinder;
+	float	rad;
+	float	hgt;
+	t_rgb	col;
+}	t_cyl;
 
 typedef struct s_obj {
 	enum e_obj	type;
 	union {
-		t_plane		p;
-		t_sphere	s;
-		t_cylinder	c;
+		t_pla	pla;
+		t_sph	sph;
+		t_cyl	cyl;
 	};
 }	t_obj;
 
