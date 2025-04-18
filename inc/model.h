@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 18:35:27 by parden            #+#    #+#             */
-/*   Updated: 2025/04/18 17:57:00 by parden           ###   ########.fr       */
+/*   Updated: 2025/04/18 19:14:58 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,13 @@
 # include "model_api.h"
 # include "vector.h"
 
+# define INF 1e9
+# define EPS 1e-6
 # define W 1280
 # define H 720
+# define RED 0xff0000
+# define GRN 0xff00
+# define BLU 0xff
 
 # define LIT_MAX 20
 # define OBJ_MAX 200
@@ -58,9 +63,20 @@ typedef struct s_model {
 }	t_model;
 
 typedef struct s_impact {
+	t_ray	ray;
+	float	scale;
 	t_v3	pos;
-	t_v3	dir;
 	int		obj_idx;
 }	t_impact;
+
+t_rgb	*model_compute(t_model *m);
+void	model_pixel_camray(t_model *m, t_ray *r, int x, int y);
+t_rgb	model_pixel(t_model *m, int x, int y);
+void	model_pixel_impact(t_model *m, t_impact *imp);
+t_rgb	model_light(t_model *m, t_impact *imp);
+void	model_impact_object(t_model *m, t_impact *imp, int i);
+void	model_impact_plane(t_model *m, t_impact *imp, t_pla *pla);
+void	model_impact_sphere(t_model *m, t_impact *imp, t_sph *sph);
+void	model_impact_cylinder(t_model *m, t_impact *imp, t_cyl *cyl);
 
 #endif

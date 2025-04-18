@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 16:29:34 by parden            #+#    #+#             */
-/*   Updated: 2025/04/18 18:05:30 by parden           ###   ########.fr       */
+/*   Updated: 2025/04/18 19:16:32 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,54 @@ void	model_pixel_camray(t_model *m, t_ray *r, int x, int y)
 
 t_rgb	model_pixel(t_model *m, int x, int y)
 {
-	t_ray		r;
 	t_impact	imp;
 
-	model_pixel_camray(m, &r, x, y);
-	model_pixel_impact(m, &imp, &r);
+	model_pixel_camray(m, &imp.ray, x, y);
+	model_pixel_impact(m, &imp);
 	return (model_light(m, &imp));
 }
 
+void	model_pixel_impact(t_model *m, t_impact *imp)
+{
+	int	i;
+
+	imp->scale = INF;
+	i = 0;
+	while (i < m->obj_nb)
+	{
+		model_impact_object(m, imp, i);
+		i++;
+	}
+}
+
+static t_rgb	model_obj_color(t_obj *obj)
+{
+	if (obj->type == PLA)
+		return (obj->pla.col);
+	if (obj->type == SPH)
+		return (obj->sph.col);
+	if (obj->type == CYL)
+		return (obj->cyl.col);
+	__builtin_unreachable();
+}
+
+t_rgb	model_light(t_model *m, t_impact *imp)
+{
+	t_rgb	res;
+	t_rgb	obj_col;
+	float	f;
+
+	obj_col = model_obj_color(&(m->obj[imp->obj_idx]));
+	f = m->amb.lum / 255;
+	res = 0;
+	res |= RED
+		& (int)roundf(f * (RED & m->amb.col) * (RED & obj_col));
+	res |= GRN
+		& (int)roundf(f * (GRN & m->amb.col) * (GRN & obj_col));
+	res |= BLU
+		& (int)roundf(f * (BLU & m->amb.col) * (BLU & obj_col));
+	return (res);
+}
 
 
 	
