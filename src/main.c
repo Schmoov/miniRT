@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 22:20:58 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/04/18 06:08:59 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/04/19 00:39:54 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ t_RGB	*compute(t_scene *scene)
 	if (!image)
 	{
 		perror("Failed to allocate memory for image");
+		free_scene(scene);
 		exit(EXIT_FAILURE);
 	}
 	int (i) = -1;

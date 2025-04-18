@@ -1,27 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display.h                                          :+:      :+:    :+:   */
+/*   display_utils.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/18 03:52:34 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/04/19 00:35:58 by hsoysal          ###   ########.fr       */
+/*   Created: 2025/04/19 01:01:36 by hsoysal           #+#    #+#             */
+/*   Updated: 2025/04/19 01:04:40 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DISPLAY_H
-# define DISPLAY_H
+#ifndef DISPLAY_UTILS_H
+# define DISPLAY_UTILS_H
 
-# define WIDTH 1024
-# define HEIGHT 768
-
-# include "../../mlx/mlx.h"
 # include "../parser/scene_structs.h"
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
 
-void	display_image(t_RGB *image);
+typedef struct s_application
+{
+	void	*mlx;
+	void	*win;
+	void	*img;
+	char	*data_addr;
+	int		bpp;
+	int		size_line;
+	int		endian;
+}			t_application;
 
-#endif // DISPLAY_H
+int			*get_pixel_at(t_application *app, int x, int y);
+int			convert_rgb_to_bin(t_RGB *color);
+void		clear_all(t_application *app);
+void		initialize_mlx(t_application *app, t_RGB *image);
+
+#endif // DISPLAY_UTILS_H
