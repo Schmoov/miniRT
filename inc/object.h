@@ -6,14 +6,14 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 18:35:27 by parden            #+#    #+#             */
-/*   Updated: 2025/04/18 15:56:05 by parden           ###   ########.fr       */
+/*   Updated: 2025/04/18 16:19:13 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef OBJECT_H
 # define OBJECT_H
 
-typedef float	t_v3[3];
+typedef float			t_v3[3];
 typedef unsigned int	t_rgb;
 enum e_obj {
 	PLA,
