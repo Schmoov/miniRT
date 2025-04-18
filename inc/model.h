@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 18:35:27 by parden            #+#    #+#             */
-/*   Updated: 2025/04/18 19:14:58 by parden           ###   ########.fr       */
+/*   Updated: 2025/04/18 19:37:04 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ typedef struct s_impact {
 	int		obj_idx;
 }	t_impact;
 
-t_rgb	*model_compute(t_model *m);
+void	model_set_cam_screen(t_cam *c);
 void	model_pixel_camray(t_model *m, t_ray *r, int x, int y);
 t_rgb	model_pixel(t_model *m, int x, int y);
 void	model_pixel_impact(t_model *m, t_impact *imp);

@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 16:29:34 by parden            #+#    #+#             */
-/*   Updated: 2025/04/18 19:16:32 by parden           ###   ########.fr       */
+/*   Updated: 2025/04/18 19:58:14 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,17 +82,17 @@ t_rgb	model_light(t_model *m, t_impact *imp)
 {
 	t_rgb	res;
 	t_rgb	obj_col;
-	float	f;
 
 	obj_col = model_obj_color(&(m->obj[imp->obj_idx]));
-	f = m->amb.lum / 255;
 	res = 0;
-	res |= RED
-		& (int)roundf(f * (RED & m->amb.col) * (RED & obj_col));
-	res |= GRN
-		& (int)roundf(f * (GRN & m->amb.col) * (GRN & obj_col));
-	res |= BLU
-		& (int)roundf(f * (BLU & m->amb.col) * (BLU & obj_col));
+	res |= RED & ((int)roundf(m->amb.lum
+		* ((RED & m->amb.col) >> 16) * ((RED & obj_col) >> 16))
+		<< 16);
+	res |= GRN & ((int)roundf(m->amb.lum
+		* ((GRN & m->amb.col) >> 8) * ((GRN & obj_col) >> 8))
+		<< 8);
+	res |= BLU & (int)roundf(m->amb.lum
+		* (BLU & m->amb.col) * (BLU & obj_col));
 	return (res);
 }
 
