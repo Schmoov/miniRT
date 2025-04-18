@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 16:29:34 by parden            #+#    #+#             */
-/*   Updated: 2025/04/18 17:56:56 by parden           ###   ########.fr       */
+/*   Updated: 2025/04/18 18:05:30 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ void	model_pixel_camray(t_model *m, t_ray *r, int x, int y)
 {
 	ft_memcpy(r->pos, m->cam.pos, sizeof(t_v3));
 	ft_memcpy(r->dir, m->cam.pos_scr, sizeof(t_v3));
-	vec_move_along(r->dir, m->cam.vx_scr, x / (float)(W-1));
-	vec_move_along(r->dir, m->cam.vy_scr, y / (float)(H-1));
+	vec_move_along(r->dir, m->cam.vx_scr, x / (float)(W - 1));
+	vec_move_along(r->dir, m->cam.vy_scr, y / (float)(H - 1));
 	vec_sub(r->dir, r->dir, m->cam.pos);
 	vec_normalize(r->dir);
 }
