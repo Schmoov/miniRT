@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 20:45:04 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/04/18 00:43:51 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/04/18 03:32:13 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,12 @@ unsigned long	str_to_u_int(const char *str, char **endptr)
 
 	result = 0;
 	str = skip_whitespace((char *)str);
+	if (!ft_isdigit(*str))
+	{
+		if (endptr)
+			*endptr = NULL;
+		return (0);
+	}
 	while (str && *str)
 	{
 		if (ft_isdigit(*str))
@@ -54,10 +60,10 @@ char	*parse_uint(char *str, unsigned int *value)
 char	*parse_rgb(char *str, t_RGB *color)
 {
 	str = parse_uint(str, &color->r);
-	if (*str++ != ',')
+	if (!str || *str++ != ',')
 		return (NULL);
 	str = parse_uint(str, &color->g);
-	if (*str++ != ',')
+	if (!str || *str++ != ',')
 		return (NULL);
 	str = parse_uint(str, &color->b);
 	return (skip_whitespace(str));
