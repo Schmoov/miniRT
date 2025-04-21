@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 16:20:19 by parden            #+#    #+#             */
-/*   Updated: 2025/04/21 19:19:56 by parden           ###   ########.fr       */
+/*   Updated: 2025/04/21 19:26:32 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,5 @@ void	model_set_cam(t_model *mod, t_camera *cam)
 void	model_set_ambient(t_model *mod, t_ambient_lighting *amb)
 {
 	mod->amb.lum = amb->ratio;
-	mod->amb.col = (amb->color.r << 8) | (amb->color.g << 4) | amb->color.b;
+	mod->amb.col = (amb->color.r << 16) | (amb->color.g << 8) | amb->color.b;
 }
