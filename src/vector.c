@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 16:47:33 by parden            #+#    #+#             */
-/*   Updated: 2025/04/18 19:42:02 by parden           ###   ########.fr       */
+/*   Updated: 2025/04/21 16:15:48 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 float	vec_norm(t_v3 v)
 {
 	return (sqrt(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]));
+}
+
+float	vec_norm2(t_v3 v)
+{
+	return (v[0] * v[0] + v[1] * v[1] + v[2] * v[2]);
 }
 
 void	vec_normalize(t_v3 v)
