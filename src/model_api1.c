@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 16:20:19 by parden            #+#    #+#             */
-/*   Updated: 2025/04/18 19:37:18 by parden           ###   ########.fr       */
+/*   Updated: 2025/04/21 19:19:56 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	model_set_cam(t_model *mod, t_camera *cam)
 	mod->cam.dir[0] = cam->orientation.x;
 	mod->cam.dir[1] = cam->orientation.y;
 	mod->cam.dir[2] = cam->orientation.z;
-	mod->cam.fov = cam->fov;
+	mod->cam.fov = M_PI * cam->fov / 180.f;
 	model_set_cam_screen(&mod->cam);
 }
 
