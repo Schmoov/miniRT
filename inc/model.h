@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 18:35:27 by parden            #+#    #+#             */
-/*   Updated: 2025/04/18 19:37:04 by parden           ###   ########.fr       */
+/*   Updated: 2025/04/21 16:24:55 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,6 @@
 # define OBJ_MAX 200
 
 typedef unsigned int	t_rgb;
-typedef struct s_ray {
-	t_v3	pos;
-	t_v3	dir;
-}	t_ray;
-
 typedef struct s_cam {
 	t_v3	pos;
 	t_v3	dir;
@@ -61,6 +56,11 @@ typedef struct s_model {
 	int		obj_nb;
 	t_obj	obj[OBJ_MAX];
 }	t_model;
+
+typedef struct s_ray {
+	t_v3	pos;
+	t_v3	dir;
+}	t_ray;
 
 typedef struct s_impact {
 	t_ray	ray;
