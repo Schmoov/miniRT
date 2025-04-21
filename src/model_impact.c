@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 19:12:04 by parden            #+#    #+#             */
-/*   Updated: 2025/04/21 19:23:10 by parden           ###   ########.fr       */
+/*   Updated: 2025/04/21 19:37:42 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ void	model_impact_object(t_model *m, t_impact *imp, int i)
 void	model_impact_plane(t_model *m, t_impact *imp, t_pla *pla)
 {
 	float	scale;
+	t_v3	v_rp;
 
-	if (vec_dot(imp->ray.dir, pla->nor) < EPS)
+	if (fabsf(vec_dot(imp->ray.dir, pla->nor)) < EPS)
 		return ;
-	scale = pla->nor[0] * imp->ray.pos[0] - imp->ray.dir[0]
-		+ pla->nor[1] * imp->ray.pos[1] - imp->ray.dir[1]
-		+ pla->nor[2] * imp->ray.pos[2] - imp->ray.dir[2];
-	scale /= vec_dot(imp->ray.dir, pla->nor);
+	vec_sub(v_rp, pla->pos, imp->ray.pos);
+	scale = vec_dot(v_rp, pla->nor)
+		/ vec_dot(imp->ray.dir, pla->nor);
 	if (scale > EPS && scale < imp->scale)
 		imp->scale = scale;
 }
