@@ -6,11 +6,11 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 16:29:34 by parden            #+#    #+#             */
-/*   Updated: 2025/04/21 19:21:03 by parden           ###   ########.fr       */
+/*   Updated: 2025/04/24 16:10:54 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/model.h"
+#include "../../inc/model.h"
 
 t_rgb	*model_compute(t_model *m)
 {

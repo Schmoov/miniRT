@@ -6,11 +6,11 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 19:12:04 by parden            #+#    #+#             */
-/*   Updated: 2025/04/21 19:37:42 by parden           ###   ########.fr       */
+/*   Updated: 2025/04/24 16:11:37 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/model.h"
+#include "../../inc/model.h"
 
 void	model_impact_object(t_model *m, t_impact *imp, int i)
 {

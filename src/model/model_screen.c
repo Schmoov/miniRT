@@ -6,11 +6,11 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 19:23:40 by parden            #+#    #+#             */
-/*   Updated: 2025/04/18 19:36:01 by parden           ###   ########.fr       */
+/*   Updated: 2025/04/24 15:34:50 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/model.h"
+#include "../../inc/model.h"
 
 static void	model_screen_axis(t_cam *c)
 {

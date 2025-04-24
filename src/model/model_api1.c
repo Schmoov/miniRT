@@ -6,11 +6,11 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 16:20:19 by parden            #+#    #+#             */
-/*   Updated: 2025/04/21 19:26:32 by parden           ###   ########.fr       */
+/*   Updated: 2025/04/24 16:11:18 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/model.h"
+#include "../../inc/model.h"
 
 bool	model_init(t_model *mod)
 {

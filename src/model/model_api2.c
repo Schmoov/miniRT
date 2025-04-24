@@ -6,11 +6,11 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 16:20:12 by parden            #+#    #+#             */
-/*   Updated: 2025/04/18 19:44:10 by parden           ###   ########.fr       */
+/*   Updated: 2025/04/24 15:34:20 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/model.h"
+#include "../../inc/model.h"
 
 void	model_add_light(t_model *mod, t_light *l)
 {
