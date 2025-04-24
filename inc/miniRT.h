@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.h                                           :+:      :+:    :+:   */
+/*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/16 22:22:24 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/04/17 23:41:24 by hsoysal          ###   ########.fr       */
+/*   Created: 2025/04/24 14:30:24 by parden            #+#    #+#             */
+/*   Updated: 2025/04/24 14:53:22 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSER_H
-# define PARSER_H
+#ifndef MINIRT_H
+# define MINIRT_H
 
-# include "scene_structs.h"
+# define WIDTH 1024
+# define HEIGHT 768
 
-void	parse_scene(const char *filename, t_scene *scene);
-void	free_scene(t_scene *scene);
+# include <errno.h>
+# include <stdio.h>
+# include "../libft/libft.h"
+# include "../mlx/mlx.h"
+# include "display.h"
+# include "parser.h"
 
-#endif // PARSER_H
+#endif

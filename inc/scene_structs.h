@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:00:39 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/04/17 23:12:21 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/04/24 14:50:42 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@
 
 # define RGB_MAX 255
 # define RGB_MIN 0
-# define ROTATION_MAX 360
-# define ROTATION_MIN -360
 # define FOV_MIN 0
 # define FOV_MAX 180
 

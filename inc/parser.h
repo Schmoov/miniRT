@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_utils.h                                     :+:      :+:    :+:   */
+/*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/15 17:00:33 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/04/17 22:53:22 by hsoysal          ###   ########.fr       */
+/*   Created: 2025/04/16 22:22:24 by hsoysal           #+#    #+#             */
+/*   Updated: 2025/04/24 14:48:35 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSER_UTILS_H
-# define PARSER_UTILS_H
+#ifndef PARSER_H
+# define PARSER_H
 
 # include "parsing_errors.h"
 # include "scene_structs.h"
-# include <stdbool.h>
-
-enum
-{
-	BASE = 10
-};
 
 char			*skip_whitespace(char *str);
 char			*parse_float(char *str, float *value);
@@ -40,4 +34,7 @@ bool			not_valid_final_line(const char *line);
 bool			check_rgb(t_RGB color);
 bool			check_orientation(t_orientation orientation);
 
-#endif // PARSER_UTILS_H
+void	parse_scene(const char *filename, t_scene *scene);
+void	free_scene(t_scene *scene);
+
+#endif // PARSER_H

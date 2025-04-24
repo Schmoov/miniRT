@@ -6,16 +6,11 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 22:20:58 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/04/19 00:39:54 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/04/24 14:54:23 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
-#include "display/display.h"
-#include "parser/parser.h"
-#include "parser/scene_structs.h"
-#include <stdio.h>
-#include <stdlib.h>
+#include "../inc/miniRT.h"
 
 const char	*get_filename(int argc, char **argv)
 {
@@ -25,13 +20,13 @@ const char	*get_filename(int argc, char **argv)
 	filename = argv[1];
 	if (argc != 2)
 	{
-		printf("Error\nUsage: %s <scene_file.rt>\n", argv[0]);
+		ft_printf("Error\nUsage: %s <scene_file.rt>\n", argv[0]);
 		exit(EXIT_FAILURE);
 	}
 	len = ft_strlen(filename);
 	if (len < 3 || ft_strcmp(filename + len - 3, ".rt") != 0)
 	{
-		printf("Error\nInvalid file extension. Expected a .rt file\n");
+		ft_printf("Error\nInvalid file extension. Expected a .rt file\n");
 		exit(EXIT_FAILURE);
 	}
 	return (filename);
