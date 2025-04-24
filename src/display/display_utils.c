@@ -6,20 +6,11 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 01:01:26 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/04/19 01:04:16 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/04/24 15:24:11 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../mlx/mlx.h"
-#include "../parser/scene_structs.h"
-#include "display.h"
-#include "display_utils.h"
-#include <stdlib.h>
-
-int	convert_rgb_to_bin(t_RGB *color)
-{
-	return ((color->r << 16) | (color->g << 8) | color->b);
-}
+#include "../../inc/miniRT.h"
 
 void	clear_all(t_application *app)
 {
@@ -30,8 +21,9 @@ void	clear_all(t_application *app)
 	exit(0);
 }
 
-void	initialize_mlx(t_application *app, t_RGB *image)
+void	initialize_mlx(t_application *app, t_rgb *image)
 {
+//i changed some stuff here
 	app->mlx = mlx_init();
 	if (!app->mlx)
 		return (perror("Failed to initialize mlx"), free(image),

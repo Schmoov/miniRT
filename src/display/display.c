@@ -6,16 +6,13 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 03:47:43 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/04/19 01:05:40 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/04/24 15:18:07 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../mlx/mlx.h"
-#include "../parser/scene_structs.h"
-#include "display.h"
-#include "display_utils.h"
-#include <stdlib.h>
+#include "../../inc/miniRT.h"
 
+int	convert_rgb_to_bin(t_RGB *color);
 void	display_image(t_RGB *image)
 {
 	t_application(app) = {0};
