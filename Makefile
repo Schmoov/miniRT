@@ -1,5 +1,5 @@
 CC := cc #-g
-CFLAGS := -Wall -Wextra -Werror
+CFLAGS := 
 
 SYSLIB := -lXext -lX11 -lm
 LIBFT := libft/libft.a

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   model_api1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 16:20:19 by parden            #+#    #+#             */
-/*   Updated: 2025/04/24 16:11:18 by parden           ###   ########.fr       */
+/*   Updated: 2025/04/24 17:47:42 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ bool	model_init(t_model *mod)
 
 void	model_destroy(t_model *mod)
 {
+	(void)mod;
 }
 
 void	model_set_cam(t_model *mod, t_camera *cam)

@@ -6,11 +6,33 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 22:20:58 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/04/24 15:24:54 by parden           ###   ########.fr       */
+/*   Updated: 2025/04/24 19:07:21 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/miniRT.h"
+#include "../inc/model.h"
+#include "../inc/model_api.h"
+
+void	init_my_model(t_model *m, t_scene *s)
+{
+	size_t	i;
+
+	model_init(m);
+	model_set_cam(m, &s->camera);
+	model_set_ambient(m, &s->ambient);
+	model_add_light(m, &s->light);
+	i = -1;
+	while (++i < s->plane_count)
+		model_add_plane(m, &s->planes[i]);
+	i = -1;
+	while (++i < s->sphere_count)
+		model_add_sphere(m, &s->spheres[i]);
+	i = -1;
+	while (++i < s->cylinder_count)
+		model_add_cylinder(m, &s->cylinders[i]);
+	free_scene(s);
+}
 
 const char	*get_filename(int argc, char **argv)
 {
@@ -37,11 +59,12 @@ int	main(int argc, char **argv)
 	const char	*filename;
 
 	t_scene(scene) = {0};
+	t_model(model) = {0};
 	filename = get_filename(argc, argv);
 	parse_scene(filename, &scene);
+	init_my_model(&model, &scene);
 	printf("Scene parsed successfully!\n");
-	t_rgb *(image) = compute(&scene);
-	free_scene(&scene);
+	t_rgb *(image) = model_compute(&model);
 	display_image(image);
 	return (EXIT_SUCCESS);
 }
