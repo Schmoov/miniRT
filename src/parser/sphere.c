@@ -6,14 +6,11 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:19:38 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/04/17 22:53:22 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/04/24 14:58:30 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser_utils.h"
-#include "parsing_errors.h"
-#include "scene_structs.h"
-#include <stdlib.h>
+#include "../../inc/miniRT.h"
 
 t_parsing_error	parse_sphere(char *line, t_scene *scene)
 {

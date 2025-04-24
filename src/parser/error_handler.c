@@ -6,14 +6,11 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 22:30:26 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/04/17 20:54:49 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/04/24 14:57:39 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser_utils.h"
-#include "parsing_errors.h"
-#include <stdio.h>
-#include <stdlib.h>
+#include "../../inc/miniRT.h"
 
 #define ERR_MSG_AMBIENT_RATIO "Invalid ambient lighting ratio"
 #define ERR_MSG_AMBIENT_COLOR "Invalid ambient lighting color"

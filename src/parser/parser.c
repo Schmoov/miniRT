@@ -6,38 +6,30 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:00:36 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/04/18 00:38:33 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/04/24 15:14:33 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../libft/libft.h"
-#include "parser_utils.h"
-#include "parsing_errors.h"
-#include "scene_structs.h"
-#include <fcntl.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <sys/types.h>
-#include <unistd.h>
+#include "../../inc/miniRT.h"
 
 t_element_type	get_element_type(const char *line)
 {
-	if (strncmp(line, "A ", 2) == 0)
+	if (ft_strncmp(line, "A ", 2) == 0)
 		return (AMBIENT_LIGHTING);
-	if (strncmp(line, "C ", 2) == 0)
+	if (ft_strncmp(line, "C ", 2) == 0)
 		return (CAMERA);
-	if (strncmp(line, "L ", 2) == 0)
+	if (ft_strncmp(line, "L ", 2) == 0)
 		return (LIGHT);
-	if (strncmp(line, "sp", 2) == 0)
+	//Do that for the rest
+	if (ft_strncmp(line, "sp ", 3) == 0)
 		return (SPHERE);
-	if (strncmp(line, "pl", 2) == 0)
+	if (ft_strncmp(line, "pl", 2) == 0)
 		return (PLANE);
-	if (strncmp(line, "cy", 2) == 0)
+	if (ft_strncmp(line, "cy", 2) == 0)
 		return (CYLINDER);
-	if (strncmp(line, "co", 2) == 0)
+	if (ft_strncmp(line, "co", 2) == 0)
 		return (CONE);
-	if (strncmp(line, "\n", 1) == 0)
+	if (ft_strncmp(line, "\n", 1) == 0)
 		return (EMPTY);
 	return (UNKNOWN);
 }

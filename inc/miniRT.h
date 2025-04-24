@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 14:30:24 by parden            #+#    #+#             */
-/*   Updated: 2025/04/24 14:53:22 by parden           ###   ########.fr       */
+/*   Updated: 2025/04/24 14:59:17 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 # include <errno.h>
 # include <stdio.h>
+# include <math.h>
 # include "../libft/libft.h"
 # include "../mlx/mlx.h"
 # include "display.h"

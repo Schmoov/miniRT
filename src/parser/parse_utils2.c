@@ -6,14 +6,11 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 20:45:04 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/04/18 03:32:13 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/04/24 15:12:10 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../libft/libft.h"
-#include "parser_utils.h"
-#include "scene_structs.h"
-#include <stddef.h>
+#include "../../inc/miniRT.h"
 
 char	*skip_whitespace(char *str)
 {
@@ -43,7 +40,7 @@ unsigned long	str_to_u_int(const char *str, char **endptr)
 			digit = *str - '0';
 		else
 			break ;
-		result = result * BASE + digit;
+		result = result * 10 + digit;
 		str++;
 	}
 	if (endptr)

@@ -6,13 +6,11 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:45:39 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/04/17 22:53:22 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/04/24 14:57:48 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser_utils.h"
-#include "parsing_errors.h"
-#include "scene_structs.h"
+#include "../../inc/miniRT.h"
 
 t_parsing_error	parse_light(char *line, t_light *light)
 {

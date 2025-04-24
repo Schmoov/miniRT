@@ -6,16 +6,11 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:00:29 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/04/18 03:44:53 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/04/24 15:11:44 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../libft/libft.h"
-#include "parser_utils.h"
-#include "scene_structs.h"
-#include <limits.h>
-#include <stdbool.h>
-#include <stddef.h>
+#include "../../inc/miniRT.h"
 
 bool	ft_isspace(char character)
 {
@@ -39,12 +34,12 @@ int	custom_atoi(const char *str, char **endptr)
 	}
 	while (ft_isdigit(*str))
 	{
-		if (result > (INT_MAX - (*str - '0')) / BASE)
+		if (result > (INT_MAX - (*str - '0')) / 10)
 		{
 			*endptr = NULL;
 			return (0);
 		}
-		result = result * BASE + (*str - '0');
+		result = result * 10 + (*str - '0');
 		str++;
 	}
 	if (endptr)
@@ -69,8 +64,8 @@ float	custom_strof(const char *str, char **endptr)
 		str++;
 		while (ft_isdigit(*str))
 		{
-			fraction = fraction * BASE + (*str - '0');
-			divisor *= BASE;
+			fraction = fraction * 10 + (*str - '0');
+			divisor *= 10;
 			str++;
 		}
 	}

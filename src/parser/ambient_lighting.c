@@ -6,14 +6,11 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:46:59 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/04/18 01:31:02 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/04/24 14:57:09 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser_utils.h"
-#include "parsing_errors.h"
-#include "scene_structs.h"
-#include <stdbool.h>
+#include "../../inc/miniRT.h"
 
 bool	check_rgb(t_RGB color)
 {
