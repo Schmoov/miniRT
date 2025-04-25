@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/model.h"
+#include "../../inc/miniRT.h"
 
 void	model_impact_object(t_model *m, t_impact *imp, int i)
 {

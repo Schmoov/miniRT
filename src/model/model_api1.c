@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/model.h"
+#include "../../inc/miniRT.h"
 
 bool	model_init(t_model *mod)
 {
