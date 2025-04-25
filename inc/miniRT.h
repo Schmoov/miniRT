@@ -23,6 +23,9 @@
 # include "../mlx/mlx.h"
 # include "display.h"
 # include "parser.h"
+# include "model.h"
+
+# include "debug.h"
 
 typedef unsigned int t_rgb;
 

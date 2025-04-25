@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/model.h"
+#include "../../inc/miniRT.h"
 
 t_rgb	*model_compute(t_model *m)
 {
@@ -39,10 +39,14 @@ void	model_pixel_camray(t_model *m, t_ray *r, int x, int y)
 {
 	ft_memcpy(r->pos, m->cam.pos, sizeof(t_v3));
 	ft_memcpy(r->dir, m->cam.pos_scr, sizeof(t_v3));
-	vec_move_along(r->dir, m->cam.vx_scr, x / (float)(W - 1));
-	vec_move_along(r->dir, m->cam.vy_scr, y / (float)(H - 1));
+	vec_move_along(r->dir, m->cam.vx_scr, m->cam.w_scr * x / (float)(W - 1));
+	vec_move_along(r->dir, m->cam.vy_scr, m->cam.h_scr * y / (float)(H - 1));
 	vec_sub(r->dir, r->dir, m->cam.pos);
 	vec_normalize(r->dir);
+	if (!x && !(y%100)) {
+		printf("dir %d ", y);
+		print_vec(r->dir);
+	}
 }
 
 t_rgb	model_pixel(t_model *m, int x, int y)
