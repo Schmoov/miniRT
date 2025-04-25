@@ -43,10 +43,6 @@ void	model_pixel_camray(t_model *m, t_ray *r, int x, int y)
 	vec_move_along(r->dir, m->cam.vy_scr, m->cam.h_scr * y / (float)(H - 1));
 	vec_sub(r->dir, r->dir, m->cam.pos);
 	vec_normalize(r->dir);
-	if (!x && !(y%100)) {
-		printf("dir %d ", y);
-		print_vec(r->dir);
-	}
 }
 
 t_rgb	model_pixel(t_model *m, int x, int y)

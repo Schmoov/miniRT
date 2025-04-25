@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/model.h"
+#include "../../inc/miniRT.h"
 
 void	model_add_light(t_model *mod, t_light *l)
 {
