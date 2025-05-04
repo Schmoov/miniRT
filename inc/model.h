@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 18:35:27 by parden            #+#    #+#             */
-/*   Updated: 2025/04/21 16:24:55 by parden           ###   ########.fr       */
+/*   Updated: 2025/05/04 18:20:08 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,16 @@
 # include "object.h"
 # include "model_api.h"
 # include "vector.h"
+# include "color.h"
 
 # define INF 1e9
-# define EPS 1e-6
+# define EPS 1e-3
 # define W 1280
 # define H 720
-# define RED 0xff0000
-# define GRN 0xff00
-# define BLU 0xff
 
 # define LIT_MAX 20
 # define OBJ_MAX 200
 
-typedef unsigned int	t_rgb;
 typedef struct s_cam {
 	t_v3	pos;
 	t_v3	dir;
@@ -44,13 +41,12 @@ typedef struct s_cam {
 
 typedef struct s_lit {
 	t_v3	pos;
-	float	lum;
 	t_rgb	col;
 }	t_lit;
 
 typedef struct s_model {
 	t_cam	cam;
-	t_lit	amb;
+	t_rgb	amb;
 	int		lit_nb;
 	t_lit	lit[LIT_MAX];
 	int		obj_nb;
@@ -72,7 +68,7 @@ typedef struct s_impact {
 void	model_set_cam_screen(t_cam *c);
 void	model_pixel_camray(t_model *m, t_ray *r, int x, int y);
 t_rgb	model_pixel(t_model *m, int x, int y);
-void	model_pixel_impact(t_model *m, t_impact *imp);
+void	model_impact(t_model *m, t_impact *imp);
 t_rgb	model_light(t_model *m, t_impact *imp);
 void	model_impact_object(t_model *m, t_impact *imp, int i);
 void	model_impact_plane(t_model *m, t_impact *imp, t_pla *pla);

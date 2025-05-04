@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 16:29:34 by parden            #+#    #+#             */
-/*   Updated: 2025/04/24 18:28:01 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/05/04 17:16:12 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,11 @@ t_rgb	model_pixel(t_model *m, int x, int y)
 	t_impact	imp;
 
 	model_pixel_camray(m, &imp.ray, x, y);
-	model_pixel_impact(m, &imp);
+	model_impact(m, &imp);
 	return (model_light(m, &imp));
 }
 
-void	model_pixel_impact(t_model *m, t_impact *imp)
+void	model_impact(t_model *m, t_impact *imp)
 {
 	int	i;
 
@@ -65,34 +65,4 @@ void	model_pixel_impact(t_model *m, t_impact *imp)
 		model_impact_object(m, imp, i);
 		i++;
 	}
-}
-
-static t_rgb	model_obj_color(t_obj *obj)
-{
-	if (obj->type == PLA)
-		return (obj->pla.col);
-	if (obj->type == SPH)
-		return (obj->sph.col);
-	if (obj->type == CYL)
-		return (obj->cyl.col);
-	__builtin_unreachable();
-}
-
-t_rgb	model_light(t_model *m, t_impact *imp)
-{
-	float	f;
-	t_rgb	res;
-	t_rgb	obj_col;
-
-	f = m->amb.lum / 255.f;
-	obj_col = model_obj_color(&(m->obj[imp->obj_idx]));
-	res = 0;
-	res |= RED & ((int)roundf(f
-				* ((RED & m->amb.col) >> 16)
-				* ((RED & obj_col) >> 16)) << 16);
-	res |= GRN & ((int)roundf(f
-				* ((GRN & m->amb.col) >> 8)
-				* ((GRN & obj_col) >> 8)) << 8);
-	res |= BLU & (int)roundf(f * (BLU & m->amb.col) * (BLU & obj_col));
-	return (res);
 }
