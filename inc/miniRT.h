@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 14:30:24 by parden            #+#    #+#             */
-/*   Updated: 2025/04/24 19:05:05 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/05/04 14:04:20 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,9 @@
 # include <math.h>
 # include "../libft/libft.h"
 # include "../mlx/mlx.h"
+# include "color.h"
+# include "model.h"
 # include "display.h"
 # include "parser.h"
-# include "model.h"
-
-typedef unsigned int t_rgb;
 
 #endif

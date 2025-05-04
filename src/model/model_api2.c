@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 16:20:12 by parden            #+#    #+#             */
-/*   Updated: 2025/04/24 15:34:20 by parden           ###   ########.fr       */
+/*   Updated: 2025/05/04 14:14:04 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	model_add_light(t_model *mod, t_light *l)
 	mod->lit[i].pos[0] = l->pos.x;
 	mod->lit[i].pos[1] = l->pos.y;
 	mod->lit[i].pos[2] = l->pos.z;
-	mod->lit[i].lum = l->brightness;
 	mod->lit[i].col = (l->color.r << 16) | (l->color.g << 8) | l->color.b;
+	mod->lit[i].col = color_scale(mod->lit[i].col, l->brightness);
 	mod->lit_nb++;
 }
 
