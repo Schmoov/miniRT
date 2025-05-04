@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 16:47:33 by parden            #+#    #+#             */
-/*   Updated: 2025/04/21 16:15:48 by parden           ###   ########.fr       */
+/*   Updated: 2025/05/04 17:48:40 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,13 @@ void	vec_normalize(t_v3 v)
 	v[0] /= n;
 	v[1] /= n;
 	v[2] /= n;
+}
+
+void	vec_opp(t_v3 v)
+{
+	v[0] = -v[0];
+	v[1] = -v[1];
+	v[2] = -v[2];
 }
 
 void	vec_move_along(t_v3 point, t_v3 dir, float scale)

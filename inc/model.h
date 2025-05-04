@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 18:35:27 by parden            #+#    #+#             */
-/*   Updated: 2025/05/04 14:09:42 by parden           ###   ########.fr       */
+/*   Updated: 2025/05/04 18:20:08 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include "color.h"
 
 # define INF 1e9
-# define EPS 1e-6
+# define EPS 1e-3
 # define W 1280
 # define H 720
 
@@ -68,7 +68,7 @@ typedef struct s_impact {
 void	model_set_cam_screen(t_cam *c);
 void	model_pixel_camray(t_model *m, t_ray *r, int x, int y);
 t_rgb	model_pixel(t_model *m, int x, int y);
-void	model_pixel_impact(t_model *m, t_impact *imp);
+void	model_impact(t_model *m, t_impact *imp);
 t_rgb	model_light(t_model *m, t_impact *imp);
 void	model_impact_object(t_model *m, t_impact *imp, int i);
 void	model_impact_plane(t_model *m, t_impact *imp, t_pla *pla);
