@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:00:29 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/04/24 15:11:44 by parden           ###   ########.fr       */
+/*   Updated: 2025/05/14 14:05:10 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ float	custom_strof(const char *str, char **endptr)
 	float (result) = 0.0F;
 	float (fraction) = 0.0F;
 	int (divisor) = 1;
-	int (sign) = 1;
+	int (sign) = -2*(*str=='-') + 1;
 	str = skip_whitespace((char *)str);
 	if (!ft_isdigit(*str) && *str != '-' && *str != '+' && *str != '.')
 		return (*endptr = NULL, 0.0F);
@@ -69,10 +69,10 @@ float	custom_strof(const char *str, char **endptr)
 			str++;
 		}
 	}
-	result += fraction / (float)divisor;
-	result *= (float)sign;
+	result += sign*(fraction / (float)divisor);
 	if (endptr)
 		*endptr = (char *)str;
+	printf("%.3f\n", result);
 	return (result);
 }
 
