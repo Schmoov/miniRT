@@ -1,4 +1,4 @@
-CC := cc #-g
+CC := cc -g #-fsanitize=address
 CFLAGS := 
 
 SYSLIB := -lXext -lX11 -lm

@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 18:35:27 by parden            #+#    #+#             */
-/*   Updated: 2025/05/14 13:42:07 by parden           ###   ########.fr       */
+/*   Updated: 2025/05/15 16:58:24 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ typedef struct s_impact {
 	float	scale;
 	t_v3	pos;
 	int		obj_idx;
+	t_rgb	col;
+	t_v3	normal;
 }	t_impact;
 
 void	model_set_cam_screen(t_cam *c);
