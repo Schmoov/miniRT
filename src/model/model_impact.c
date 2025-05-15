@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 19:12:04 by parden            #+#    #+#             */
-/*   Updated: 2025/05/15 17:09:24 by parden           ###   ########.fr       */
+/*   Updated: 2025/05/15 17:20:26 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ void	model_impact_object(t_model *m, t_impact *imp, int i)
 		imp->pos[0] = imp->scale * imp->ray.dir[0] + imp->ray.pos[0];
 		imp->pos[1] = imp->scale * imp->ray.dir[1] + imp->ray.pos[1];
 		imp->pos[2] = imp->scale * imp->ray.dir[2] + imp->ray.pos[2];
-		//impact_color(m, imp);
 		impact_normal(m, imp);
+		impact_color(m, imp);
 	}
 }
 
