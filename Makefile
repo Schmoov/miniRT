@@ -1,5 +1,5 @@
-CC := cc #-g
-CFLAGS := 
+CC := cc
+CFLAGS=-g -O0 -fsanitize=address -fstack-protector-strong -D_FORTIFY_SOURCE=2
 
 SYSLIB := -lXext -lX11 -lm
 LIBFT := libft/libft.a

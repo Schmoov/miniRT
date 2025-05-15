@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:00:29 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/05/14 14:05:10 by parden           ###   ########.fr       */
+/*   Updated: 2025/05/14 15:59:48 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ float	custom_strof(const char *str, char **endptr)
 	result += sign*(fraction / (float)divisor);
 	if (endptr)
 		*endptr = (char *)str;
-	printf("%.3f\n", result);
 	return (result);
 }
 

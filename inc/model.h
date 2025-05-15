@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 18:35:27 by parden            #+#    #+#             */
-/*   Updated: 2025/05/14 13:42:07 by parden           ###   ########.fr       */
+/*   Updated: 2025/05/14 15:46:07 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ typedef struct s_impact {
 	t_ray	ray;
 	float	scale;
 	t_v3	pos;
+	t_rgb	col;
+	t_v3	normal;
 	int		obj_idx;
 }	t_impact;
 
@@ -74,5 +76,10 @@ void	model_impact_object(t_model *m, t_impact *imp, int i);
 void	model_impact_plane(t_model *m, t_impact *imp, t_pla *pla);
 void	model_impact_sphere(t_model *m, t_impact *imp, t_sph *sph);
 void	model_impact_cylinder(t_model *m, t_impact *imp, t_cyl *cyl);
+
+void	impact_color(t_model *m, t_impact *imp);
+void	impact_normal(t_model *m, t_impact *imp);
+t_rgb	model_light(t_model *m, t_impact *imp);
+t_rgb	color_lit(t_model *m, t_impact *imp);
 
 #endif
