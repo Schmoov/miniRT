@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 16:29:34 by parden            #+#    #+#             */
-/*   Updated: 2025/05/15 15:01:15 by parden           ###   ########.fr       */
+/*   Updated: 2025/05/15 17:14:52 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,6 @@ t_rgb	color_one_lit(t_model *m, t_impact *imp, t_lit *lit)
 	t_impact	bounce;
 	float		lit_dist;
 
-	ft_memset(&bounce, 0, sizeof(bounce));
-	printf("%p\n", &bounce);
-	fflush(stdout);
 	ft_memcpy(bounce.ray.pos, imp->pos, sizeof(t_v3));
 	ft_memcpy(bounce.ray.dir, lit->pos, sizeof(t_v3));
 	vec_sub(bounce.ray.dir, bounce.ray.dir, imp->pos);

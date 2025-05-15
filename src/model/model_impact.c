@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 19:12:04 by parden            #+#    #+#             */
-/*   Updated: 2025/05/15 15:06:40 by parden           ###   ########.fr       */
+/*   Updated: 2025/05/15 17:12:21 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,18 +86,18 @@ void	impact_color(t_model *m, t_impact *imp)
 	obj = &(m->obj[imp->obj_idx]);
 	if (obj->type == PLA)
 		imp->col = obj->pla.col;
-	if (obj->type == SPH)
+	else if (obj->type == SPH)
 		imp->col = obj->sph.col;
-	if (obj->type == CYL)
+	else if (obj->type == CYL)
 		imp->col = obj->cyl.col;
-	__builtin_unreachable();
+	else 
+		__builtin_unreachable();
 }
 
 void	impact_normal(t_model *m, t_impact *imp)
 {
 	t_obj *obj;
 
-	printf("%d\n", imp->obj_idx);
 	obj = &(m->obj[imp->obj_idx]);
 	if (obj->type == PLA)
 		ft_memcpy(imp->normal, obj->pla.nor, sizeof(t_v3));
