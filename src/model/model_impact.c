@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 19:12:04 by parden            #+#    #+#             */
-/*   Updated: 2025/05/16 15:56:31 by parden           ###   ########.fr       */
+/*   Updated: 2025/05/16 17:49:35 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,17 @@ void	impact_normal(t_model *m, t_impact *imp)
 		vec_sub(imp->normal, imp->normal, obj->sph.pos);
 		vec_normalize(imp->normal);
 	}
+	if (obj->type == CYL)
+	{
+		t_v3	comp;
+		ft_memcpy(imp->normal, imp->pos, sizeof(t_v3));
+		vec_sub(imp->normal, imp->normal, obj->cyl.pos);
+		ft_memcpy(comp, imp->normal, sizeof(t_v3));
+		vec_scale(comp, obj->cyl.ax, vec_dot(imp->normal, obj->cyl.ax));
+		vec_sub(imp->normal, imp->normal, comp);
+		vec_normalize(imp->normal);
+	}
+
 	if (vec_dot(imp->normal, imp->ray.dir) > 0)
 		vec_opp(imp->normal);
 }
@@ -107,4 +118,22 @@ void	model_impact_sphere(t_model *m, t_impact *imp, t_sph *sph)
 
 void	model_impact_cylinder(t_model *m, t_impact *imp, t_cyl *cyl)
 {
+	t_v3	v_rc;
+	vec_sub(v_rc, imp->ray.pos, cyl->pos);
+	t_v3	tmp1;
+	vec_cross(tmp1, cyl->ax, v_rc);
+	t_v3	tmp2;
+	vec_cross(tmp2, cyl->ax, imp->ray.dir);
+	float a = vec_norm2(tmp2);
+	float b = 2 * vec_dot(tmp1, tmp2);
+	float c = vec_norm2(tmp1) -cyl->rad * cyl->rad;
+	float delta = b*b - 4*a*c;
+	if (delta < EPS)
+		return;
+	float x1 = (-b + sqrt(delta)) / (2 * a);
+	float x2 = (-b - sqrt(delta)) / (2 * a);
+	if (x2 > EPS && x2 < x1)
+		x1 = x2;
+	if (x1 > EPS && x1 < imp->scale)
+		imp->scale = x1;
 }
