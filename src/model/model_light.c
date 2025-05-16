@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 16:29:34 by parden            #+#    #+#             */
-/*   Updated: 2025/05/15 17:14:52 by parden           ###   ########.fr       */
+/*   Updated: 2025/05/16 14:32:41 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ t_rgb	model_light(t_model *m, t_impact *imp)
 }
 
 t_rgb	color_one_lit(t_model *m, t_impact *imp, t_lit *lit);
+
 t_rgb	color_lit(t_model *m, t_impact *imp)
 {
 	int			i;
@@ -37,7 +38,7 @@ t_rgb	color_lit(t_model *m, t_impact *imp)
 		res = color_add(res, color_one_lit(m, imp, &(m->lit[i])));
 		i++;
 	}
-	return res;
+	return color_mult(res, imp->col);
 }
 
 t_rgb	color_one_lit(t_model *m, t_impact *imp, t_lit *lit)
