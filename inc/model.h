@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 18:35:27 by parden            #+#    #+#             */
-/*   Updated: 2025/05/15 17:17:13 by parden           ###   ########.fr       */
+/*   Updated: 2025/05/16 15:54:21 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,6 @@ void	impact_color(t_model *m, t_impact *imp);
 void	impact_normal(t_model *m, t_impact *imp);
 t_rgb	model_light(t_model *m, t_impact *imp);
 t_rgb	color_lit(t_model *m, t_impact *imp);
+t_rgb	color_one_lit(t_model *m, t_impact *imp, t_lit *lit);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 16:29:34 by parden            #+#    #+#             */
-/*   Updated: 2025/05/16 14:32:41 by parden           ###   ########.fr       */
+/*   Updated: 2025/05/16 16:23:07 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ t_rgb	model_light(t_model *m, t_impact *imp)
 	return (color_add(amb_col, lit_col));
 }
 
-t_rgb	color_one_lit(t_model *m, t_impact *imp, t_lit *lit);
-
 t_rgb	color_lit(t_model *m, t_impact *imp)
 {
 	int			i;
@@ -38,7 +36,7 @@ t_rgb	color_lit(t_model *m, t_impact *imp)
 		res = color_add(res, color_one_lit(m, imp, &(m->lit[i])));
 		i++;
 	}
-	return color_mult(res, imp->col);
+	return (res);
 }
 
 t_rgb	color_one_lit(t_model *m, t_impact *imp, t_lit *lit)
@@ -56,5 +54,13 @@ t_rgb	color_one_lit(t_model *m, t_impact *imp, t_lit *lit)
 	model_impact(m, &bounce);
 	if (bounce.scale < lit_dist + EPS)
 		return (0);
-	return (color_scale(lit->col, vec_dot(imp->normal, bounce.ray.dir)));
+
+	t_rgb	lit_em = color_scale(lit->col, vec_dot(imp->normal, bounce.ray.dir));
+	lit_em = color_mult(lit_em, imp->col);
+	
+	t_v3	refl;
+	vec_rot_axis(refl, bounce.ray.dir, imp->normal);
+	float	fact = pow(-vec_dot(refl, imp->ray.dir), 20);
+	t_rgb	lit_spec = color_scale(lit->col, fact);
+	return (color_add(lit_em, lit_spec));
 }

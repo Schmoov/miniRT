@@ -6,14 +6,15 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 19:12:04 by parden            #+#    #+#             */
-/*   Updated: 2025/05/15 17:20:26 by parden           ###   ########.fr       */
+/*   Updated: 2025/05/16 15:56:31 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/miniRT.h"
+
 void	impact_color(t_model *m, t_impact *imp)
 {
-	t_obj *obj;
+	t_obj	*obj;
 
 	obj = &(m->obj[imp->obj_idx]);
 	if (obj->type == PLA)
@@ -22,12 +23,11 @@ void	impact_color(t_model *m, t_impact *imp)
 		imp->col = obj->sph.col;
 	if (obj->type == CYL)
 		imp->col = obj->cyl.col;
-//	__builtin_unreachable();
 }
 
 void	impact_normal(t_model *m, t_impact *imp)
 {
-	t_obj *obj;
+	t_obj	*obj;
 
 	obj = &(m->obj[imp->obj_idx]);
 	if (obj->type == PLA)
@@ -41,6 +41,7 @@ void	impact_normal(t_model *m, t_impact *imp)
 	if (vec_dot(imp->normal, imp->ray.dir) > 0)
 		vec_opp(imp->normal);
 }
+
 void	model_impact_object(t_model *m, t_impact *imp, int i)
 {
 	float	old_scale;
