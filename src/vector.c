@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 16:47:33 by parden            #+#    #+#             */
-/*   Updated: 2025/05/04 17:48:40 by parden           ###   ########.fr       */
+/*   Updated: 2025/05/16 16:16:49 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,16 @@ void	vec_cross(t_v3 res, t_v3 v1, t_v3 v2)
 	res[0] = v1[1] * v2[2] - v1[2] * v2[1];
 	res[1] = v1[0] * v2[2] - v1[2] * v2[0];
 	res[2] = v1[0] * v2[1] - v1[1] * v2[0];
+}
+
+void	vec_rot_axis(t_v3 res, t_v3 v, t_v3 ax)
+{
+	float	fac;
+
+	ft_memcpy(res, v, sizeof(t_v3));
+	vec_opp(res);
+	fac = 2 * vec_dot(ax, v);
+	res[0] = res[0] + fac * ax[0];
+	res[1] = res[1] + fac * ax[1];
+	res[2] = res[2] + fac * ax[2];
 }

@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 16:59:27 by parden            #+#    #+#             */
-/*   Updated: 2025/05/04 17:47:33 by parden           ###   ########.fr       */
+/*   Updated: 2025/05/16 16:17:03 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@ void	vec_move_along(t_v3 point, t_v3 dir, float scale);
 void	vec_sub(t_v3 res, t_v3 v1, t_v3 v2);
 float	vec_dot(t_v3 v1, t_v3 v2);
 void	vec_cross(t_v3 res, t_v3 v1, t_v3 v2);
+void	vec_rot_axis(t_v3 res, t_v3 v, t_v3 ax);
 
 #endif
