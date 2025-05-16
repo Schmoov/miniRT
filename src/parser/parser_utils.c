@@ -53,6 +53,8 @@ float	custom_strof(const char *str, char **endptr)
 	float (fraction) = 0.0F;
 	int (divisor) = 1;
 	int (sign) = 1;
+	if (*str == '-')
+		sign = -1;
 	str = skip_whitespace((char *)str);
 	if (!ft_isdigit(*str) && *str != '-' && *str != '+' && *str != '.')
 		return (*endptr = NULL, 0.0F);
@@ -69,8 +71,7 @@ float	custom_strof(const char *str, char **endptr)
 			str++;
 		}
 	}
-	result += fraction / (float)divisor;
-	result *= (float)sign;
+	result += sign * (fraction / (float)divisor);
 	if (endptr)
 		*endptr = (char *)str;
 	return (result);
