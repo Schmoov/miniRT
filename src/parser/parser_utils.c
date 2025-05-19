@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:00:29 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/04/24 15:11:44 by parden           ###   ########.fr       */
+/*   Updated: 2025/05/19 20:06:33 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,8 @@ bool	ft_isspace(char character)
 
 int	custom_atoi(const char *str, char **endptr)
 {
-	int	result;
-	int	sign;
-
-	result = 0;
-	sign = 1;
+	int (result) = 0;
+	int (sign) = 1;
 	str = skip_whitespace((char *)str);
 	if (*str == '-' || *str == '+')
 	{
@@ -49,7 +46,6 @@ int	custom_atoi(const char *str, char **endptr)
 
 float	custom_strof(const char *str, char **endptr)
 {
-	float (result) = 0.0F;
 	float (fraction) = 0.0F;
 	int (divisor) = 1;
 	int (sign) = 1;
@@ -58,7 +54,7 @@ float	custom_strof(const char *str, char **endptr)
 	str = skip_whitespace((char *)str);
 	if (!ft_isdigit(*str) && *str != '-' && *str != '+' && *str != '.')
 		return (*endptr = NULL, 0.0F);
-	result = (float)custom_atoi(str, (char **)&str);
+	float (result) = (float)custom_atoi(str, (char **)&str);
 	if (!str)
 		return (*endptr = NULL, 0.0F);
 	if (*str == '.')
