@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 18:35:27 by parden            #+#    #+#             */
-/*   Updated: 2025/05/16 15:54:21 by parden           ###   ########.fr       */
+/*   Updated: 2025/05/21 19:27:41 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	model_impact(t_model *m, t_impact *imp);
 t_rgb	model_light(t_model *m, t_impact *imp);
 void	model_impact_object(t_model *m, t_impact *imp, int i);
 void	model_impact_plane(t_model *m, t_impact *imp, t_pla *pla);
+void	model_impact_disk(t_model *m, t_impact *imp, t_dsk *dsk);
 void	model_impact_sphere(t_model *m, t_impact *imp, t_sph *sph);
 void	model_impact_cylinder(t_model *m, t_impact *imp, t_cyl *cyl);
 
