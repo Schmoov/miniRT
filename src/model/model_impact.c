@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 19:12:04 by parden            #+#    #+#             */
-/*   Updated: 2025/05/16 17:49:35 by parden           ###   ########.fr       */
+/*   Updated: 2025/05/21 19:09:27 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,8 +132,22 @@ void	model_impact_cylinder(t_model *m, t_impact *imp, t_cyl *cyl)
 		return;
 	float x1 = (-b + sqrt(delta)) / (2 * a);
 	float x2 = (-b - sqrt(delta)) / (2 * a);
-	if (x2 > EPS && x2 < x1)
+
+	t_v3 vx1;
+	ft_memcpy(vx1, imp->ray.pos, sizeof(t_v3));
+	vec_move_along(vx1, imp->ray.dir, x1);
+	vec_sub(vx1, vx1, cyl->pos);
+	float h1 = fabs(vec_dot(vx1, cyl->ax));
+	t_v3 vx2;
+	ft_memcpy(vx2, imp->ray.pos, sizeof(t_v3));
+	vec_move_along(vx2, imp->ray.dir, x2);
+	vec_sub(vx2, vx2, cyl->pos);
+	float h2 = fabs(vec_dot(vx2, cyl->ax));
+
+	if (x2 > EPS && x2 < x1 && h2 < cyl->hgt/2) {
 		x1 = x2;
-	if (x1 > EPS && x1 < imp->scale)
+		h1 = h2;
+	}
+	if (x1 > EPS && x1 < imp->scale && h1 < cyl->hgt/2)
 		imp->scale = x1;
 }
