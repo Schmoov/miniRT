@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 16:20:12 by parden            #+#    #+#             */
-/*   Updated: 2025/05/04 14:14:04 by parden           ###   ########.fr       */
+/*   Updated: 2025/05/21 19:33:06 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,27 @@ void	model_add_cylinder(t_model *mod, t_cylinder *c)
 	obj->rad = c->diameter / 2;
 	obj->hgt = c->height / 2;
 	obj->col = (c->color.r << 16) | (c->color.g << 8) | c->color.b;
+	mod->obj_nb++;
+
+	t_dsk	*d1;
+
+	mod->obj[mod->obj_nb].type = DSK;
+	d1 = &(mod->obj[mod->obj_nb].dsk);
+	ft_memcpy(d1->pos, obj->pos, sizeof(t_v3));
+	vec_move_along(d1->pos, obj->ax, obj->hgt / 2);
+	ft_memcpy(d1->nor, obj->ax, sizeof(t_v3));
+	d1->col = obj->col;
+	d1->rad = obj->rad;
+	mod->obj_nb++;
+
+	t_dsk	*d2;
+
+	mod->obj[mod->obj_nb].type = DSK;
+	d2 = &(mod->obj[mod->obj_nb].dsk);
+	ft_memcpy(d2->pos, obj->pos, sizeof(t_v3));
+	vec_move_along(d2->pos, obj->ax, -obj->hgt / 2);
+	ft_memcpy(d2->nor, obj->ax, sizeof(t_v3));
+	d2->col = obj->col;
+	d2->rad = obj->rad;
 	mod->obj_nb++;
 }

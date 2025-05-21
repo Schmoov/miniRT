@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 19:12:04 by parden            #+#    #+#             */
-/*   Updated: 2025/05/21 19:09:27 by parden           ###   ########.fr       */
+/*   Updated: 2025/05/21 19:46:22 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@ void	impact_color(t_model *m, t_impact *imp)
 		imp->col = obj->sph.col;
 	if (obj->type == CYL)
 		imp->col = obj->cyl.col;
+	if (obj->type == CON)
+		imp->col = obj->con.col;
+	if (obj->type == DSK)
+		imp->col = obj->dsk.col;
 }
 
 void	impact_normal(t_model *m, t_impact *imp)
@@ -32,6 +36,8 @@ void	impact_normal(t_model *m, t_impact *imp)
 	obj = &(m->obj[imp->obj_idx]);
 	if (obj->type == PLA)
 		ft_memcpy(imp->normal, obj->pla.nor, sizeof(t_v3));
+	if (obj->type == DSK)
+		ft_memcpy(imp->normal, obj->dsk.nor, sizeof(t_v3));
 	if (obj->type == SPH)
 	{
 		ft_memcpy(imp->normal, imp->pos, sizeof(t_v3));
@@ -62,6 +68,8 @@ void	model_impact_object(t_model *m, t_impact *imp, int i)
 	obj = &(m->obj[i]);
 	if (obj->type == PLA)
 		model_impact_plane(m, imp, &(obj->pla));
+	if (obj->type == DSK)
+		model_impact_disk(m, imp, &(obj->dsk));
 	if (obj->type == SPH)
 		model_impact_sphere(m, imp, &(obj->sph));
 	if (obj->type == CYL)
@@ -88,6 +96,24 @@ void	model_impact_plane(t_model *m, t_impact *imp, t_pla *pla)
 	scale = vec_dot(v_rp, pla->nor)
 		/ vec_dot(imp->ray.dir, pla->nor);
 	if (scale > EPS && scale < imp->scale)
+		imp->scale = scale;
+}
+
+void	model_impact_disk(t_model *m, t_impact *imp, t_dsk *dsk)
+{
+	float	scale;
+	t_v3	v_rp;
+
+	if (fabsf(vec_dot(imp->ray.dir, dsk->nor)) < EPS)
+		return ;
+	vec_sub(v_rp, dsk->pos, imp->ray.pos);
+	scale = vec_dot(v_rp, dsk->nor)
+		/ vec_dot(imp->ray.dir, dsk->nor);
+	
+	ft_memcpy(v_rp, imp->ray.pos, sizeof(t_v3));
+	vec_move_along(v_rp, imp->ray.dir, scale);
+	vec_sub(v_rp, v_rp, dsk->pos);
+	if (scale > EPS && scale < imp->scale && vec_norm(v_rp) < dsk->rad)
 		imp->scale = scale;
 }
 
