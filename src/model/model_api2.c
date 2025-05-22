@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 16:20:12 by parden            #+#    #+#             */
-/*   Updated: 2025/05/22 17:25:40 by parden           ###   ########.fr       */
+/*   Updated: 2025/05/22 18:08:53 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ void	model_add_cylinder(t_model *mod, t_cylinder *c)
 	mod->obj[mod->obj_nb].type = DSK;
 	d1 = &(mod->obj[mod->obj_nb].dsk);
 	ft_memcpy(d1->pos, obj->pos, sizeof(t_v3));
-	vec_move_along(d1->pos, obj->ax, obj->hgt / 2);
+	vec_move_along(d1->pos, obj->ax, obj->hgt);
 	ft_memcpy(d1->nor, obj->ax, sizeof(t_v3));
 	d1->col = obj->col;
 	d1->rad = tan(obj->ang) * obj->hgt;
@@ -132,9 +132,9 @@ void	model_add_cylinder(t_model *mod, t_cylinder *c)
 	mod->obj[mod->obj_nb].type = DSK;
 	d2 = &(mod->obj[mod->obj_nb].dsk);
 	ft_memcpy(d2->pos, obj->pos, sizeof(t_v3));
-	vec_move_along(d2->pos, obj->ax, -obj->hgt / 2);
+	vec_move_along(d2->pos, obj->ax, -obj->hgt);
 	ft_memcpy(d2->nor, obj->ax, sizeof(t_v3));
 	d2->col = obj->col;
-	d1->rad = tan(obj->ang) * obj->hgt;
+	d2->rad = tan(obj->ang) * obj->hgt;
 	mod->obj_nb++;
 }

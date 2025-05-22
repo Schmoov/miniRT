@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 19:12:04 by parden            #+#    #+#             */
-/*   Updated: 2025/05/22 17:29:01 by parden           ###   ########.fr       */
+/*   Updated: 2025/05/22 18:09:26 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,8 @@ void	model_impact_object(t_model *m, t_impact *imp, int i)
 		model_impact_sphere(m, imp, &(obj->sph));
 	if (obj->type == CYL)
 		model_impact_cylinder(m, imp, &(obj->cyl));
-//	if (obj->type == CON)
-//		model_impact_cone(m, imp, &(obj->con));
+	if (obj->type == CON)
+		model_impact_cone(m, imp, &(obj->con));
 	if (imp->scale < old_scale)
 	{
 		imp->obj_idx = i;
@@ -197,8 +197,8 @@ void	model_impact_cone(t_model *m, t_impact *imp, t_con *con)
 	vec_sub(v_rc, imp->ray.pos, con->pos);
 	float a = pow(vec_dot(imp->ray.dir, con->ax), 2);
 	a -= pow(cos(con->ang), 2);
-	float b = 2 * vec_dot(imp->ray.dir, con->ax)
-			* (vec_dot(v_rc, con->ax) - pow(cos(con->ang), 2));
+	float b = 2 * (vec_dot(imp->ray.dir, con->ax) * vec_dot(v_rc, con->ax)
+			- (vec_dot(imp->ray.dir, v_rc) * pow(cos(con->ang), 2)));
 	float c = pow(vec_dot(v_rc, con->ax), 2)
 			- vec_norm2(v_rc) * pow(cos(con->ang), 2);
 	float delta = b*b - 4*a*c;

@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 18:35:27 by parden            #+#    #+#             */
-/*   Updated: 2025/05/22 17:00:09 by parden           ###   ########.fr       */
+/*   Updated: 2025/05/22 18:02:58 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include "color.h"
 
 # define INF 1e9
-# define EPS 1e-3
+# define EPS 1e-4
 # define W 1280
 # define H 720
 
