@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 16:20:12 by parden            #+#    #+#             */
-/*   Updated: 2025/05/22 18:08:53 by parden           ###   ########.fr       */
+/*   Updated: 2025/05/22 18:17:22 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void	model_add_sphere(t_model *mod, t_sphere *s)
 	mod->obj_nb++;
 }
 
-/*
 void	model_add_cylinder(t_model *mod, t_cylinder *c)
 {
 	t_cyl	*obj;
@@ -95,10 +94,9 @@ void	model_add_cylinder(t_model *mod, t_cylinder *c)
 	d2->rad = obj->rad;
 	mod->obj_nb++;
 }
-*/
 
-//void	model_add_cone(t_model *mod, t_cone *c)
-void	model_add_cylinder(t_model *mod, t_cylinder *c)
+void	model_add_cone(t_model *mod, t_cone *c)
+//void	model_add_cylinder(t_model *mod, t_cylinder *c)
 {
 	t_con	*obj;
 
