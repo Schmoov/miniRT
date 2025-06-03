@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 20:45:04 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/04/24 15:12:10 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/03 11:19:08 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	*skip_whitespace(char *str)
 		return (NULL);
 	while (ft_isspace(*str))
 		str++;
+	if (*str == '#')
+		return ("\n");
 	return (str);
 }
 

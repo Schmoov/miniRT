@@ -1,0 +1,20 @@
+# Multi-light demonstration scene
+# Shows colored lighting from multiple sources
+
+A 0.1 255,255,255
+
+# Camera looking down the Z axis
+C 0,0,-5 0,0,1 70
+
+# Three colored lights from different positions
+L -3,2,2 0.7 255,100,100    # Red light from left
+L 3,2,2 0.7 100,255,100     # Green light from right  
+L 0,-2,2 0.5 100,100,255    # Blue light from below
+
+# Background plane
+pl 0,0,8 0,0,-1 200,200,200
+
+# Three spheres to show lighting effects
+sp -2,0,3 1.5 255,255,255   # Left sphere - white
+sp 0,0,3 1.5 255,255,255    # Center sphere - white
+sp 2,0,3 1.5 255,255,255    # Right sphere - white
