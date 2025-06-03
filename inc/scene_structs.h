@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:00:39 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/04/24 14:50:42 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/03 10:35:52 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,9 @@ typedef struct s_scene
 {
 	t_ambient_lighting	ambient;
 	t_camera			camera;
-	t_light				light;
+
+	t_light				*lights;
+	size_t				light_count;
 
 	t_sphere			*spheres;
 	size_t				sphere_count;

@@ -6,28 +6,32 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:45:39 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/04/24 14:57:48 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/03 10:35:58 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/miniRT.h"
 
-t_parsing_error	parse_light(char *line, t_light *light)
+t_parsing_error	parse_light(char *line, t_scene *scene)
 {
-	static int	cpt = 0;
+	t_light	light;
+	t_light	*new_lights;
 
-	if (cpt != 0)
-		return (ERR_INVALID_LIGHT_DUPLICATE);
 	line = skip_whitespace(line + 1);
-	line = parse_coord(line, &light->pos);
+	line = parse_coord(line, &light.pos);
 	if (!line)
 		return (ERR_INVALID_LIGHT_POSITION);
-	line = parse_float(line, &light->brightness);
-	if (!line || light->brightness < 0.0 || light->brightness > 1.0)
+	line = parse_float(line, &light.brightness);
+	if (!line || light.brightness < 0.0 || light.brightness > 1.0)
 		return (ERR_INVALID_LIGHT_BRIGHTNESS);
-	line = parse_rgb(line, &light->color);
-	if (not_valid_final_line(line) || !check_rgb(light->color))
+	line = parse_rgb(line, &light.color);
+	if (not_valid_final_line(line) || !check_rgb(light.color))
 		return (ERR_INVALID_LIGHT_COLOR);
-	cpt++;
+	new_lights = realloc(scene->lights, sizeof(t_light) * (scene->light_count
+				+ 1));
+	if (!new_lights)
+		return (ERR_MEMORY_ALLOCATION);
+	scene->lights = new_lights;
+	scene->lights[scene->light_count++] = light;
 	return (NO_ERROR);
 }

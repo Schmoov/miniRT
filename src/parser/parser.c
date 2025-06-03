@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:00:36 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/05/19 20:01:41 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/06/03 10:39:32 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_element_type	get_element_type(const char *line)
 		return (CAMERA);
 	if (ft_strncmp(line, "L ", 2) == 0)
 		return (LIGHT);
-	//Do that for the rest
+	// Do that for the rest
 	if (ft_strncmp(line, "sp ", 3) == 0)
 		return (SPHERE);
 	if (ft_strncmp(line, "pl", 2) == 0)
@@ -46,7 +46,7 @@ t_parsing_error	parse_line(char *line, t_scene *scene)
 	if (type == CAMERA)
 		error = parse_camera(line, &scene->camera);
 	if (type == LIGHT)
-		error = parse_light(line, &scene->light);
+		error = parse_light(line, scene);
 	if (type == SPHERE)
 		error = parse_sphere(line, scene);
 	if (type == PLANE)
@@ -62,6 +62,7 @@ t_parsing_error	parse_line(char *line, t_scene *scene)
 
 void	free_scene(t_scene *scene)
 {
+	free(scene->lights);
 	free(scene->planes);
 	free(scene->spheres);
 	free(scene->cylinders);
@@ -72,7 +73,7 @@ void	parse_scene(const char *filename, t_scene *scene)
 	char	*line;
 	int		num_line;
 
-	t_parsing_error(error) = NO_ERROR;
+	t_parsing_error (error) = NO_ERROR;
 	int (file) = open(filename, O_RDONLY | O_CLOEXEC);
 	if (file == -1)
 	{
