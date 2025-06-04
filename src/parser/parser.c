@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:00:36 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/05/19 20:01:41 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/06/03 11:15:27 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ t_element_type	get_element_type(const char *line)
 		return (CAMERA);
 	if (ft_strncmp(line, "L ", 2) == 0)
 		return (LIGHT);
-	//Do that for the rest
 	if (ft_strncmp(line, "sp ", 3) == 0)
 		return (SPHERE);
 	if (ft_strncmp(line, "pl", 2) == 0)
@@ -29,7 +28,8 @@ t_element_type	get_element_type(const char *line)
 		return (CYLINDER);
 	if (ft_strncmp(line, "co", 2) == 0)
 		return (CONE);
-	if (ft_strncmp(line, "\n", 1) == 0)
+	if (ft_strncmp(line, "\n", 1) == 0
+		|| ft_strncmp(line, "#", 1) == 0)
 		return (EMPTY);
 	return (UNKNOWN);
 }
@@ -46,7 +46,7 @@ t_parsing_error	parse_line(char *line, t_scene *scene)
 	if (type == CAMERA)
 		error = parse_camera(line, &scene->camera);
 	if (type == LIGHT)
-		error = parse_light(line, &scene->light);
+		error = parse_light(line, scene);
 	if (type == SPHERE)
 		error = parse_sphere(line, scene);
 	if (type == PLANE)
@@ -62,6 +62,7 @@ t_parsing_error	parse_line(char *line, t_scene *scene)
 
 void	free_scene(t_scene *scene)
 {
+	free(scene->lights);
 	free(scene->planes);
 	free(scene->spheres);
 	free(scene->cylinders);
@@ -72,11 +73,12 @@ void	parse_scene(const char *filename, t_scene *scene)
 	char	*line;
 	int		num_line;
 
-	t_parsing_error(error) = NO_ERROR;
+	t_parsing_error (error) = NO_ERROR;
 	int (file) = open(filename, O_RDONLY | O_CLOEXEC);
 	if (file == -1)
 	{
-		printf("Error\nCould not open file: %s\n", filename);
+		printf("\033[31mError\033[0m \033[33mCould not open file: \033[1m%s\033[0m\n",
+			filename);
 		exit(EXIT_FAILURE);
 	}
 	line = get_next_line(file);
@@ -90,8 +92,6 @@ void	parse_scene(const char *filename, t_scene *scene)
 	}
 	close(file);
 	if (error != NO_ERROR)
-	{
 		return (free(line), free_scene(scene), exit_with_error(error, filename,
 				num_line));
-	}
 }
