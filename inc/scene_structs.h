@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:00:39 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/06/03 10:35:52 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/06/08 17:43:29 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,15 @@ typedef struct s_cylinder
 	t_RGB				color;
 }						t_cylinder;
 
+typedef struct s_cone
+{
+	t_coord				pos;
+	t_orientation		axis;
+	float				angle;
+	float				height;
+	t_RGB				color;
+}						t_cone;
+
 typedef struct s_scene
 {
 	t_ambient_lighting	ambient;
@@ -108,6 +117,9 @@ typedef struct s_scene
 
 	t_cylinder			*cylinders;
 	size_t				cylinder_count;
+
+	t_cone				*cones;
+	size_t				cone_count;
 }						t_scene;
 
 #endif // SCENE_STRUCTS_H
