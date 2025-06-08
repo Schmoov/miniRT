@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 00:00:00 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/06/08 18:30:00 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/06/08 18:48:28 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@
 #include <stdlib.h>
 #include <string.h>
 
+
+bool	check_cone_angle(float angle)
+{
+	return (angle > 0.0F && angle < 180);
+}
+
 t_parsing_error	parse_add_cone(t_cone *cone, char *line)
 {
 	line = skip_whitespace(line + 2);
@@ -28,7 +34,7 @@ t_parsing_error	parse_add_cone(t_cone *cone, char *line)
 	if (!line || !check_orientation(cone->axis))
 		return (ERR_INVALID_CONE_AXIS);
 	line = parse_float(line, &cone->angle);
-	if (!line)
+	if (!line || !check_cone_angle(cone->angle))
 		return (ERR_INVALID_CONE_ANGLE);
 	line = parse_float(line, &cone->height);
 	if (!line)
@@ -55,3 +61,4 @@ t_parsing_error	parse_cone(char *line, t_scene *scene)
 	scene->cones[scene->cone_count++] = cone;
 	return (NO_ERROR);
 }
+
