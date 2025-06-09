@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:52:35 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/04/17 20:00:11 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/06/08 18:18:13 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,24 @@ typedef enum e_parsing_error
 	ERR_INVALID_LIGHT_POSITION,
 	ERR_INVALID_LIGHT_BRIGHTNESS,
 	ERR_INVALID_LIGHT_COLOR,
-	ERR_INVALID_LIGHT_DUPLICATE,
 	ERR_INVALID_SPHERE_POSITION,
 	ERR_INVALID_SPHERE_DIAMETER,
 	ERR_INVALID_SPHERE_COLOR,
 	ERR_INVALID_PLANE_POSITION,
 	ERR_INVALID_PLANE_AXIS,
 	ERR_INVALID_PLANE_COLOR,
-	ERR_INVALID_CONE,
+	ERR_INVALID_CONE_POSITION,
+	ERR_INVALID_CONE_AXIS,
+	ERR_INVALID_CONE_HEIGHT,
+	ERR_INVALID_CONE_COLOR,
+	ERR_INVALID_CONE_ANGLE,
 	ERR_UNKNOWN_ELEMENT,
-	ERR_MEMORY_ALLOCATION,
-	NO_ERROR,
 	ERR_NO_AMBIENT_LIGHTING,
 	ERR_NO_CAMERA,
 	ERR_NO_LIGHT,
-	ERR_NO_OBJECTS
+	ERR_NO_OBJECTS,
+	ERR_MEMORY_ALLOCATION,
+	NO_ERROR
 }	t_parsing_error;
 
 #endif // PARSING_ERRORS_H

@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:00:36 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/06/03 11:15:27 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/06/08 17:45:12 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ t_parsing_error	parse_line(char *line, t_scene *scene)
 		error = parse_plane(line, scene);
 	if (type == CYLINDER)
 		error = parse_cylinder(line, scene);
+	if (type == CONE)
+		error = parse_cone(line, scene);
 	if (type == EMPTY)
 		return (NO_ERROR);
 	if (type == UNKNOWN)
@@ -66,6 +68,7 @@ void	free_scene(t_scene *scene)
 	free(scene->planes);
 	free(scene->spheres);
 	free(scene->cylinders);
+	free(scene->cones);
 }
 
 void	parse_scene(const char *filename, t_scene *scene)
