@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   miniRT.h                                           :+:      :+:    :+:   */
+/*   heightmap_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/24 14:30:24 by parden            #+#    #+#             */
-/*   Updated: 2025/06/10 16:37:44 by hsoysal          ###   ########.fr       */
+/*   Created: 2025/06/10 22:08:29 by hsoysal           #+#    #+#             */
+/*   Updated: 2025/06/10 22:43:33 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
+#include "../../inc/heightmap.h"
 
-# define WIDTH 1280
-# define HEIGHT 720
+void	free_heightmap(t_heightmap *hmap)
+{
+	int	i;
 
-# include <errno.h>
-# include <stdio.h>
-# include <math.h>
-# include "../libft/libft.h"
-# include "../mlx/mlx.h"
-# include "color.h"
-# include "model.h"
-# include "display.h"
-# include "parser.h"
-# include "heightmap.h"
-
-#endif
+	if (!hmap)
+		return ;
+	if (hmap->data)
+	{
+		i = -1;
+		while (++i < hmap->height)
+			if (hmap->data[i])
+				free(hmap->data[i]);
+		free(hmap->data);
+	}
+	free(hmap);
+}
