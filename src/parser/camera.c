@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:45:58 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/04/24 15:08:25 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/11 20:00:11 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,11 @@
 
 bool	not_valid_final_line(const char *line)
 {
-	return (!line || (!ft_isspace(*line) && *line != '\0'));
+	if (!line)
+		return (true);
+	while (*line && ft_isspace(*line))
+		line++;
+	return (*line != '\0');
 }
 
 bool	check_orientation(t_orientation orientation)

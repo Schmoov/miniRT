@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 17:43:28 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/06/11 19:04:58 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/06/11 20:00:11 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ char	*parse_damier(char *str, t_RGB *color1, t_damier **damier_ptr)
 
 char	*parse_rgb_with_damier(char *str, t_RGB *color, t_damier **damier)
 {
+	*damier = NULL;
 	str = parse_uint(str, &color->r);
 	if (!str || *str++ != ',')
 		return (NULL);
@@ -53,7 +54,12 @@ char	*parse_rgb_with_damier(char *str, t_RGB *color, t_damier **damier)
 	if (!str || *str++ != ',')
 		return (NULL);
 	str = parse_uint(str, &color->b);
-	if (!str || *str++ != ':')
-		return (skip_whitespace(str));
-	return (parse_damier(str, color, damier));
+	if (!str)
+		return (NULL);
+	if (*str == ':')
+	{
+		str++;
+		return (parse_damier(str, color, damier));
+	}
+	return (skip_whitespace(str));
 }

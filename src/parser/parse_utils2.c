@@ -6,20 +6,24 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 20:45:04 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/06/03 11:19:08 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/06/11 20:00:11 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/miniRT.h"
+#include <limits.h>
 
 char	*skip_whitespace(char *str)
 {
 	if (!str)
 		return (NULL);
-	while (ft_isspace(*str))
+	while (*str && ft_isspace(*str))
 		str++;
 	if (*str == '#')
-		return ("\n");
+	{
+		while (*str && *str != '\n')
+			str++;
+	}
 	return (str);
 }
 
@@ -41,6 +45,8 @@ unsigned long	str_to_u_int(const char *str, char **endptr)
 		if (ft_isdigit(*str))
 			digit = *str - '0';
 		else
+			break ;
+		if (result > (ULONG_MAX - digit) / 10)
 			break ;
 		result = result * 10 + digit;
 		str++;

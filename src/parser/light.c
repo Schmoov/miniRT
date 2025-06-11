@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:45:39 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/06/03 10:35:58 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/06/11 20:00:11 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_parsing_error	parse_light(char *line, t_scene *scene)
 {
-	t_light	light;
+	t_light	light = {0};
 	t_light	*new_lights;
 
 	line = skip_whitespace(line + 1);

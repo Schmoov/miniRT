@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 16:29:34 by parden            #+#    #+#             */
-/*   Updated: 2025/05/16 15:51:44 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/11 20:00:11 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	model_pixel_camray(t_model *m, t_ray *r, int x, int y)
 
 t_rgb	model_pixel(t_model *m, int x, int y)
 {
-	t_impact	imp;
+	t_impact	imp = {0};
 
 	model_pixel_camray(m, &imp.ray, x, y);
 	model_impact(m, &imp);
