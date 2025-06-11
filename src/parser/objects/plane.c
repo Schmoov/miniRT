@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:45:09 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/06/11 20:00:11 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/06/11 20:11:21 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 
 t_parsing_error	parse_plane(char *line, t_scene *scene)
 {
-	t_plane	*new_planes;
-	t_plane	plane = {0};
-	t_parsing_error	err;
-
+	t_parsing_error(err) = NO_ERROR;
+	t_plane(plane) = {0};
 	line = skip_whitespace(line + 2);
 	line = parse_coord(line, &plane.pos);
 	if (!line)
@@ -34,8 +32,8 @@ t_parsing_error	parse_plane(char *line, t_scene *scene)
 		if (err != NO_ERROR)
 			return (err);
 	}
-	new_planes = realloc(scene->planes, sizeof(t_plane) * (scene->plane_count
-				+ 1));
+	t_plane *(new_planes) = realloc(scene->planes, sizeof(t_plane)
+			* (scene->plane_count + 1));
 	if (!new_planes)
 		return (ERR_MEMORY_ALLOCATION);
 	scene->planes = new_planes;

@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:19:38 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/06/11 20:00:11 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/06/11 20:21:52 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 t_parsing_error	parse_sphere(char *line, t_scene *scene)
 {
-	t_sphere	*temp;
-	t_sphere	sphere = {0};
-
+	t_sphere(sphere) = {0};
+	t_parsing_error(err) = NO_ERROR;
 	line = skip_whitespace(line + 2);
 	line = parse_coord(line, &sphere.pos);
 	if (!line)
@@ -29,12 +28,12 @@ t_parsing_error	parse_sphere(char *line, t_scene *scene)
 		return (ERR_INVALID_SPHERE_COLOR);
 	if (not_valid_final_line(line))
 	{
-		t_parsing_error err = parse_heightmap(line, &sphere.heightmap);
+		err = parse_heightmap(line, &sphere.heightmap);
 		if (err != NO_ERROR)
 			return (err);
 	}
-	temp = realloc(scene->spheres, sizeof(t_sphere) * (scene->sphere_count
-			+ 1));
+	t_sphere *(temp) = realloc(scene->spheres, sizeof(t_sphere)
+			* (scene->sphere_count + 1));
 	if (!temp)
 		return (ERR_MEMORY_ALLOCATION);
 	scene->spheres = temp;

@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:00:36 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/06/11 20:00:11 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/06/11 20:21:08 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,53 +60,6 @@ t_parsing_error	parse_line(char *line, t_scene *scene)
 	if (type == UNKNOWN)
 		error = ERR_UNKNOWN_ELEMENT;
 	return (error);
-}
-
-void	free_scene(t_scene *scene)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < scene->plane_count)
-	{
-		if (scene->planes[i].damier)
-			free(scene->planes[i].damier);
-		if (scene->planes[i].heightmap)
-			free_heightmap(scene->planes[i].heightmap);
-		i++;
-	}
-	i = 0;
-	while (i < scene->sphere_count)
-	{
-		if (scene->spheres[i].damier)
-			free(scene->spheres[i].damier);
-		if (scene->spheres[i].heightmap)
-			free_heightmap(scene->spheres[i].heightmap);
-		i++;
-	}
-	i = 0;
-	while (i < scene->cylinder_count)
-	{
-		if (scene->cylinders[i].damier)
-			free(scene->cylinders[i].damier);
-		if (scene->cylinders[i].heightmap)
-			free_heightmap(scene->cylinders[i].heightmap);
-		i++;
-	}
-	i = 0;
-	while (i < scene->cone_count)
-	{
-		if (scene->cones[i].damier)
-			free(scene->cones[i].damier);
-		if (scene->cones[i].heightmap)
-			free_heightmap(scene->cones[i].heightmap);
-		i++;
-	}
-	free(scene->lights);
-	free(scene->planes);
-	free(scene->spheres);
-	free(scene->cylinders);
-	free(scene->cones);
 }
 
 void	parse_scene(const char *filename, t_scene *scene)
