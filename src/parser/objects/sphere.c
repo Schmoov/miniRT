@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:19:38 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/06/11 15:27:22 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/06/11 17:56:32 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_parsing_error	parse_sphere(char *line, t_scene *scene)
 	line = parse_float(line, &sphere.diameter);
 	if (!line)
 		return (ERR_INVALID_SPHERE_DIAMETER);
-	line = parse_rgb(line, &sphere.color);
+	line = parse_rgb_with_damier(line, &sphere.color, &sphere.damier);
 	if (!check_rgb(sphere.color))
 		return (ERR_INVALID_SPHERE_COLOR);
 	if (not_valid_final_line(line))

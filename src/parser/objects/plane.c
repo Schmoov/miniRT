@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:45:09 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/06/11 15:27:08 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/06/11 17:58:19 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_parsing_error	parse_plane(char *line, t_scene *scene)
 	line = parse_coord(line, &plane.axis);
 	if (!line || !check_orientation(plane.axis))
 		return (ERR_INVALID_PLANE_AXIS);
-	line = parse_rgb(line, &plane.color);
+	line = parse_rgb_with_damier(line, &plane.color, &plane.damier);
 	if (!check_rgb(plane.color))
 		return (ERR_INVALID_PLANE_COLOR);
 	if (line && ft_isalpha(*line))

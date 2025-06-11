@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 00:00:00 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/06/11 15:26:17 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/06/11 19:12:18 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_parsing_error	parse_add_cone(t_cone *cone, char *line)
 	line = parse_float(line, &cone->height);
 	if (!line)
 		return (ERR_INVALID_CONE_HEIGHT);
-	line = parse_rgb(line, &cone->color);
+	line = parse_rgb_with_damier(line, &cone->color, &cone->damier);
 	if (!check_rgb(cone->color))
 		return (ERR_INVALID_CONE_COLOR);
 	if (not_valid_final_line(line))
@@ -51,7 +51,7 @@ t_parsing_error	parse_cone(char *line, t_scene *scene)
 	t_cone			*new_cones;
 	t_parsing_error	error;
 
-	t_cone (cone) = {0};
+	t_cone(cone) = {0};
 	error = parse_add_cone(&cone, line);
 	if (error != NO_ERROR)
 		return (error);
