@@ -6,11 +6,11 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:12:48 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/06/08 18:28:41 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/06/11 15:26:37 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/miniRT.h"
+#include "../../../inc/miniRT.h"
 
 t_parsing_error	parse_add_cylinder(t_cylinder *cylinder, char *line)
 {
@@ -28,17 +28,19 @@ t_parsing_error	parse_add_cylinder(t_cylinder *cylinder, char *line)
 	if (!line)
 		return (ERR_INVALID_CYLINDER_HEIGHT);
 	line = parse_rgb(line, &cylinder->color);
-	if (not_valid_final_line(line) || !check_rgb(cylinder->color))
+	if (!check_rgb(cylinder->color))
 		return (ERR_INVALID_CYLINDER_COLOR);
+	if (not_valid_final_line(line))
+		return (parse_heightmap(line, &cylinder->heightmap));
 	return (NO_ERROR);
 }
 
 t_parsing_error	parse_cylinder(char *line, t_scene *scene)
 {
-	t_cylinder		cylinder;
 	t_cylinder		*new_cylinders;
 	t_parsing_error	error;
 
+	t_cylinder (cylinder) = {0};
 	error = parse_add_cylinder(&cylinder, line);
 	if (error != NO_ERROR)
 		return (error);

@@ -6,12 +6,12 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 00:00:00 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/06/11 12:46:24 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/06/11 15:22:31 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../libft/libft.h"
 #include "../../../inc/parser.h"
+#include "../../../libft/libft.h"
 
 static unsigned char	**allocate_matrix(int width, int height)
 {
@@ -79,7 +79,7 @@ static int	parse_heightmap_line(char *line, unsigned char *row, int width)
 	return (1);
 }
 
-static void	fill_heightmap_data(t_heightmap *hmap, int fd)
+static t_parsing_error	fill_heightmap_data(t_heightmap *hmap, int fd)
 {
 	int		y;
 	char	*line;
@@ -93,7 +93,7 @@ static void	fill_heightmap_data(t_heightmap *hmap, int fd)
 		if (ft_strlen(line) > 0)
 		{
 			if (!parse_heightmap_line(line, hmap->data[y], hmap->width))
-				return (free(line));
+				return (free(line), ERR_BMP_INVALID_FORMAT);
 			y++;
 		}
 		free(line);
@@ -101,33 +101,29 @@ static void	fill_heightmap_data(t_heightmap *hmap, int fd)
 	}
 	if (!line)
 		free(line);
+	return (NO_ERROR);
 }
 
-t_heightmap	*load_bmp_heightmap(const char *filename)
+t_parsing_error	load_bmp_heightmap(const char *filename, t_heightmap *hmap)
 {
-	int			fd;
-	t_heightmap	*hmap;
-	char		*header_line;
+	int		fd;
+	char	*header_line;
 
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-		return (NULL);
+		return (ERR_BMP_FILE_NOT_FOUND);
 	header_line = get_next_line(fd);
 	if (!header_line)
-		return (close(fd), NULL);
+		return (close(fd), ERR_BMP_INVALID_HEADER);
 	if (header_line[ft_strlen(header_line) - 1] == '\n')
 		header_line[ft_strlen(header_line) - 1] = '\0';
-	hmap = malloc(sizeof(t_heightmap));
-	if (!hmap)
-		return (free(header_line), close(fd), NULL);
 	if (!parse_header(header_line, &hmap->width, &hmap->height))
-		return (free(header_line), free(hmap), close(fd), NULL);
+		return (free(header_line), close(fd), ERR_BMP_INVALID_HEADER);
 	free(header_line);
 	hmap->data = allocate_matrix(hmap->width, hmap->height);
 	if (!hmap->data)
-		return (free(hmap), close(fd), NULL);
+		return (close(fd), ERR_MEMORY_ALLOCATION);
 	fill_heightmap_data(hmap, fd);
 	close(fd);
-	return (hmap);
+	return (NO_ERROR);
 }
-

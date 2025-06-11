@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 22:30:26 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/06/08 18:20:09 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/06/11 14:59:08 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,10 @@
 #define ERR_MSG_NO_LIGHT "No light defined"
 #define ERR_MSG_NO_OBJECTS "No objects defined"
 #define ERR_MSG_MEMORY_ALLOCATION "Memory allocation error"
+#define ERR_MSG_BMP_LOAD_FAILED "Failed to load BMP file"
+#define ERR_MSG_BMP_FILE_NOT_FOUND "BMP file not found"
+#define ERR_MSG_BMP_INVALID_FORMAT "Invalid BMP file format"
+#define ERR_MSG_BMP_INVALID_HEADER "Invalid BMP file header"
 
 void	exit_with_error(t_parsing_error err, const char *filename, int num_line)
 {
@@ -79,7 +83,11 @@ void	exit_with_error(t_parsing_error err, const char *filename, int num_line)
 	ERR_MSG_NO_CAMERA,
 	ERR_MSG_NO_LIGHT,
 	ERR_MSG_NO_OBJECTS,
-	ERR_MSG_MEMORY_ALLOCATION
+	ERR_MSG_MEMORY_ALLOCATION,
+	ERR_MSG_BMP_LOAD_FAILED,
+	ERR_MSG_BMP_FILE_NOT_FOUND,
+	ERR_MSG_BMP_INVALID_FORMAT,
+	ERR_MSG_BMP_INVALID_HEADER,
 	};
 
 	printf("\033[31mError\033[0m : \033[33m%s\033[0m ", error_message[err]);

@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 14:30:24 by parden            #+#    #+#             */
-/*   Updated: 2025/06/10 16:37:44 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/06/11 15:26:01 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,5 @@
 # include "model.h"
 # include "display.h"
 # include "parser.h"
-# include "heightmap.h"
 
 #endif

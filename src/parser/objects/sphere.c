@@ -6,17 +6,17 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:19:38 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/04/24 14:58:30 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/11 15:27:22 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/miniRT.h"
+#include "../../../inc/miniRT.h"
 
 t_parsing_error	parse_sphere(char *line, t_scene *scene)
 {
-	t_sphere	sphere;
 	t_sphere	*temp;
 
+	t_sphere (sphere) = {0};
 	line = skip_whitespace(line + 2);
 	line = parse_coord(line, &sphere.pos);
 	if (!line)
@@ -25,8 +25,10 @@ t_parsing_error	parse_sphere(char *line, t_scene *scene)
 	if (!line)
 		return (ERR_INVALID_SPHERE_DIAMETER);
 	line = parse_rgb(line, &sphere.color);
-	if (not_valid_final_line(line) || !check_rgb(sphere.color))
+	if (!check_rgb(sphere.color))
 		return (ERR_INVALID_SPHERE_COLOR);
+	if (not_valid_final_line(line))
+		return (parse_heightmap(line, &sphere.heightmap));
 	temp = realloc(scene->spheres, sizeof(t_sphere) * (scene->sphere_count
 				+ 1));
 	if (!temp)

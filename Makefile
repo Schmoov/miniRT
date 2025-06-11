@@ -8,7 +8,7 @@ MLX := mlx/libmlx.a
 NAME := miniRT
 
 SRC_DIR := src/
-SRC := $(wildcard $(SRC_DIR)*.c $(SRC_DIR)**/*.c)
+SRC := $(wildcard $(SRC_DIR)*.c $(SRC_DIR)**/*.c $(SRC_DIR)/**/**/*.c)
 
 OBJ_DIR := .obj/
 OBJ := $(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)%.o, $(SRC))

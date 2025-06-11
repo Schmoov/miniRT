@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 22:22:24 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/06/11 12:32:56 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/06/11 14:54:31 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ bool			check_orientation(t_orientation orientation);
 void			parse_scene(const char *filename, t_scene *scene);
 void			free_scene(t_scene *scene);
 
-t_heightmap		*load_bmp_heightmap(const char *filename);
+t_parsing_error	load_bmp_heightmap(const char *filename, t_heightmap *hmap);
 void			free_heightmap(t_heightmap *hmap);
+t_parsing_error	parse_heightmap(char *line, t_heightmap **heightmap);
 
 #endif // PARSER_H

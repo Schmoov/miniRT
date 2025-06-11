@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:52:35 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/06/08 18:18:13 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/06/11 15:23:05 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,10 @@ typedef enum e_parsing_error
 	ERR_NO_LIGHT,
 	ERR_NO_OBJECTS,
 	ERR_MEMORY_ALLOCATION,
+	ERR_BMP_LOAD_FAILED,
+	ERR_BMP_FILE_NOT_FOUND,
+	ERR_BMP_INVALID_FORMAT,
+	ERR_BMP_INVALID_HEADER,
 	NO_ERROR
 }	t_parsing_error;
 
