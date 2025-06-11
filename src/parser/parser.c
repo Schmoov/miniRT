@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:00:36 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/06/11 14:45:50 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/06/11 20:21:08 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,15 +60,6 @@ t_parsing_error	parse_line(char *line, t_scene *scene)
 	if (type == UNKNOWN)
 		error = ERR_UNKNOWN_ELEMENT;
 	return (error);
-}
-
-void	free_scene(t_scene *scene)
-{
-	free(scene->lights);
-	free(scene->planes);
-	free(scene->spheres);
-	free(scene->cylinders);
-	free(scene->cones);
 }
 
 void	parse_scene(const char *filename, t_scene *scene)

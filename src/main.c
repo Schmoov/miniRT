@@ -6,13 +6,14 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 22:20:58 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/06/08 17:46:00 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/06/11 20:01:33 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/miniRT.h"
 #include "../inc/model.h"
 #include "../inc/model_api.h"
+#include <string.h>
 
 void	init_my_model(t_model *m, t_scene *s)
 {
@@ -67,6 +68,7 @@ int	main(int argc, char **argv)
 	t_rgb		*image;
 
 	filename = get_filename(argc, argv);
+	ft_memset(&scene, 0, sizeof(t_scene));
 	parse_scene(filename, &scene);
 	init_my_model(&model, &scene);
 	printf("Scene parsed successfully!\n");
