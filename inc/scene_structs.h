@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:00:39 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/06/08 18:28:59 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/06/11 12:44:24 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,19 @@ typedef struct s_light
 	t_RGB				color;
 }						t_light;
 
+typedef struct s_heightmap
+{
+	unsigned char		**data;
+	int					width;
+	int					height;
+}						t_heightmap;
+
 typedef struct s_sphere
 {
 	t_coord				pos;
 	float				diameter;
 	t_RGB				color;
+	t_heightmap			*heightmap;
 }						t_sphere;
 
 typedef struct s_plane
@@ -81,6 +89,7 @@ typedef struct s_plane
 	t_coord				pos;
 	t_orientation		axis;
 	t_RGB				color;
+	t_heightmap			*heightmap;
 }						t_plane;
 
 typedef struct s_cylinder
@@ -90,6 +99,7 @@ typedef struct s_cylinder
 	float				diameter;
 	float				height;
 	t_RGB				color;
+	t_heightmap			*heightmap;
 }						t_cylinder;
 
 typedef struct s_cone
@@ -99,6 +109,7 @@ typedef struct s_cone
 	float				angle;
 	float				height;
 	t_RGB				color;
+	t_heightmap			*heightmap;
 }						t_cone;
 
 typedef struct s_scene

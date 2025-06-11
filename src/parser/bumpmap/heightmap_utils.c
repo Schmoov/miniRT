@@ -6,11 +6,12 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 22:08:29 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/06/10 22:43:33 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/06/11 12:47:15 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/heightmap.h"
+#include "../../../inc/parser.h"
+#include <stdlib.h>
 
 void	free_heightmap(t_heightmap *hmap)
 {

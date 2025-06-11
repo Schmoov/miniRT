@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   heightmap_simple.c                                 :+:      :+:    :+:   */
+/*   heightmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 00:00:00 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/06/10 22:43:27 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/06/11 12:46:24 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../libft/libft.h"
-#include "../../inc/heightmap.h"
+#include "../../../libft/libft.h"
+#include "../../../inc/parser.h"
 
 static unsigned char	**allocate_matrix(int width, int height)
 {
@@ -97,6 +97,7 @@ static void	fill_heightmap_data(t_heightmap *hmap, int fd)
 			y++;
 		}
 		free(line);
+		line = get_next_line(fd);
 	}
 	if (!line)
 		free(line);

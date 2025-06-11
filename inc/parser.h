@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 22:22:24 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/06/08 17:41:26 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/06/11 12:32:56 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "parsing_errors.h"
 # include "scene_structs.h"
+# include <stdbool.h>
 
 char			*skip_whitespace(char *str);
 char			*parse_float(char *str, float *value);
@@ -37,5 +38,8 @@ bool			check_orientation(t_orientation orientation);
 
 void			parse_scene(const char *filename, t_scene *scene);
 void			free_scene(t_scene *scene);
+
+t_heightmap		*load_bmp_heightmap(const char *filename);
+void			free_heightmap(t_heightmap *hmap);
 
 #endif // PARSER_H
