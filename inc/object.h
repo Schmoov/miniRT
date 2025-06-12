@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 18:35:27 by parden            #+#    #+#             */
-/*   Updated: 2025/05/21 19:13:31 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/12 15:54:06 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct s_cyl {
 typedef struct s_con {
 	t_v3	pos;
 	t_v3	ax;
-	float	rad;
+	float	ang;
 	float	hgt;
 	t_rgb	col;
 }	t_con;

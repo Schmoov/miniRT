@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 16:20:12 by parden            #+#    #+#             */
-/*   Updated: 2025/05/22 18:17:22 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/12 16:04:17 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ void	model_add_cylinder(t_model *mod, t_cylinder *c)
 }
 
 void	model_add_cone(t_model *mod, t_cone *c)
-//void	model_add_cylinder(t_model *mod, t_cylinder *c)
 {
 	t_con	*obj;
 
@@ -108,8 +107,7 @@ void	model_add_cone(t_model *mod, t_cone *c)
 	obj->ax[0] = c->axis.x;
 	obj->ax[1] = c->axis.y;
 	obj->ax[2] = c->axis.z;
-	//obj->ang = M_PI * c->angle / 360.f;
-	obj->ang = M_PI * c->diameter / 360.f;
+	obj->ang = M_PI * c->angle / 360.f;
 	obj->hgt = c->height / 2;
 	obj->col = (c->color.r << 16) | (c->color.g << 8) | c->color.b;
 	mod->obj_nb++;

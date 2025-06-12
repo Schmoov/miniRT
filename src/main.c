@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 22:20:58 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/06/11 20:01:33 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/06/12 16:03:28 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ void	init_my_model(t_model *m, t_scene *s)
 	i = -1;
 	while (++i < s->cylinder_count)
 		model_add_cylinder(m, &s->cylinders[i]);
-	// i = -1;
-	// while (++i < s->cone_count)
-	// 	model_add_cone(m, &s->cones[i]);
+	i = -1;
+	while (++i < s->cone_count)
+		model_add_cone(m, &s->cones[i]);
 	free_scene(s);
 }
 
