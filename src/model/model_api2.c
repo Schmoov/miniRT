@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 16:20:12 by parden            #+#    #+#             */
-/*   Updated: 2025/05/21 19:33:06 by parden           ###   ########.fr       */
+/*   Updated: 2025/05/22 18:17:22 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,47 @@ void	model_add_cylinder(t_model *mod, t_cylinder *c)
 	ft_memcpy(d2->nor, obj->ax, sizeof(t_v3));
 	d2->col = obj->col;
 	d2->rad = obj->rad;
+	mod->obj_nb++;
+}
+
+void	model_add_cone(t_model *mod, t_cone *c)
+//void	model_add_cylinder(t_model *mod, t_cylinder *c)
+{
+	t_con	*obj;
+
+	mod->obj[mod->obj_nb].type = CON;
+	obj = &(mod->obj[mod->obj_nb].con);
+	obj->pos[0] = c->pos.x;
+	obj->pos[1] = c->pos.y;
+	obj->pos[2] = c->pos.z;
+	obj->ax[0] = c->axis.x;
+	obj->ax[1] = c->axis.y;
+	obj->ax[2] = c->axis.z;
+	//obj->ang = M_PI * c->angle / 360.f;
+	obj->ang = M_PI * c->diameter / 360.f;
+	obj->hgt = c->height / 2;
+	obj->col = (c->color.r << 16) | (c->color.g << 8) | c->color.b;
+	mod->obj_nb++;
+
+	t_dsk	*d1;
+
+	mod->obj[mod->obj_nb].type = DSK;
+	d1 = &(mod->obj[mod->obj_nb].dsk);
+	ft_memcpy(d1->pos, obj->pos, sizeof(t_v3));
+	vec_move_along(d1->pos, obj->ax, obj->hgt);
+	ft_memcpy(d1->nor, obj->ax, sizeof(t_v3));
+	d1->col = obj->col;
+	d1->rad = tan(obj->ang) * obj->hgt;
+	mod->obj_nb++;
+
+	t_dsk	*d2;
+
+	mod->obj[mod->obj_nb].type = DSK;
+	d2 = &(mod->obj[mod->obj_nb].dsk);
+	ft_memcpy(d2->pos, obj->pos, sizeof(t_v3));
+	vec_move_along(d2->pos, obj->ax, -obj->hgt);
+	ft_memcpy(d2->nor, obj->ax, sizeof(t_v3));
+	d2->col = obj->col;
+	d2->rad = tan(obj->ang) * obj->hgt;
 	mod->obj_nb++;
 }

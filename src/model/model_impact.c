@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 19:12:04 by parden            #+#    #+#             */
-/*   Updated: 2025/05/21 19:46:22 by parden           ###   ########.fr       */
+/*   Updated: 2025/05/22 18:09:26 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,17 @@ void	impact_normal(t_model *m, t_impact *imp)
 		vec_sub(imp->normal, imp->normal, comp);
 		vec_normalize(imp->normal);
 	}
+	//caca
+	if (obj->type == CON)
+	{
+		t_v3	comp;
+		ft_memcpy(imp->normal, imp->pos, sizeof(t_v3));
+		vec_sub(imp->normal, imp->normal, obj->con.pos);
+		ft_memcpy(comp, imp->normal, sizeof(t_v3));
+		vec_scale(comp, obj->con.ax, vec_dot(imp->normal, obj->con.ax));
+		vec_sub(imp->normal, imp->normal, comp);
+		vec_normalize(imp->normal);
+	}
 
 	if (vec_dot(imp->normal, imp->ray.dir) > 0)
 		vec_opp(imp->normal);
@@ -74,6 +85,8 @@ void	model_impact_object(t_model *m, t_impact *imp, int i)
 		model_impact_sphere(m, imp, &(obj->sph));
 	if (obj->type == CYL)
 		model_impact_cylinder(m, imp, &(obj->cyl));
+	if (obj->type == CON)
+		model_impact_cone(m, imp, &(obj->con));
 	if (imp->scale < old_scale)
 	{
 		imp->obj_idx = i;
@@ -175,5 +188,40 @@ void	model_impact_cylinder(t_model *m, t_impact *imp, t_cyl *cyl)
 		h1 = h2;
 	}
 	if (x1 > EPS && x1 < imp->scale && h1 < cyl->hgt/2)
+		imp->scale = x1;
+}
+
+void	model_impact_cone(t_model *m, t_impact *imp, t_con *con)
+{
+	t_v3	v_rc;
+	vec_sub(v_rc, imp->ray.pos, con->pos);
+	float a = pow(vec_dot(imp->ray.dir, con->ax), 2);
+	a -= pow(cos(con->ang), 2);
+	float b = 2 * (vec_dot(imp->ray.dir, con->ax) * vec_dot(v_rc, con->ax)
+			- (vec_dot(imp->ray.dir, v_rc) * pow(cos(con->ang), 2)));
+	float c = pow(vec_dot(v_rc, con->ax), 2)
+			- vec_norm2(v_rc) * pow(cos(con->ang), 2);
+	float delta = b*b - 4*a*c;
+	if (delta < EPS)
+		return;
+	float x1 = (-b + sqrt(delta)) / (2 * a);
+	float x2 = (-b - sqrt(delta)) / (2 * a);
+
+	t_v3 vx1;
+	ft_memcpy(vx1, imp->ray.pos, sizeof(t_v3));
+	vec_move_along(vx1, imp->ray.dir, x1);
+	vec_sub(vx1, vx1, con->pos);
+	float h1 = fabs(vec_dot(vx1, con->ax));
+	t_v3 vx2;
+	ft_memcpy(vx2, imp->ray.pos, sizeof(t_v3));
+	vec_move_along(vx2, imp->ray.dir, x2);
+	vec_sub(vx2, vx2, con->pos);
+	float h2 = fabs(vec_dot(vx2, con->ax));
+
+	if (x2 > EPS && x2 < x1 && h2 < con->hgt) {
+		x1 = x2;
+		h1 = h2;
+	}
+	if (x1 > EPS && x1 < imp->scale && h1 < con->hgt)
 		imp->scale = x1;
 }
