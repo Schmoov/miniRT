@@ -6,18 +6,17 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 00:00:00 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/06/08 18:48:28 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/06/11 20:20:46 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/miniRT.h"
-#include "../../inc/parser.h"
-#include "../../inc/parsing_errors.h"
-#include "../../inc/scene_structs.h"
+#include "../../../inc/miniRT.h"
+#include "../../../inc/parser.h"
+#include "../../../inc/parsing_errors.h"
+#include "../../../inc/scene_structs.h"
 #include <math.h>
 #include <stdlib.h>
 #include <string.h>
-
 
 bool	check_cone_angle(float angle)
 {
@@ -26,6 +25,8 @@ bool	check_cone_angle(float angle)
 
 t_parsing_error	parse_add_cone(t_cone *cone, char *line)
 {
+	t_parsing_error	err;
+
 	line = skip_whitespace(line + 2);
 	line = parse_coord(line, &cone->pos);
 	if (!line)
@@ -39,18 +40,24 @@ t_parsing_error	parse_add_cone(t_cone *cone, char *line)
 	line = parse_float(line, &cone->height);
 	if (!line)
 		return (ERR_INVALID_CONE_HEIGHT);
-	line = parse_rgb(line, &cone->color);
-	if (not_valid_final_line(line) || !check_rgb(cone->color))
+	line = parse_rgb_with_damier(line, &cone->color, &cone->damier);
+	if (!check_rgb(cone->color))
 		return (ERR_INVALID_CONE_COLOR);
+	if (not_valid_final_line(line))
+	{
+		err = parse_heightmap(line, &cone->heightmap);
+		if (err != NO_ERROR)
+			return (err);
+	}
 	return (NO_ERROR);
 }
 
 t_parsing_error	parse_cone(char *line, t_scene *scene)
 {
-	t_cone			cone;
 	t_cone			*new_cones;
 	t_parsing_error	error;
 
+	t_cone(cone) = {0};
 	error = parse_add_cone(&cone, line);
 	if (error != NO_ERROR)
 		return (error);
@@ -61,4 +68,3 @@ t_parsing_error	parse_cone(char *line, t_scene *scene)
 	scene->cones[scene->cone_count++] = cone;
 	return (NO_ERROR);
 }
-
