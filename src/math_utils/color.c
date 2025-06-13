@@ -6,11 +6,11 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 16:29:34 by parden            #+#    #+#             */
-/*   Updated: 2025/05/04 18:18:01 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/13 14:55:44 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/miniRT.h"
+#include "../../inc/miniRT.h"
 
 static void	color_clamp(int *c)
 {

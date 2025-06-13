@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 19:12:04 by parden            #+#    #+#             */
-/*   Updated: 2025/06/13 14:10:29 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/13 14:58:18 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	impact_plane(t_model *m, t_impact *imp, t_pla *pla)
 	vec_sub(v_rp, pla->pos, imp->ray.pos);
 	scale = vec_dot(v_rp, pla->nor)
 		/ vec_dot(imp->ray.dir, pla->nor);
-	if (scale < imp->scale)
+	if (scale > EPS_ACNE && scale < imp->scale)
 		imp->scale = scale;
 }
 
@@ -39,30 +39,14 @@ void	impact_disk(t_model *m, t_impact *imp, t_dsk *dsk)
 	ft_memcpy(v_rp, imp->ray.pos, sizeof(t_v3));
 	vec_move_along(v_rp, imp->ray.dir, scale);
 	vec_sub(v_rp, v_rp, dsk->pos);
-	if (scale < imp->scale && vec_norm(v_rp) < dsk->rad)
+	if (scale > EPS_ACNE && scale < imp->scale && vec_norm(v_rp) < dsk->rad)
 		imp->scale = scale;
-}
-
-void	eq_quad_solve(t_eq_quad *eq) {
-	float	delta;
-
-	eq->has_solution = false;
-	delta = powf(eq->b, 2) - 4 * eq->a * eq->c;
-	if (delta < EPS_QUAD)
-		return ;
-	eq->has_solution = true;
-	eq->x1 = (-eq->b + sqrtf(delta)) / (2 * eq->a);
-	eq->x1 = (-eq->b - sqrtf(delta)) / (2 * eq->a);
 }
 
 void	impact_sphere(t_model *m, t_impact *imp, t_sph *sph)
 {
-	t_v3	v_cr;
-	float	dot2;
-	float	delta;
-	float	x1;
-	float	x2;
-	t_eq_quad eq;
+	t_v3		v_cr;
+	t_eq_quad	eq;
 
 	vec_sub(v_cr, imp->ray.pos, sph->pos);
 	eq.a = 1.0f;

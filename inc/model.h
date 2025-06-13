@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 18:35:27 by parden            #+#    #+#             */
-/*   Updated: 2025/06/13 14:12:03 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/13 14:59:40 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@
 # include "scene_structs.h"
 # include "object.h"
 # include "model_api.h"
-# include "vector.h"
-# include "color.h"
+# include "math_utils.h"
 
 # define INF 1e9
 # define W 1280
@@ -28,9 +27,9 @@
 # define OBJ_MAX 200
 
 //Discards grazing rays
-# define EPS_TGT 1e-3
+# define EPS_TGT 1e-9
 //Discards solutions of small delta quadratic equations
-# define EPS_QUAD 1e-3
+# define EPS_QUAD 1e-9
 //Protects from self intersection
 # define EPS_ACNE 1e-3
 //Shall disappear
