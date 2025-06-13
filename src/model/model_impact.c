@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 19:12:04 by parden            #+#    #+#             */
-/*   Updated: 2025/06/12 16:04:30 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/13 12:36:01 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,11 +183,11 @@ void	model_impact_cylinder(t_model *m, t_impact *imp, t_cyl *cyl)
 	vec_sub(vx2, vx2, cyl->pos);
 	float h2 = fabs(vec_dot(vx2, cyl->ax));
 
-	if (x2 > EPS && x2 < x1 && h2 < cyl->hgt/2) {
+	if (x2 > EPS && x2 < x1 && h2 < cyl->hgt) {
 		x1 = x2;
 		h1 = h2;
 	}
-	if (x1 > EPS && x1 < imp->scale && h1 < cyl->hgt/2)
+	if (x1 > EPS && x1 < imp->scale && h1 < cyl->hgt)
 		imp->scale = x1;
 }
 
