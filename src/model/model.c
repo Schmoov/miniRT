@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 16:29:34 by parden            #+#    #+#             */
-/*   Updated: 2025/05/16 15:51:44 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/13 13:10:46 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ t_rgb	model_pixel(t_model *m, int x, int y)
 {
 	t_impact	imp;
 
+	ft_memset(&imp, 0, sizeof(imp));
 	model_pixel_camray(m, &imp.ray, x, y);
 	model_impact(m, &imp);
 	return (model_light(m, &imp));
