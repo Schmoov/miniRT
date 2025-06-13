@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 16:20:19 by parden            #+#    #+#             */
-/*   Updated: 2025/05/04 14:15:10 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/13 12:14:39 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ bool	model_init(t_model *mod)
 
 void	model_destroy(t_model *mod)
 {
-	(void)mod;
+	(void) mod;
 }
 
 void	model_set_cam(t_model *mod, t_camera *cam)

@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   miniRT.h                                           :+:      :+:    :+:   */
+/*   quadratic.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/24 14:30:24 by parden            #+#    #+#             */
-/*   Updated: 2025/06/13 15:00:00 by parden           ###   ########.fr       */
+/*   Created: 2025/04/18 16:29:34 by parden            #+#    #+#             */
+/*   Updated: 2025/06/13 16:07:06 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
+#include "../../inc/miniRT.h"
 
-# define WIDTH 1280
-# define HEIGHT 720
+void	eq_quad_solve(t_eq_quad *eq)
+{
+	float	delta;
 
-# include <errno.h>
-# include <stdio.h>
-# include <math.h>
-# include "../libft/libft.h"
-# include "../mlx/mlx.h"
-# include "model.h"
-# include "display.h"
-# include "parser.h"
-
-#endif
+	eq->has_solution = false;
+	delta = powf(eq->b, 2) - 4 * eq->a * eq->c;
+	if (delta < EPS_QUAD)
+		return ;
+	eq->has_solution = true;
+	eq->x1 = (-eq->b + sqrtf(delta)) / (2 * eq->a);
+	eq->x2 = (-eq->b - sqrtf(delta)) / (2 * eq->a);
+}

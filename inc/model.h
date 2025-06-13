@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 18:35:27 by parden            #+#    #+#             */
-/*   Updated: 2025/05/21 19:27:41 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/13 18:17:50 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,21 @@
 # include "scene_structs.h"
 # include "object.h"
 # include "model_api.h"
-# include "vector.h"
-# include "color.h"
+# include "math_utils.h"
 
 # define INF 1e9
-# define EPS 1e-3
 # define W 1280
 # define H 720
 
 # define LIT_MAX 20
 # define OBJ_MAX 200
+
+//Discards grazing rays
+# define EPS_TGT 1e-9
+//Discards solutions of small delta quadratic equations
+# define EPS_QUAD 1e-9
+//Protects from self intersection
+# define EPS_ACNE 1e-3
 
 typedef struct s_cam {
 	t_v3	pos;
@@ -73,10 +78,11 @@ t_rgb	model_pixel(t_model *m, int x, int y);
 void	model_impact(t_model *m, t_impact *imp);
 t_rgb	model_light(t_model *m, t_impact *imp);
 void	model_impact_object(t_model *m, t_impact *imp, int i);
-void	model_impact_plane(t_model *m, t_impact *imp, t_pla *pla);
-void	model_impact_disk(t_model *m, t_impact *imp, t_dsk *dsk);
-void	model_impact_sphere(t_model *m, t_impact *imp, t_sph *sph);
-void	model_impact_cylinder(t_model *m, t_impact *imp, t_cyl *cyl);
+void	impact_plane(t_model *m, t_impact *imp, t_pla *pla);
+void	impact_disk(t_model *m, t_impact *imp, t_dsk *dsk);
+void	impact_sphere(t_model *m, t_impact *imp, t_sph *sph);
+void	impact_cylinder(t_model *m, t_impact *imp, t_cyl *cyl);
+void	impact_cone(t_model *m, t_impact *imp, t_con *con);
 
 void	impact_color(t_model *m, t_impact *imp);
 void	impact_normal(t_model *m, t_impact *imp);

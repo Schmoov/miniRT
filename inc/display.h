@@ -6,14 +6,14 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 03:52:34 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/04/24 15:24:04 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/13 15:04:00 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DISPLAY_H
 # define DISPLAY_H
 
-typedef unsigned int t_rgb;
+typedef unsigned int	t_rgb;
 typedef struct s_application
 {
 	void	*mlx;
