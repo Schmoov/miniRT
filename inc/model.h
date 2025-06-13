@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 18:35:27 by parden            #+#    #+#             */
-/*   Updated: 2025/06/13 13:20:29 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/13 14:12:03 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,20 @@
 # include "color.h"
 
 # define INF 1e9
-# define EPS 1e-3
 # define W 1280
 # define H 720
 
 # define LIT_MAX 20
 # define OBJ_MAX 200
+
+//Discards grazing rays
+# define EPS_TGT 1e-3
+//Discards solutions of small delta quadratic equations
+# define EPS_QUAD 1e-3
+//Protects from self intersection
+# define EPS_ACNE 1e-3
+//Shall disappear
+# define EPS 1e-3
 
 typedef struct s_cam {
 	t_v3	pos;
