@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   model_impact.c                                     :+:      :+:    :+:   */
+/*   impact.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 19:12:04 by parden            #+#    #+#             */
-/*   Updated: 2025/06/13 12:36:01 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/13 13:21:38 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	impact_color(t_model *m, t_impact *imp)
 {
+	//WILL CHANGE
 	t_obj	*obj;
 
 	obj = &(m->obj[imp->obj_idx]);
@@ -31,6 +32,7 @@ void	impact_color(t_model *m, t_impact *imp)
 
 void	impact_normal(t_model *m, t_impact *imp)
 {
+	//WILL CHANGE
 	t_obj	*obj;
 
 	obj = &(m->obj[imp->obj_idx]);
@@ -70,35 +72,7 @@ void	impact_normal(t_model *m, t_impact *imp)
 		vec_opp(imp->normal);
 }
 
-void	model_impact_object(t_model *m, t_impact *imp, int i)
-{
-	float	old_scale;
-	t_obj	*obj;
-
-	old_scale = imp->scale;
-	obj = &(m->obj[i]);
-	if (obj->type == PLA)
-		model_impact_plane(m, imp, &(obj->pla));
-	if (obj->type == DSK)
-		model_impact_disk(m, imp, &(obj->dsk));
-	if (obj->type == SPH)
-		model_impact_sphere(m, imp, &(obj->sph));
-	if (obj->type == CYL)
-		model_impact_cylinder(m, imp, &(obj->cyl));
-	if (obj->type == CON)
-		model_impact_cone(m, imp, &(obj->con));
-	if (imp->scale < old_scale)
-	{
-		imp->obj_idx = i;
-		imp->pos[0] = imp->scale * imp->ray.dir[0] + imp->ray.pos[0];
-		imp->pos[1] = imp->scale * imp->ray.dir[1] + imp->ray.pos[1];
-		imp->pos[2] = imp->scale * imp->ray.dir[2] + imp->ray.pos[2];
-		impact_normal(m, imp);
-		impact_color(m, imp);
-	}
-}
-
-void	model_impact_plane(t_model *m, t_impact *imp, t_pla *pla)
+void	impact_plane(t_model *m, t_impact *imp, t_pla *pla)
 {
 	float	scale;
 	t_v3	v_rp;
@@ -112,7 +86,7 @@ void	model_impact_plane(t_model *m, t_impact *imp, t_pla *pla)
 		imp->scale = scale;
 }
 
-void	model_impact_disk(t_model *m, t_impact *imp, t_dsk *dsk)
+void	impact_disk(t_model *m, t_impact *imp, t_dsk *dsk)
 {
 	float	scale;
 	t_v3	v_rp;
@@ -130,7 +104,7 @@ void	model_impact_disk(t_model *m, t_impact *imp, t_dsk *dsk)
 		imp->scale = scale;
 }
 
-void	model_impact_sphere(t_model *m, t_impact *imp, t_sph *sph)
+void	impact_sphere(t_model *m, t_impact *imp, t_sph *sph)
 {
 	t_v3	v_cr;
 	float	dot2;
@@ -155,7 +129,7 @@ void	model_impact_sphere(t_model *m, t_impact *imp, t_sph *sph)
 		imp->scale = x1;
 }
 
-void	model_impact_cylinder(t_model *m, t_impact *imp, t_cyl *cyl)
+void	impact_cylinder(t_model *m, t_impact *imp, t_cyl *cyl)
 {
 	t_v3	v_rc;
 	vec_sub(v_rc, imp->ray.pos, cyl->pos);
@@ -191,7 +165,7 @@ void	model_impact_cylinder(t_model *m, t_impact *imp, t_cyl *cyl)
 		imp->scale = x1;
 }
 
-void	model_impact_cone(t_model *m, t_impact *imp, t_con *con)
+void	impact_cone(t_model *m, t_impact *imp, t_con *con)
 {
 	t_v3	v_rc;
 	vec_sub(v_rc, imp->ray.pos, con->pos);

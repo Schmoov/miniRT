@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 18:35:27 by parden            #+#    #+#             */
-/*   Updated: 2025/06/12 15:55:46 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/13 13:20:29 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,11 @@ t_rgb	model_pixel(t_model *m, int x, int y);
 void	model_impact(t_model *m, t_impact *imp);
 t_rgb	model_light(t_model *m, t_impact *imp);
 void	model_impact_object(t_model *m, t_impact *imp, int i);
-void	model_impact_plane(t_model *m, t_impact *imp, t_pla *pla);
-void	model_impact_disk(t_model *m, t_impact *imp, t_dsk *dsk);
-void	model_impact_sphere(t_model *m, t_impact *imp, t_sph *sph);
-void	model_impact_cylinder(t_model *m, t_impact *imp, t_cyl *cyl);
-void	model_impact_cone(t_model *m, t_impact *imp, t_con *con);
+void	impact_plane(t_model *m, t_impact *imp, t_pla *pla);
+void	impact_disk(t_model *m, t_impact *imp, t_dsk *dsk);
+void	impact_sphere(t_model *m, t_impact *imp, t_sph *sph);
+void	impact_cylinder(t_model *m, t_impact *imp, t_cyl *cyl);
+void	impact_cone(t_model *m, t_impact *imp, t_con *con);
 
 void	impact_color(t_model *m, t_impact *imp);
 void	impact_normal(t_model *m, t_impact *imp);
