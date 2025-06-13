@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 16:20:12 by parden            #+#    #+#             */
-/*   Updated: 2025/06/13 12:27:32 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/13 13:00:52 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static void	model_add_cone_disk(t_model *mod, t_con *co)
 	vec_move_along(d->pos, co->ax, co->hgt);
 	ft_memcpy(d->nor, co->ax, sizeof(t_v3));
 	d->col = co->col;
-	d->rad = tan(co->ang / 2) * co->hgt;
+	d->rad = tan(co->ang) * co->hgt;
 	mod->obj_nb++;
 	mod->obj[mod->obj_nb].type = DSK;
 	d = &(mod->obj[mod->obj_nb].dsk);
@@ -87,7 +87,7 @@ void	model_add_cone(t_model *mod, t_cone *c)
 	obj->ax[0] = c->axis.x;
 	obj->ax[1] = c->axis.y;
 	obj->ax[2] = c->axis.z;
-	obj->ang = M_PI * c->angle / 180.f;
+	obj->ang = M_PI * c->angle / 180.f / 2;
 	obj->hgt = c->height / 2;
 	obj->col = (c->color.r << 16) | (c->color.g << 8) | c->color.b;
 	mod->obj_nb++;
