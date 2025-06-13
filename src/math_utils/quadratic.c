@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 16:29:34 by parden            #+#    #+#             */
-/*   Updated: 2025/06/13 15:00:16 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/13 16:07:06 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,5 @@ void	eq_quad_solve(t_eq_quad *eq)
 		return ;
 	eq->has_solution = true;
 	eq->x1 = (-eq->b + sqrtf(delta)) / (2 * eq->a);
-	eq->x1 = (-eq->b - sqrtf(delta)) / (2 * eq->a);
+	eq->x2 = (-eq->b - sqrtf(delta)) / (2 * eq->a);
 }
