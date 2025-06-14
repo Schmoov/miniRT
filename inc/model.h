@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 18:35:27 by parden            #+#    #+#             */
-/*   Updated: 2025/06/14 17:35:54 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/14 18:35:54 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,10 @@ void	model_add_cyl_disk_color(t_cyl *p, t_dsk *obj);
 void	model_add_cyl_color(t_cylinder *p, t_cyl *obj);
 void	model_add_con_disk_color(t_con *p, t_dsk *obj);
 void	model_add_con_color(t_cone *p, t_con *obj);
+
+void	add_plane_axis(t_pla *p);
+void	add_disk_axis(t_dsk *p);
+void	add_cyl_axis(t_cyl *p);
+void	add_con_axis(t_con *p);
 
 #endif

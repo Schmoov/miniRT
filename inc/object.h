@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 18:35:27 by parden            #+#    #+#             */
-/*   Updated: 2025/06/14 17:47:40 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/14 18:32:45 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,9 @@ typedef struct s_sph {
 typedef struct s_cyl {
 	t_v3	pos;
 	t_v3	ax;
+	t_v3	e2;
+	t_v3	e3;
+	t_v3	nor;
 	float	rad;
 	float	hgt;
 	bool	check;
@@ -55,6 +58,8 @@ typedef struct s_cyl {
 typedef struct s_con {
 	t_v3	pos;
 	t_v3	ax;
+	t_v3	e2;
+	t_v3	e3;
 	float	ang;
 	float	hgt;
 	bool	check;
@@ -65,6 +70,8 @@ typedef struct s_con {
 typedef struct s_dsk {
 	t_v3	pos;
 	t_v3	nor;
+	t_v3	e2;
+	t_v3	e3;
 	bool	check;
 	t_rgb	col1;
 	t_rgb	col2;
