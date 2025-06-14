@@ -6,28 +6,11 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 19:12:04 by parden            #+#    #+#             */
-/*   Updated: 2025/06/13 18:14:14 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/14 17:58:17 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/miniRT.h"
-
-void	impact_color(t_model *m, t_impact *imp)
-{
-	t_obj	*obj;
-
-	obj = &(m->obj[imp->obj_idx]);
-	if (obj->type == PLA)
-		imp->col = obj->pla.col;
-	if (obj->type == SPH)
-		imp->col = obj->sph.col;
-	if (obj->type == CYL)
-		imp->col = obj->cyl.col;
-	if (obj->type == CON)
-		imp->col = obj->con.col;
-	if (obj->type == DSK)
-		imp->col = obj->dsk.col;
-}
 
 static void	normal_cylinder(t_model *m, t_impact *imp, t_obj *obj)
 {

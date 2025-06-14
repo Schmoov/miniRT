@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 18:35:27 by parden            #+#    #+#             */
-/*   Updated: 2025/06/13 18:17:50 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/14 17:35:54 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,12 @@ void	impact_normal(t_model *m, t_impact *imp);
 t_rgb	model_light(t_model *m, t_impact *imp);
 t_rgb	color_lit(t_model *m, t_impact *imp);
 t_rgb	color_one_lit(t_model *m, t_impact *imp, t_lit *lit);
+
+void	model_add_plane_color(t_plane *p, t_pla *obj);
+void	model_add_sphere_color(t_sphere *p, t_sph *obj);
+void	model_add_cyl_disk_color(t_cyl *p, t_dsk *obj);
+void	model_add_cyl_color(t_cylinder *p, t_cyl *obj);
+void	model_add_con_disk_color(t_con *p, t_dsk *obj);
+void	model_add_con_color(t_cone *p, t_con *obj);
 
 #endif
