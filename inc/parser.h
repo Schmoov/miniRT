@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 22:22:24 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/06/11 18:56:22 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/06/15 15:26:32 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_parsing_error	parse_plane(char *line, t_scene *scene);
 t_parsing_error	parse_cone(char *line, t_scene *scene);
 void			exit_with_error(t_parsing_error error, const char *filename,
 					int num_line);
-bool			ft_isspace(char character);
+bool			ft_isblank(char character);
 bool			not_valid_final_line(const char *line);
 bool			check_rgb(t_RGB color);
 bool			check_orientation(t_orientation orientation);

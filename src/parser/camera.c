@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:45:58 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/06/11 20:00:11 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/06/15 15:26:32 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ bool	not_valid_final_line(const char *line)
 {
 	if (!line)
 		return (true);
-	while (*line && ft_isspace(*line))
+	while (*line && ft_isblank(*line))
 		line++;
 	return (*line != '\0');
 }
