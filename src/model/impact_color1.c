@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 17:39:57 by parden            #+#    #+#             */
-/*   Updated: 2025/06/14 19:12:07 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/16 16:24:54 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_rgb	color_plane(t_model *m, t_impact *imp, t_pla *obj)
 	vec_sub(vec, imp->pos, obj->pos);
 	f2 = roundf(vec_dot(obj->e2, vec));
 	f3 = roundf(vec_dot(obj->e3, vec));
-	if ((f2+f3)%2)
+	if ((f2 + f3) % 2)
 		return (obj->col1);
 	return (obj->col2);
 }
@@ -39,7 +39,24 @@ t_rgb	color_disk(t_model *m, t_impact *imp, t_dsk *obj)
 	vec_sub(vec, imp->pos, obj->pos);
 	f2 = roundf(vec_dot(obj->e2, vec));
 	f3 = roundf(vec_dot(obj->e3, vec));
-	if ((f2+f3)%2)
+	if ((f2 + f3) % 2)
+		return (obj->col1);
+	return (obj->col2);
+}
+
+t_rgb	color_sphere(t_model *m, t_impact *imp, t_sph *obj)
+{
+	t_v3	vec;
+	int		f2;
+	int		f3;
+
+	if (!obj->check)
+		return (obj->col1);
+	vec_sub(vec, imp->pos, obj->pos);
+	vec_normalize(vec);
+	f2 = roundf(8 * acosf(vec[1]) / M_PI);
+	f3 = roundf(8 * atan2f(vec[2], vec[0]) / M_PI);
+	if ((f2 + f3) % 2)
 		return (obj->col1);
 	return (obj->col2);
 }
@@ -52,7 +69,7 @@ void	impact_color(t_model *m, t_impact *imp)
 	if (obj->type == PLA)
 		imp->col = color_plane(m, imp, &obj->pla);
 	if (obj->type == SPH)
-		imp->col = obj->sph.col1;
+		imp->col = color_sphere(m, imp, &obj->sph);
 	if (obj->type == CYL)
 		imp->col = obj->cyl.col1;
 	if (obj->type == CON)
