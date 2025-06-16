@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 18:35:27 by parden            #+#    #+#             */
-/*   Updated: 2025/06/14 18:35:54 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/16 17:17:22 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,12 @@ void	add_plane_axis(t_pla *p);
 void	add_disk_axis(t_dsk *p);
 void	add_cyl_axis(t_cyl *p);
 void	add_con_axis(t_con *p);
+
+t_rgb	color_plane(t_model *m, t_impact *imp, t_pla *obj);
+t_rgb	color_disk(t_model *m, t_impact *imp, t_dsk *obj);
+t_rgb	color_sphere(t_model *m, t_impact *imp, t_sph *obj);
+t_rgb	color_cyl(t_model *m, t_impact *imp, t_cyl *obj);
+t_rgb	color_con(t_model *m, t_impact *imp, t_con *obj);
+void	impact_color(t_model *m, t_impact *imp);
 
 #endif

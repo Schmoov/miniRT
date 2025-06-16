@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 17:48:43 by parden            #+#    #+#             */
-/*   Updated: 2025/06/16 16:40:55 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/16 17:13:04 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,6 @@ void	add_cyl_axis(t_cyl *p)
 		vec_cross(p->e2, (t_v3){0, 0, 1}, p->ax);
 	vec_normalize(p->e2);
 	vec_cross(p->e3, p->e2, p->ax);
-	printf("%f %f %f\n", p->ax[0], p->ax[1], p->ax[2]);
-	printf("%f %f %f\n", p->e2[0], p->e2[1], p->e2[2]);
-	printf("%f %f %f\n", p->e3[0], p->e3[1], p->e3[2]);
-	printf("~~~~~\n");
 }
 
 void	add_con_axis(t_con *p)

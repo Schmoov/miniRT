@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 19:23:40 by parden            #+#    #+#             */
-/*   Updated: 2025/06/16 16:47:07 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/16 17:13:15 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,4 @@ void	model_set_cam_screen(t_cam *c)
 {
 	model_screen_axis(c);
 	model_screen_pos(c);
-	printf("%f %f %f\n", c->vx_scr[0], c->vx_scr[1], c->vx_scr[2]);
-	printf("%f %f %f\n", c->vy_scr[0], c->vy_scr[1], c->vy_scr[2]);
-	printf("~~~~~\n");
 }
