@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   model_api2.c                                       :+:      :+:    :+:   */
+/*   api2.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 16:20:12 by parden            #+#    #+#             */
-/*   Updated: 2025/06/13 12:27:17 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/16 16:22:52 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ void	model_add_plane(t_model *mod, t_plane *p)
 	obj->nor[0] = p->axis.x;
 	obj->nor[1] = p->axis.y;
 	obj->nor[2] = p->axis.z;
-	obj->col = (p->color.r << 16) | (p->color.g << 8) | p->color.b;
+	add_plane_axis(obj);
+	model_add_plane_color(p, obj);
 	mod->obj_nb++;
 }
 
@@ -51,6 +52,6 @@ void	model_add_sphere(t_model *mod, t_sphere *s)
 	obj->pos[1] = s->pos.y;
 	obj->pos[2] = s->pos.z;
 	obj->rad = s->diameter / 2;
-	obj->col = (s->color.r << 16) | (s->color.g << 8) | s->color.b;
+	model_add_sphere_color(s, obj);
 	mod->obj_nb++;
 }

@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 18:35:27 by parden            #+#    #+#             */
-/*   Updated: 2025/06/13 18:17:50 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/16 17:17:22 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,24 @@ void	impact_normal(t_model *m, t_impact *imp);
 t_rgb	model_light(t_model *m, t_impact *imp);
 t_rgb	color_lit(t_model *m, t_impact *imp);
 t_rgb	color_one_lit(t_model *m, t_impact *imp, t_lit *lit);
+
+void	model_add_plane_color(t_plane *p, t_pla *obj);
+void	model_add_sphere_color(t_sphere *p, t_sph *obj);
+void	model_add_cyl_disk_color(t_cyl *p, t_dsk *obj);
+void	model_add_cyl_color(t_cylinder *p, t_cyl *obj);
+void	model_add_con_disk_color(t_con *p, t_dsk *obj);
+void	model_add_con_color(t_cone *p, t_con *obj);
+
+void	add_plane_axis(t_pla *p);
+void	add_disk_axis(t_dsk *p);
+void	add_cyl_axis(t_cyl *p);
+void	add_con_axis(t_con *p);
+
+t_rgb	color_plane(t_model *m, t_impact *imp, t_pla *obj);
+t_rgb	color_disk(t_model *m, t_impact *imp, t_dsk *obj);
+t_rgb	color_sphere(t_model *m, t_impact *imp, t_sph *obj);
+t_rgb	color_cyl(t_model *m, t_impact *imp, t_cyl *obj);
+t_rgb	color_con(t_model *m, t_impact *imp, t_con *obj);
+void	impact_color(t_model *m, t_impact *imp);
 
 #endif

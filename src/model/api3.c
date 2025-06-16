@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   model_api3.c                                       :+:      :+:    :+:   */
+/*   api3.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 16:20:12 by parden            #+#    #+#             */
-/*   Updated: 2025/06/13 13:00:52 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/14 19:04:16 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ static void	model_add_cylinder_disk(t_model *mod, t_cyl *cy)
 	ft_memcpy(d->pos, cy->pos, sizeof(t_v3));
 	vec_move_along(d->pos, cy->ax, cy->hgt);
 	ft_memcpy(d->nor, cy->ax, sizeof(t_v3));
-	d->col = cy->col;
+	model_add_cyl_disk_color(cy, d);
+	add_disk_axis(d);
 	d->rad = cy->rad;
 	mod->obj_nb++;
 	mod->obj[mod->obj_nb].type = DSK;
@@ -29,7 +30,8 @@ static void	model_add_cylinder_disk(t_model *mod, t_cyl *cy)
 	ft_memcpy(d->pos, cy->pos, sizeof(t_v3));
 	vec_move_along(d->pos, cy->ax, -cy->hgt);
 	ft_memcpy(d->nor, cy->ax, sizeof(t_v3));
-	d->col = cy->col;
+	model_add_cyl_disk_color(cy, d);
+	add_disk_axis(d);
 	d->rad = cy->rad;
 	mod->obj_nb++;
 }
@@ -48,7 +50,8 @@ void	model_add_cylinder(t_model *mod, t_cylinder *c)
 	obj->ax[2] = c->axis.z;
 	obj->rad = c->diameter / 2;
 	obj->hgt = c->height / 2;
-	obj->col = (c->color.r << 16) | (c->color.g << 8) | c->color.b;
+	model_add_cyl_color(c, obj);
+	add_cyl_axis(obj);
 	mod->obj_nb++;
 	model_add_cylinder_disk(mod, obj);
 }
@@ -62,7 +65,8 @@ static void	model_add_cone_disk(t_model *mod, t_con *co)
 	ft_memcpy(d->pos, co->pos, sizeof(t_v3));
 	vec_move_along(d->pos, co->ax, co->hgt);
 	ft_memcpy(d->nor, co->ax, sizeof(t_v3));
-	d->col = co->col;
+	model_add_con_disk_color(co, d);
+	add_disk_axis(d);
 	d->rad = tan(co->ang) * co->hgt;
 	mod->obj_nb++;
 	mod->obj[mod->obj_nb].type = DSK;
@@ -70,7 +74,8 @@ static void	model_add_cone_disk(t_model *mod, t_con *co)
 	ft_memcpy(d->pos, co->pos, sizeof(t_v3));
 	vec_move_along(d->pos, co->ax, -co->hgt);
 	ft_memcpy(d->nor, co->ax, sizeof(t_v3));
-	d->col = co->col;
+	model_add_con_disk_color(co, d);
+	add_disk_axis(d);
 	d->rad = tan(co->ang) * co->hgt;
 	mod->obj_nb++;
 }
@@ -89,7 +94,8 @@ void	model_add_cone(t_model *mod, t_cone *c)
 	obj->ax[2] = c->axis.z;
 	obj->ang = M_PI * c->angle / 180.f / 2;
 	obj->hgt = c->height / 2;
-	obj->col = (c->color.r << 16) | (c->color.g << 8) | c->color.b;
+	model_add_con_color(c, obj);
+	add_con_axis(obj);
 	mod->obj_nb++;
 	model_add_cone_disk(mod, obj);
 }
