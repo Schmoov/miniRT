@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 19:23:40 by parden            #+#    #+#             */
-/*   Updated: 2025/06/16 16:23:45 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/16 16:47:07 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ static void	model_screen_axis(t_cam *c)
 {
 	if (fabs(c->dir[0]) <= fabs(c->dir[1])
 		&& fabs(c->dir[0]) <= fabs(c->dir[2]))
-		vec_cross(c->vy_scr, (t_v3){1, 0, 0}, c->dir);
+		vec_cross(c->vy_scr, c->dir, (t_v3){1, 0, 0});
 	else if (fabs(c->dir[1]) <= fabs(c->dir[2]))
-		vec_cross(c->vy_scr, (t_v3){0, 1, 0}, c->dir);
+		vec_cross(c->vy_scr, c->dir, (t_v3){0, 1, 0});
 	else
-		vec_cross(c->vy_scr, (t_v3){0, 0, 1}, c->dir);
+		vec_cross(c->vy_scr, c->dir, (t_v3){0, 0, 1});
 	vec_norm(c->vy_scr);
 	vec_cross(c->vx_scr, c->vy_scr, c->dir);
 }
@@ -39,4 +39,7 @@ void	model_set_cam_screen(t_cam *c)
 {
 	model_screen_axis(c);
 	model_screen_pos(c);
+	printf("%f %f %f\n", c->vx_scr[0], c->vx_scr[1], c->vx_scr[2]);
+	printf("%f %f %f\n", c->vy_scr[0], c->vy_scr[1], c->vy_scr[2]);
+	printf("~~~~~\n");
 }
