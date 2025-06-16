@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 19:23:40 by parden            #+#    #+#             */
-/*   Updated: 2025/06/14 18:19:20 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/16 16:23:45 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 static void	model_screen_axis(t_cam *c)
 {
-	if (fabs(c->dir[0]) <= fabs(c->dir[1]) && fabs(c->dir[0]) <= fabs(c->dir[2]))
+	if (fabs(c->dir[0]) <= fabs(c->dir[1])
+		&& fabs(c->dir[0]) <= fabs(c->dir[2]))
 		vec_cross(c->vy_scr, (t_v3){1, 0, 0}, c->dir);
 	else if (fabs(c->dir[1]) <= fabs(c->dir[2]))
 		vec_cross(c->vy_scr, (t_v3){0, 1, 0}, c->dir);

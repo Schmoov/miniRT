@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 16:20:12 by parden            #+#    #+#             */
-/*   Updated: 2025/06/14 17:58:14 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/16 16:22:52 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ void	model_add_light(t_model *mod, t_light *l)
 	mod->lit_nb++;
 }
 
-
-void	add_plane_axis(t_pla *p);
 void	model_add_plane(t_model *mod, t_plane *p)
 {
 	t_pla	*obj;
