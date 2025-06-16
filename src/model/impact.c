@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 19:12:04 by parden            #+#    #+#             */
-/*   Updated: 2025/06/14 17:58:17 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/16 18:18:54 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,5 @@ void	impact_normal(t_model *m, t_impact *imp)
 		normal_cone(m, imp, obj);
 	if (vec_dot(imp->normal, imp->ray.dir) > 0)
 		vec_opp(imp->normal);
+	bump_normal(m, imp, obj);
 }

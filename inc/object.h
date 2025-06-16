@@ -6,15 +6,17 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 18:35:27 by parden            #+#    #+#             */
-/*   Updated: 2025/06/14 18:32:45 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/16 19:04:42 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef OBJECT_H
 # define OBJECT_H
 
+#include "scene_structs.h"
 typedef float			t_v3[3];
 typedef unsigned int	t_rgb;
+
 enum e_obj {
 	PLA,
 	SPH,
@@ -24,6 +26,12 @@ enum e_obj {
 	NB_OBJ
 };
 
+typedef struct	s_bump {
+	int	w;
+	int	h;
+	int	*buf;
+}		t_bump;
+
 typedef struct s_pla {
 	t_v3	pos;
 	t_v3	e2;
@@ -32,6 +40,7 @@ typedef struct s_pla {
 	bool	check;
 	t_rgb	col1;
 	t_rgb	col2;
+	t_bump	bump;
 }	t_pla;
 
 typedef struct s_sph {
@@ -40,6 +49,7 @@ typedef struct s_sph {
 	bool	check;
 	t_rgb	col1;
 	t_rgb	col2;
+	t_bump	bump;
 }	t_sph;
 
 typedef struct s_cyl {
@@ -53,6 +63,7 @@ typedef struct s_cyl {
 	bool	check;
 	t_rgb	col1;
 	t_rgb	col2;
+	t_bump	bump;
 }	t_cyl;
 
 typedef struct s_con {
@@ -65,6 +76,7 @@ typedef struct s_con {
 	bool	check;
 	t_rgb	col1;
 	t_rgb	col2;
+	t_bump	bump;
 }	t_con;
 
 typedef struct s_dsk {
