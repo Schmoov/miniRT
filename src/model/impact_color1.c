@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 17:39:57 by parden            #+#    #+#             */
-/*   Updated: 2025/06/16 16:24:54 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/16 16:37:17 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,24 @@ t_rgb	color_sphere(t_model *m, t_impact *imp, t_sph *obj)
 	return (obj->col2);
 }
 
+t_rgb	color_cyl(t_model *m, t_impact *imp, t_cyl *obj)
+{
+	t_v3	vec;
+	int		f2;
+	int		f3;
+
+	if (!obj->check)
+		return (obj->col1);
+	vec_sub(vec, imp->pos, obj->pos);
+	f2 = roundf(6.5f * vec_dot(vec, obj->ax) / obj->hgt);
+	vec_normalize(vec);
+	f3 = roundf(4 * atan2f(vec_dot(vec, obj->e2), vec_dot(vec, obj->e3)) / M_PI);
+	if ((f2 + f3) % 2)
+		return (obj->col1);
+	return (obj->col2);
+}
+
+
 void	impact_color(t_model *m, t_impact *imp)
 {
 	t_obj	*obj;
@@ -71,7 +89,7 @@ void	impact_color(t_model *m, t_impact *imp)
 	if (obj->type == SPH)
 		imp->col = color_sphere(m, imp, &obj->sph);
 	if (obj->type == CYL)
-		imp->col = obj->cyl.col1;
+		imp->col = color_cyl(m, imp, &obj->cyl);
 	if (obj->type == CON)
 		imp->col = obj->con.col1;
 	if (obj->type == DSK)
