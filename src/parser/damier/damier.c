@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 17:43:28 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/06/15 15:35:42 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/06/18 19:56:09 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	*parse_damier(char *str, t_RGB *color1, t_damier **damier_ptr)
 	if (str == NULL || !ft_isblank(*str))
 		return (free(damier), NULL);
 	*damier_ptr = damier;
-	return (str);
+	return (skip_whitespace(str));
 }
 
 char	*parse_rgb_with_damier(char *str, t_RGB *color, t_damier **damier)
