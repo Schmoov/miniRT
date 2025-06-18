@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:12:48 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/06/15 15:39:57 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/06/18 17:11:53 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_parsing_error	parse_add_cylinder(t_cylinder *cylinder, char *line)
 	if (!line)
 		return (ERR_INVALID_CYLINDER_DIAMETER);
 	line = parse_float(line, &cylinder->height);
-	if (!line)
+	if (!char_is_blank(line) || cylinder->height <= 0.0F)
 		return (ERR_INVALID_CYLINDER_HEIGHT);
 	line = parse_rgb_with_damier(line, &cylinder->color, &cylinder->damier);
 	if (!line || !check_rgb(cylinder->color))

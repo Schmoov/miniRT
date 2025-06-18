@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:00:29 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/06/15 15:37:10 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/06/18 17:18:13 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@ bool	ft_isblank(char character)
 {
 	return (character == ' ' || character == '\t' || character == '\n'
 		|| character == '\r' || character == '\v' || character == '\f'
-		|| character == '\0'
-		|| character == '\b'
-		|| character == '#');
+		|| character == '\0' || character == '\b' || character == '#');
 }
 
 int	custom_atoi(const char *str, char **endptr)
@@ -93,5 +91,7 @@ char	*parse_coord(char *str, t_coord *coord)
 		return (NULL);
 	str++;
 	str = parse_float(str, &coord->z);
+	if (str && !ft_isblank(*str))
+		return (NULL);
 	return (skip_whitespace(str));
 }
