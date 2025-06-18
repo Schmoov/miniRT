@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:45:58 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/06/15 15:26:32 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/06/18 19:11:15 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_parsing_error	parse_camera(char *line, t_camera *camera)
 	if (!line || !check_orientation(camera->orientation))
 		return (ERR_INVALID_CAMERA_ORIENTATION);
 	line = parse_float(line, &camera->fov);
-	if (!check_fov(camera->fov) || not_valid_final_line(line))
+	if (!check_fov(camera->fov) || !char_is_blank(line))
 		return (ERR_INVALID_CAMERA_FOV);
 	cpt++;
 	return (NO_ERROR);
