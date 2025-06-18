@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   model_api1.c                                       :+:      :+:    :+:   */
+/*   api1.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 16:20:19 by parden            #+#    #+#             */
-/*   Updated: 2025/06/13 12:14:39 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/18 16:12:19 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,21 @@ bool	model_init(t_model *mod)
 
 void	model_destroy(t_model *mod)
 {
-	(void) mod;
+	int	i;
+
+	i = 0;
+	while (i < mod->obj_nb)
+	{
+		if (mod->obj[i].type == PLA)
+			free(mod->obj[i].pla.bump.buf);
+		if (mod->obj[i].type == CYL)
+			free(mod->obj[i].cyl.bump.buf);
+		if (mod->obj[i].type == SPH)
+			free(mod->obj[i].sph.bump.buf);
+		if (mod->obj[i].type == CYL)
+			free(mod->obj[i].cyl.bump.buf);
+		i++;
+	}
 }
 
 void	model_set_cam(t_model *mod, t_camera *cam)

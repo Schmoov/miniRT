@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 16:20:12 by parden            #+#    #+#             */
-/*   Updated: 2025/06/14 19:04:16 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/16 19:05:54 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ void	model_add_cylinder(t_model *mod, t_cylinder *c)
 	obj->hgt = c->height / 2;
 	model_add_cyl_color(c, obj);
 	add_cyl_axis(obj);
+	if (c->heightmap)
+		model_add_bump(&obj->bump, c->heightmap);
 	mod->obj_nb++;
 	model_add_cylinder_disk(mod, obj);
 }
@@ -96,6 +98,8 @@ void	model_add_cone(t_model *mod, t_cone *c)
 	obj->hgt = c->height / 2;
 	model_add_con_color(c, obj);
 	add_con_axis(obj);
+	if (c->heightmap)
+		model_add_bump(&obj->bump, c->heightmap);
 	mod->obj_nb++;
 	model_add_cone_disk(mod, obj);
 }

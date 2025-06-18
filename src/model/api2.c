@@ -6,11 +6,28 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 16:20:12 by parden            #+#    #+#             */
-/*   Updated: 2025/06/16 16:22:52 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/18 14:58:34 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/miniRT.h"
+
+void	model_add_bump(t_bump *b, t_heightmap *h)
+{
+	int	i;
+
+	b->w = h->width;
+	b->h = h->height;
+	b->buf = malloc(b->w * b->h * sizeof(int));
+	if (!b->buf)
+		return ;
+	i = 0;
+	while (i < b->w * b->h)
+	{
+		b->buf[i] = h->data[i / b->w][i % b->w];
+		i++;
+	}
+}
 
 void	model_add_light(t_model *mod, t_light *l)
 {
@@ -39,6 +56,8 @@ void	model_add_plane(t_model *mod, t_plane *p)
 	obj->nor[2] = p->axis.z;
 	add_plane_axis(obj);
 	model_add_plane_color(p, obj);
+	if (p->heightmap)
+		model_add_bump(&obj->bump, p->heightmap);
 	mod->obj_nb++;
 }
 
@@ -53,5 +72,7 @@ void	model_add_sphere(t_model *mod, t_sphere *s)
 	obj->pos[2] = s->pos.z;
 	obj->rad = s->diameter / 2;
 	model_add_sphere_color(s, obj);
+	if (s->heightmap)
+		model_add_bump(&obj->bump, s->heightmap);
 	mod->obj_nb++;
 }

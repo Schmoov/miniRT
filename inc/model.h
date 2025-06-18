@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 18:35:27 by parden            #+#    #+#             */
-/*   Updated: 2025/06/16 17:17:22 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/18 16:05:47 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@
 # define EPS_QUAD 1e-9
 //Protects from self intersection
 # define EPS_ACNE 1e-3
+
+# define BUMP_FACTOR 25.0f
 
 typedef struct s_cam {
 	t_v3	pos;
@@ -90,6 +92,7 @@ t_rgb	model_light(t_model *m, t_impact *imp);
 t_rgb	color_lit(t_model *m, t_impact *imp);
 t_rgb	color_one_lit(t_model *m, t_impact *imp, t_lit *lit);
 
+void	model_add_bump(t_bump *b, t_heightmap *h);
 void	model_add_plane_color(t_plane *p, t_pla *obj);
 void	model_add_sphere_color(t_sphere *p, t_sph *obj);
 void	model_add_cyl_disk_color(t_cyl *p, t_dsk *obj);
@@ -108,5 +111,12 @@ t_rgb	color_sphere(t_model *m, t_impact *imp, t_sph *obj);
 t_rgb	color_cyl(t_model *m, t_impact *imp, t_cyl *obj);
 t_rgb	color_con(t_model *m, t_impact *imp, t_con *obj);
 void	impact_color(t_model *m, t_impact *imp);
+
+void	bump_pla(t_model *m, t_impact *imp, t_pla *obj);
+void	bump_sph_helper(t_sph *obj, t_v3 vec, float *dx, float *dy);
+void	bump_sph(t_model *m, t_impact *imp, t_sph *obj);
+void	bump_cyl(t_model *m, t_impact *imp, t_cyl *obj);
+void	bump_con(t_model *m, t_impact *imp, t_con *obj);
+void	bump_normal(t_model *m, t_impact *imp, t_obj *obj);
 
 #endif
