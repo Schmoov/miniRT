@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 16:29:34 by parden            #+#    #+#             */
-/*   Updated: 2025/06/13 13:20:38 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/18 16:14:09 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ t_rgb	*model_compute(t_model *m)
 		}
 		y++;
 	}
+	model_destroy(m);
 	return (res);
 }
 

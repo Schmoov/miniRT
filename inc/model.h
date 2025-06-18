@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 18:35:27 by parden            #+#    #+#             */
-/*   Updated: 2025/06/18 14:51:11 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/18 16:05:47 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ t_rgb	color_con(t_model *m, t_impact *imp, t_con *obj);
 void	impact_color(t_model *m, t_impact *imp);
 
 void	bump_pla(t_model *m, t_impact *imp, t_pla *obj);
+void	bump_sph_helper(t_sph *obj, t_v3 vec, float *dx, float *dy);
 void	bump_sph(t_model *m, t_impact *imp, t_sph *obj);
 void	bump_cyl(t_model *m, t_impact *imp, t_cyl *obj);
 void	bump_con(t_model *m, t_impact *imp, t_con *obj);

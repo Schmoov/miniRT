@@ -6,14 +6,15 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 18:35:27 by parden            #+#    #+#             */
-/*   Updated: 2025/06/16 19:04:42 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/18 16:08:21 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef OBJECT_H
 # define OBJECT_H
 
-#include "scene_structs.h"
+# include "scene_structs.h"
+
 typedef float			t_v3[3];
 typedef unsigned int	t_rgb;
 
@@ -26,7 +27,7 @@ enum e_obj {
 	NB_OBJ
 };
 
-typedef struct	s_bump {
+typedef struct s_bump {
 	int	w;
 	int	h;
 	int	*buf;
