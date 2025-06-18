@@ -6,53 +6,39 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 17:45:30 by parden            #+#    #+#             */
-/*   Updated: 2025/06/16 19:38:01 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/18 14:58:54 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/miniRT.h"
-#include <stdio.h>
 
 void	bump_pla(t_model *m, t_impact *imp, t_pla *obj)
 {
 	t_v3	vec;
-	int		f2;
-	int		f3;
-	int		d2;
-	int		d3;
+	int		fx;
+	int		fy;
+	int		dx;
+	int		dy;
 
 	if (!obj->bump.buf)
 		return ;
 	vec_sub(vec, imp->pos, obj->pos);
-	f2 = ((int)vec_dot(obj->e2, vec)) % obj->bump.w;
-	f2 += obj->bump.w;
-	f2 %= obj->bump.w;
-	f3 = ((int)vec_dot(obj->e3, vec)) % obj->bump.h;
-	f3 += obj->bump.h;
-	f3 %= obj->bump.h;
+	fx = ((int)vec_dot(obj->e3, vec)) % obj->bump.w;
+	fx += obj->bump.w;
+	fx %= obj->bump.w;
+	fy = ((int)vec_dot(obj->e2, vec)) % obj->bump.h;
+	fy += obj->bump.h;
+	fy %= obj->bump.h;
 
-	/*
-	printf("%d %d\n", f2, f3);
-	printf("%d\n", obj->bump->data[f2][f3]);
-	return;
-	for (int i = 0; i < 8; i++) {
-		for (int j = 0; j < 8; j++) {
-			printf("%d ", (int)obj->bump->data[i][j]);
-		}
-		printf("\n");
-	}
-	fflush(stdout);
-	*/
 
-	d2 = obj->bump.buf[((f2 + 1) % obj->bump.h) * obj->bump.w + f3] - (int)obj->bump.buf[f2 * obj->bump.w + f3];
-	d3 = obj->bump.buf[f2 * obj->bump.w + ((f3 + 1) % obj->bump.h)] - (int)obj->bump.buf[f2 * obj->bump.w + f3];
-	float p2 = d2 / 1000.f;
-	float p3 = d3 / 1000.f;
-	imp->normal[0] += p2 * obj->e2[0] + p3 * obj->e3[0];
-	imp->normal[1] += p2 * obj->e2[1] + p3 * obj->e3[1];
-	imp->normal[2] += p2 * obj->e2[2] + p3 * obj->e3[2];
+	dx = obj->bump.buf[fy * obj->bump.w + ((fx + 1) % obj->bump.w)] - (int)obj->bump.buf[fy * obj->bump.w + fx];
+	dy = obj->bump.buf[((fy + 1) % obj->bump.h) * obj->bump.w + fx] - (int)obj->bump.buf[fy * obj->bump.w + fx];
+	float px = dx / BUMP_FACTOR;
+	float py = dy / BUMP_FACTOR;
+	imp->normal[0] += px * obj->e3[0] + py * obj->e2[0];
+	imp->normal[1] += px * obj->e3[1] + py * obj->e2[1];
+	imp->normal[2] += px * obj->e3[2] + py * obj->e2[2];
 	vec_normalize(imp->normal);
-	//printf("%f %f %f\n", imp->normal[0],imp->normal[1],imp->normal[2]);
 
 }
 

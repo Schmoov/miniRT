@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 18:35:27 by parden            #+#    #+#             */
-/*   Updated: 2025/06/16 19:02:04 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/18 14:51:11 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@
 # define EPS_QUAD 1e-9
 //Protects from self intersection
 # define EPS_ACNE 1e-3
+
+# define BUMP_FACTOR 25.0f
 
 typedef struct s_cam {
 	t_v3	pos;
