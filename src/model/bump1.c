@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 17:45:30 by parden            #+#    #+#             */
-/*   Updated: 2025/06/18 16:06:57 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/20 13:57:30 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,60 +83,14 @@ void	bump_sph(t_model *m, t_impact *imp, t_sph *obj)
 	vec_normalize(imp->normal);
 }
 
-void	bump_cyl(t_model *m, t_impact *imp, t_cyl *obj)
+void	bump_normal(t_model *m, t_impact *imp, t_obj *obj)
 {
-	t_v3	vec;
-	int		fx;
-	int		fy;
-	float	dx;
-	float	dy;
-
-	if (!obj->bump.buf)
-		return ;
-	vec_sub(vec, imp->pos, obj->pos);
-	fx = ((int)vec_dot(obj->e3, vec)) % obj->bump.w;
-	fx += obj->bump.w;
-	fx %= obj->bump.w;
-	fy = ((int)vec_dot(obj->e2, vec)) % obj->bump.h;
-	fy += obj->bump.h;
-	fy %= obj->bump.h;
-	dx = obj->bump.buf[fy * obj->bump.w + ((fx + 1) % obj->bump.w)]
-		- (int)obj->bump.buf[fy * obj->bump.w + fx];
-	dy = obj->bump.buf[((fy + 1) % obj->bump.h) * obj->bump.w + fx]
-		- (int)obj->bump.buf[fy * obj->bump.w + fx];
-	dx /= BUMP_FACTOR;
-	dy /= BUMP_FACTOR;
-	imp->normal[0] += dx * obj->e3[0] + dy * obj->e2[0];
-	imp->normal[1] += dx * obj->e3[1] + dy * obj->e2[1];
-	imp->normal[2] += dx * obj->e3[2] + dy * obj->e2[2];
-	vec_normalize(imp->normal);
-}
-
-void	bump_con(t_model *m, t_impact *imp, t_con *obj)
-{
-	t_v3	vec;
-	int		fx;
-	int		fy;
-	float	dx;
-	float	dy;
-
-	if (!obj->bump.buf)
-		return ;
-	vec_sub(vec, imp->pos, obj->pos);
-	fx = ((int)vec_dot(obj->e3, vec)) % obj->bump.w;
-	fx += obj->bump.w;
-	fx %= obj->bump.w;
-	fy = ((int)vec_dot(obj->e2, vec)) % obj->bump.h;
-	fy += obj->bump.h;
-	fy %= obj->bump.h;
-	dx = obj->bump.buf[fy * obj->bump.w + ((fx + 1) % obj->bump.w)]
-		- (int)obj->bump.buf[fy * obj->bump.w + fx];
-	dy = obj->bump.buf[((fy + 1) % obj->bump.h) * obj->bump.w + fx]
-		- (int)obj->bump.buf[fy * obj->bump.w + fx];
-	dx /= BUMP_FACTOR;
-	dy /= BUMP_FACTOR;
-	imp->normal[0] += dx * obj->e3[0] + dy * obj->e2[0];
-	imp->normal[1] += dx * obj->e3[1] + dy * obj->e2[1];
-	imp->normal[2] += dx * obj->e3[2] + dy * obj->e2[2];
-	vec_normalize(imp->normal);
+	if (obj->type == PLA)
+		bump_pla(m, imp, &obj->pla);
+	if (obj->type == SPH)
+		bump_sph(m, imp, &obj->sph);
+	if (obj->type == CYL)
+		bump_cyl(m, imp, &obj->cyl);
+	if (obj->type == CON)
+		bump_con(m, imp, &obj->con);
 }
