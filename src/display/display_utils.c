@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 01:01:26 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/04/24 15:24:11 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/20 13:26:05 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	clear_all(t_application *app)
 
 void	initialize_mlx(t_application *app, t_rgb *image)
 {
-//i changed some stuff here
 	app->mlx = mlx_init();
 	if (!app->mlx)
 		return (perror("Failed to initialize mlx"), free(image),
