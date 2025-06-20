@@ -6,16 +6,19 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:00:29 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/06/11 20:14:53 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/06/18 20:02:53 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/miniRT.h"
 
-bool	ft_isspace(char character)
+bool	ft_isblank(char character)
 {
 	return (character == ' ' || character == '\t' || character == '\n'
-		|| character == '\r' || character == '\v' || character == '\f');
+		|| character == '\r' || character == '\v' || character == '\f'
+		|| character == '\0'
+		|| character == '\b'
+		|| character == '#');
 }
 
 int	custom_atoi(const char *str, char **endptr)
@@ -76,7 +79,8 @@ float	custom_strof(const char *str, char **endptr)
 char	*parse_float(char *str, float *value)
 {
 	*value = custom_strof(str, &str);
-	return (skip_whitespace(str));
+	return (str);
+	return (str);
 }
 
 char	*parse_coord(char *str, t_coord *coord)
@@ -90,5 +94,7 @@ char	*parse_coord(char *str, t_coord *coord)
 		return (NULL);
 	str++;
 	str = parse_float(str, &coord->z);
+	if (str && !ft_isblank(*str))
+		return (NULL);
 	return (skip_whitespace(str));
 }

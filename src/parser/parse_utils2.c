@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 20:45:04 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/06/11 20:00:11 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/06/15 15:40:26 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*skip_whitespace(char *str)
 {
 	if (!str)
 		return (NULL);
-	while (*str && ft_isspace(*str))
+	while (*str && *str != '#' && ft_isblank(*str))
 		str++;
 	if (*str == '#')
 	{
@@ -59,11 +59,12 @@ unsigned long	str_to_u_int(const char *str, char **endptr)
 char	*parse_uint(char *str, unsigned int *value)
 {
 	*value = str_to_u_int(str, &str);
-	return (skip_whitespace(str));
+	return (str);
 }
 
 char	*parse_rgb(char *str, t_RGB *color)
 {
+	str = skip_whitespace(str);
 	str = parse_uint(str, &color->r);
 	if (!str || *str++ != ',')
 		return (NULL);
@@ -71,5 +72,14 @@ char	*parse_rgb(char *str, t_RGB *color)
 	if (!str || *str++ != ',')
 		return (NULL);
 	str = parse_uint(str, &color->b);
-	return (skip_whitespace(str));
+	if (str == NULL || !ft_isblank(*str))
+		return (NULL);
+	return (str);
+}
+
+bool	char_is_blank(char *str)
+{
+	if (!str)
+		return (false);
+	return (ft_isblank(*str));
 }

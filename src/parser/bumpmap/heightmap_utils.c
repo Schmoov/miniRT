@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 22:08:29 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/06/11 15:12:09 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/06/18 19:51:33 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ t_parsing_error	parse_heightmap(char *line, t_heightmap **heightmap)
 
 	if (!line || *line == '\0' || *line == '\n')
 		return (NO_ERROR);
+	line = skip_whitespace(line);
 	int (i) = -1;
 	while (line[++i])
 	{

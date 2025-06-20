@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtoll.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: parden <parden@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 11:32:44 by parden            #+#    #+#             */
-/*   Updated: 2024/10/26 20:34:49 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/15 15:26:32 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../libft.h"
 
-static bool	ft_isspace(int c)
+static bool	ft_isblank(int c)
 {
 	return (c == ' ' || c == '\f' || c == '\n'
 		|| c == '\r' || c == '\t' || c == '\v');
@@ -35,7 +35,7 @@ static void	strtoll_init(char **nptr, int *sign, char **base, bool **of)
 	if (*of)
 		**of = false;
 	*sign = 1;
-	while (ft_isspace(**nptr))
+	while (ft_isblank(**nptr))
 		(*nptr)++;
 	if (**nptr == '+' || **nptr == '-')
 	{

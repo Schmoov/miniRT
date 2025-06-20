@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:46:59 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/06/11 20:11:28 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/06/18 19:09:57 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,10 @@ t_parsing_error	parse_ambient_lighting(char *line, t_ambient_lighting *ambient)
 	if (!line || ambient->ratio < 0.0 || ambient->ratio > 1.0)
 		return (ERR_INVALID_AMBIENT_RATIO);
 	line = parse_rgb(line, &ambient->color);
-	if (not_valid_final_line(line) || !check_rgb(ambient->color))
+	if (!line || !check_rgb(ambient->color))
+		return (ERR_INVALID_AMBIENT_COLOR);
+	line = skip_whitespace(line);
+	if (!char_is_blank(line))
 		return (ERR_INVALID_AMBIENT_COLOR);
 	cpt++;
 	return (NO_ERROR);

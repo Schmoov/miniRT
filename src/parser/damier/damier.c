@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 17:43:28 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/06/11 20:00:11 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/06/18 19:56:09 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ char	*parse_damier(char *str, t_RGB *color1, t_damier **damier_ptr)
 {
 	t_damier	*damier;
 
+	str = skip_whitespace(str);
 	damier = malloc(sizeof(t_damier));
 	if (!damier)
 		return (NULL);
@@ -40,6 +41,8 @@ char	*parse_damier(char *str, t_RGB *color1, t_damier **damier_ptr)
 	if (!str || *str++ != ',')
 		return (free(damier), NULL);
 	str = parse_uint(str, &damier->color2.b);
+	if (str == NULL || !ft_isblank(*str))
+		return (free(damier), NULL);
 	*damier_ptr = damier;
 	return (skip_whitespace(str));
 }
@@ -61,5 +64,7 @@ char	*parse_rgb_with_damier(char *str, t_RGB *color, t_damier **damier)
 		str++;
 		return (parse_damier(str, color, damier));
 	}
+	if (*str && !ft_isblank(*str))
+		return (NULL);
 	return (skip_whitespace(str));
 }

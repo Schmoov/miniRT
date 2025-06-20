@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:00:36 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/06/11 20:21:08 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/06/18 17:15:17 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@ t_element_type	get_element_type(const char *line)
 		return (CYLINDER);
 	if (ft_strncmp(line, "co", 2) == 0)
 		return (CONE);
-	if (ft_strncmp(line, "\n", 1) == 0
-		|| ft_strncmp(line, "#", 1) == 0)
+	if (ft_strncmp(line, "\n", 1) == 0 || ft_strncmp(line, "#", 1) == 0)
 		return (EMPTY);
 	return (UNKNOWN);
 }
@@ -67,7 +66,7 @@ void	parse_scene(const char *filename, t_scene *scene)
 	char	*line;
 	int		num_line;
 
-	t_parsing_error (error) = NO_ERROR;
+	t_parsing_error(error) = NO_ERROR;
 	int (file) = open(filename, O_RDONLY | O_CLOEXEC);
 	if (file == -1)
 	{
@@ -88,4 +87,27 @@ void	parse_scene(const char *filename, t_scene *scene)
 	if (error != NO_ERROR)
 		return (free(line), free_scene(scene), exit_with_error(error, filename,
 				num_line));
+}
+
+void	*ft_realloc(void *ptr, size_t old_size, size_t new_size)
+{
+	void	*new_ptr;
+
+	if (new_size == 0)
+	{
+		free(ptr);
+		return (NULL);
+	}
+	new_ptr = malloc(new_size);
+	if (!new_ptr)
+		return (NULL);
+	if (ptr)
+	{
+		if (old_size < new_size)
+			ft_memcpy(new_ptr, ptr, old_size);
+		else
+			ft_memcpy(new_ptr, ptr, new_size);
+		free(ptr);
+	}
+	return (new_ptr);
 }
