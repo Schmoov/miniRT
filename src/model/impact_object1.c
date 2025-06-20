@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 19:12:04 by parden            #+#    #+#             */
-/*   Updated: 2025/06/13 14:58:18 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/20 14:28:24 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	impact_plane(t_model *m, t_impact *imp, t_pla *pla)
 	float	scale;
 	t_v3	v_rp;
 
+	(void) m;
 	if (fabsf(vec_dot(imp->ray.dir, pla->nor)) < EPS_TGT)
 		return ;
 	vec_sub(v_rp, pla->pos, imp->ray.pos);
@@ -31,6 +32,7 @@ void	impact_disk(t_model *m, t_impact *imp, t_dsk *dsk)
 	float	scale;
 	t_v3	v_rp;
 
+	(void) m;
 	if (fabsf(vec_dot(imp->ray.dir, dsk->nor)) < EPS_TGT)
 		return ;
 	vec_sub(v_rp, dsk->pos, imp->ray.pos);
@@ -48,6 +50,7 @@ void	impact_sphere(t_model *m, t_impact *imp, t_sph *sph)
 	t_v3		v_cr;
 	t_eq_quad	eq;
 
+	(void) m;
 	vec_sub(v_cr, imp->ray.pos, sph->pos);
 	eq.a = 1.0f;
 	eq.b = 2 * vec_dot(imp->ray.dir, v_cr);

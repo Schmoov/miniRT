@@ -6,22 +6,12 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 17:43:28 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/06/18 19:56:09 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/06/20 14:31:44 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/parser.h"
 #include <stdlib.h>
-
-static t_RGB	*copy_rgb(t_RGB *dest, const t_RGB *src)
-{
-	if (!dest || !src)
-		return (NULL);
-	dest->r = src->r;
-	dest->g = src->g;
-	dest->b = src->b;
-	return (dest);
-}
 
 char	*parse_damier(char *str, t_RGB *color1, t_damier **damier_ptr)
 {

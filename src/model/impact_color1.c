@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 17:39:57 by parden            #+#    #+#             */
-/*   Updated: 2025/06/16 17:17:41 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/20 14:30:14 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ t_rgb	color_plane(t_model *m, t_impact *imp, t_pla *obj)
 	int		f2;
 	int		f3;
 
+	(void) m;
 	if (!obj->check)
 		return (obj->col1);
 	vec_sub(vec, imp->pos, obj->pos);
@@ -34,6 +35,7 @@ t_rgb	color_disk(t_model *m, t_impact *imp, t_dsk *obj)
 	int		f2;
 	int		f3;
 
+	(void) m;
 	if (!obj->check)
 		return (obj->col1);
 	vec_sub(vec, imp->pos, obj->pos);
@@ -50,6 +52,7 @@ t_rgb	color_sphere(t_model *m, t_impact *imp, t_sph *obj)
 	int		f2;
 	int		f3;
 
+	(void) m;
 	if (!obj->check)
 		return (obj->col1);
 	vec_sub(vec, imp->pos, obj->pos);

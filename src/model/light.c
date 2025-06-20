@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 16:29:34 by parden            #+#    #+#             */
-/*   Updated: 2025/06/13 17:45:42 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/20 14:29:23 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ t_rgb	color_lit(t_model *m, t_impact *imp)
 {
 	int			i;
 	t_rgb		res;
-	t_v3		to_lit;
 
 	i = 0;
 	res = 0;

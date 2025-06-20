@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 19:12:04 by parden            #+#    #+#             */
-/*   Updated: 2025/06/16 18:18:54 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/20 14:29:51 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static void	normal_cylinder(t_model *m, t_impact *imp, t_obj *obj)
 {
 	t_v3	comp;
 
+	(void) m;
 	vec_sub(imp->normal, imp->pos, obj->cyl.pos);
 	ft_memcpy(comp, imp->normal, sizeof(t_v3));
 	vec_scale(comp, obj->cyl.ax, vec_dot(imp->normal, obj->cyl.ax));
@@ -28,6 +29,7 @@ static void	normal_cone(t_model *m, t_impact *imp, t_obj *obj)
 	t_v3	comp;
 	float	h;
 
+	(void) m;
 	vec_sub(imp->normal, imp->pos, obj->con.pos);
 	h = vec_dot(imp->normal, obj->con.ax);
 	ft_memcpy(comp, imp->normal, sizeof(t_v3));

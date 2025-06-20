@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 17:39:57 by parden            #+#    #+#             */
-/*   Updated: 2025/06/16 17:19:35 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/20 14:30:26 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ t_rgb	color_cyl(t_model *m, t_impact *imp, t_cyl *obj)
 	int		f2;
 	int		f3;
 
+	(void) m;
 	if (!obj->check)
 		return (obj->col1);
 	vec_sub(vec, imp->pos, obj->pos);
@@ -36,6 +37,7 @@ t_rgb	color_con(t_model *m, t_impact *imp, t_con *obj)
 	int		f2;
 	int		f3;
 
+	(void) m;
 	if (!obj->check)
 		return (obj->col1);
 	vec_sub(vec, imp->pos, obj->pos);

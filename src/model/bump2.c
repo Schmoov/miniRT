@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 17:45:30 by parden            #+#    #+#             */
-/*   Updated: 2025/06/20 13:57:32 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/20 14:31:10 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	bump_cyl(t_model *m, t_impact *imp, t_cyl *obj)
 	float	dx;
 	float	dy;
 
+	(void) m;
 	if (!obj->bump.buf)
 		return ;
 	vec_sub(vec, imp->pos, obj->pos);
@@ -78,6 +79,7 @@ void	bump_con(t_model *m, t_impact *imp, t_con *obj)
 	float	dx;
 	float	dy;
 
+	(void) m;
 	if (!obj->bump.buf)
 		return ;
 	vec_sub(vec, imp->pos, obj->pos);

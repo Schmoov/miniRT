@@ -6,7 +6,7 @@
 /*   By: parden <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 19:12:04 by parden            #+#    #+#             */
-/*   Updated: 2025/06/13 16:15:51 by parden           ###   ########.fr       */
+/*   Updated: 2025/06/20 14:28:52 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	impact_cylinder(t_model *m, t_impact *imp, t_cyl *cyl)
 	float		h1;
 	float		h2;
 
+	(void) m;
 	eq_cyl_init(&eq, imp, cyl);
 	eq_quad_solve(&eq);
 	if (!eq.has_solution)
@@ -74,6 +75,7 @@ void	impact_cone(t_model *m, t_impact *imp, t_con *con)
 	float		h1;
 	float		h2;
 
+	(void) m;
 	vec_sub(v_rc, imp->ray.pos, con->pos);
 	eq.a = pow(vec_dot(imp->ray.dir, con->ax), 2) - pow(cos(con->ang), 2);
 	eq.b = 2 * (vec_dot(imp->ray.dir, con->ax) * vec_dot(v_rc, con->ax)
