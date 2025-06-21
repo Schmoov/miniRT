@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:19:38 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/06/15 14:57:34 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/06/21 18:24:43 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_parsing_error	parse_sphere(char *line, t_scene *scene)
 		if (err != NO_ERROR)
 			return (err);
 	}
-	t_sphere *(temp) = realloc(scene->spheres, sizeof(t_sphere)
+	t_sphere *(temp) = ft_realloc(scene->spheres, sizeof(t_sphere)
 			* (scene->sphere_count + 1));
 	if (!temp)
 		return (ERR_MEMORY_ALLOCATION);

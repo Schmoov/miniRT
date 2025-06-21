@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 00:00:00 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/06/18 20:04:15 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/06/21 18:24:24 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 #include "../../../inc/parser.h"
 #include "../../../inc/parsing_errors.h"
 #include "../../../inc/scene_structs.h"
-#include <math.h>
-#include <stdlib.h>
-#include <string.h>
 
 bool	check_cone_angle(float angle)
 {
@@ -61,7 +58,8 @@ t_parsing_error	parse_cone(char *line, t_scene *scene)
 	error = parse_add_cone(&cone, line);
 	if (error != NO_ERROR)
 		return (error);
-	new_cones = realloc(scene->cones, sizeof(t_cone) * (scene->cone_count + 1));
+	new_cones = ft_realloc(scene->cones, sizeof(t_cone) * (scene->cone_count
+				+ 1));
 	if (!new_cones)
 		return (ERR_MEMORY_ALLOCATION);
 	scene->cones = new_cones;

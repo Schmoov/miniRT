@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:00:36 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/06/18 17:15:17 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/06/21 18:23:32 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	parse_scene(const char *filename, t_scene *scene)
 	int		num_line;
 
 	t_parsing_error(error) = NO_ERROR;
-	int (file) = open(filename, O_RDONLY | O_CLOEXEC);
+	int(file) = open(filename, O_RDONLY | O_CLOEXEC);
 	if (file == -1)
 	{
 		printf("\033[31mError\033[0m \033[33mCould not open file: \033[1m%s\033[0m\n",
@@ -89,7 +89,7 @@ void	parse_scene(const char *filename, t_scene *scene)
 				num_line));
 }
 
-void	*ft_realloc(void *ptr, size_t old_size, size_t new_size)
+void	*ft_realloc(void *ptr, size_t new_size)
 {
 	void	*new_ptr;
 
@@ -103,10 +103,7 @@ void	*ft_realloc(void *ptr, size_t old_size, size_t new_size)
 		return (NULL);
 	if (ptr)
 	{
-		if (old_size < new_size)
-			ft_memcpy(new_ptr, ptr, old_size);
-		else
-			ft_memcpy(new_ptr, ptr, new_size);
+		ft_memcpy(new_ptr, ptr, new_size);
 		free(ptr);
 	}
 	return (new_ptr);

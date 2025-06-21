@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:12:48 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/06/18 20:03:31 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/06/21 18:23:53 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ t_parsing_error	parse_cylinder(char *line, t_scene *scene)
 	error = parse_add_cylinder(&cylinder, line);
 	if (error != NO_ERROR)
 		return (error);
-	new_cylinders = realloc(scene->cylinders, sizeof(t_cylinder)
+	new_cylinders = ft_realloc(scene->cylinders, sizeof(t_cylinder)
 			* (scene->cylinder_count + 1));
 	if (!new_cylinders)
 		return (ERR_MEMORY_ALLOCATION);

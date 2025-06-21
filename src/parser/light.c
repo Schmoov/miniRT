@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:45:39 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/06/18 19:12:10 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/06/21 18:24:31 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_parsing_error	parse_light(char *line, t_scene *scene)
 	line = skip_whitespace(line);
 	if (not_valid_final_line(line))
 		return (ERR_INVALID_LIGHT_COLOR);
-	new_lights = realloc(scene->lights, sizeof(t_light) * (scene->light_count
+	new_lights = ft_realloc(scene->lights, sizeof(t_light) * (scene->light_count
 				+ 1));
 	if (!new_lights)
 		return (ERR_MEMORY_ALLOCATION);
