@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:00:29 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/06/18 20:02:53 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/06/21 18:31:42 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ float	custom_strof(const char *str, char **endptr)
 char	*parse_float(char *str, float *value)
 {
 	*value = custom_strof(str, &str);
-	return (str);
 	return (str);
 }
 

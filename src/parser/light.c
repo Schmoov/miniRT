@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:45:39 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/06/21 18:24:31 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/06/21 18:32:41 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ t_parsing_error	parse_light(char *line, t_scene *scene)
 	if (!line)
 		return (ERR_INVALID_LIGHT_POSITION);
 	line = parse_float(line, &light.brightness);
-	if (!line || light.brightness < 0.0 || light.brightness > 1.0)
+	if (!line || light.brightness < 0.0 || light.brightness > 1.0
+		|| !char_is_blank(line))
 		return (ERR_INVALID_LIGHT_BRIGHTNESS);
 	line = parse_rgb(line, &light.color);
 	if (!char_is_blank(line) || !check_rgb(light.color))
