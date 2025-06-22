@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:19:38 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/06/22 19:30:24 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/06/22 19:36:36 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,9 @@ t_parsing_error	parse_sphere(char *line, t_scene *scene)
 	if (!line || !check_rgb(sphere.color))
 		return (ERR_INVALID_SPHERE_COLOR);
 	if (not_valid_final_line(line))
-	{
 		err = parse_heightmap(line, &sphere.heightmap);
-		if (err != NO_ERROR)
-			return (err);
-	}
+	if (err != NO_ERROR)
+		return (err);
 	t_sphere *(temp) = ft_realloc(scene->spheres, sizeof(t_sphere)
 			* (scene->sphere_count), sizeof(t_sphere) * (scene->sphere_count
 				+ 1));
