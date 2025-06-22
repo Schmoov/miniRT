@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:45:09 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/06/21 18:24:46 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/06/22 19:29:58 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_parsing_error	parse_plane(char *line, t_scene *scene)
 			return (err);
 	}
 	t_plane *(new_planes) = ft_realloc(scene->planes, sizeof(t_plane)
-			* (scene->plane_count + 1));
+			* (scene->plane_count), sizeof(t_plane) * (scene->plane_count + 1));
 	if (!new_planes)
 		return (ERR_MEMORY_ALLOCATION);
 	scene->planes = new_planes;

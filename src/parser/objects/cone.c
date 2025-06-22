@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 00:00:00 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/06/21 18:24:24 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/06/22 19:29:21 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ t_parsing_error	parse_cone(char *line, t_scene *scene)
 	error = parse_add_cone(&cone, line);
 	if (error != NO_ERROR)
 		return (error);
-	new_cones = ft_realloc(scene->cones, sizeof(t_cone) * (scene->cone_count
-				+ 1));
+	new_cones = ft_realloc(scene->cones, sizeof(t_cone) * (scene->cone_count),
+			sizeof(t_cone) * (scene->cone_count + 1));
 	if (!new_cones)
 		return (ERR_MEMORY_ALLOCATION);
 	scene->cones = new_cones;

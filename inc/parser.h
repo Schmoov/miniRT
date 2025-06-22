@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 22:22:24 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/06/21 18:23:41 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/06/22 19:28:43 by hsoysal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,6 @@ t_parsing_error	parse_heightmap(char *line, t_heightmap **heightmap);
 char			*parse_rgb_with_damier(char *str, t_RGB *color,
 					t_damier **damier);
 bool			char_is_blank(char *str);
-void			*ft_realloc(void *ptr, size_t new_size);
+void			*ft_realloc(void *ptr, size_t old_size, size_t new_size);
 
 #endif // PARSER_H
