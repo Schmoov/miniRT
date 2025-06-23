@@ -6,7 +6,7 @@
 /*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 00:00:00 by hsoysal           #+#    #+#             */
-/*   Updated: 2025/06/18 18:57:29 by hsoysal          ###   ########.fr       */
+/*   Updated: 2025/06/23 15:01:21 by parden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ static unsigned char	**allocate_matrix(int width, int height)
 	unsigned char	**matrix;
 	int				i;
 
-	matrix = malloc(sizeof(unsigned char *) * height);
+	matrix = ft_calloc(height, sizeof(unsigned char *));
 	if (!matrix)
 		return (NULL);
 	i = 0;
 	while (i < height)
 	{
-		matrix[i] = malloc(sizeof(unsigned char) * width);
+		matrix[i] = ft_calloc(width, sizeof(unsigned char));
 		if (!matrix[i])
 		{
 			while (--i >= 0)
